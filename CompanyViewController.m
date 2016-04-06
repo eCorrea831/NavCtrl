@@ -36,10 +36,8 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-    self.companyList = @[@"Apple mobile devices",@"Samsung mobile devices"];
+    self.companyList = @[@"Apple mobile devices",@"Samsung mobile devices", @"Google mobile devices", @"Huawei mobile devices"];
     self.title = @"Mobile device makers";
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,8 +73,13 @@
     // Configure the cell...
     
     cell.textLabel.text = [self.companyList objectAtIndex:[indexPath row]];
+    cell.imageView.image = [self companyLogo:self.companyList atIndex:[self.companyList objectAtIndex:[indexPath row]]];
     
     return cell;
+}
+
+- (UIImage*)companyLogo:(NSArray*)companyName atIndex:(id)index {
+    return [UIImage imageNamed:index];
 }
 
 /*
@@ -128,15 +131,17 @@
 
     if (indexPath.row == 0){
         self.productViewController.title = @"Apple mobile devices";
-    } else {
+    } else if (indexPath.row == 1) {
         self.productViewController.title = @"Samsung mobile devices";
+    } else if (indexPath.row == 2) {
+        self.productViewController.title = @"Google mobile devices";
+    } else {
+        self.productViewController.title = @"Huawei mobile devices";
     }
     
     [self.navigationController
         pushViewController:self.productViewController
         animated:YES];
-    
-
 }
  
 

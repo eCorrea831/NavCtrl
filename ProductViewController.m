@@ -40,9 +40,14 @@
     
     if ([self.title isEqualToString:@"Apple mobile devices"]) {
         self.products = @[@"iPad", @"iPod Touch",@"iPhone"];
+    } else if ([self.title isEqualToString:@"Google mobile devices"]) {
+        self.products = @[@"Android Wear", @"Android Tablet",@"Android Phone"];
+    } else if ([self.title isEqualToString:@"Huawei mobile devices"]) {
+        self.products = @[@"Huawei Mate", @"Huawei MateBook",@"Huawei TalkBand"];
     } else {
         self.products = @[@"Galaxy S4", @"Galaxy Note", @"Galaxy Tab"];
     }
+    
     [self.tableView reloadData];
 }
 
@@ -77,7 +82,14 @@
     }
     // Configure the cell...
     cell.textLabel.text = [self.products objectAtIndex:[indexPath row]];
+    
+    cell.imageView.image = [self productPicture:self.products atIndex:[self.products objectAtIndex:[indexPath row]]];
+    
     return cell;
+}
+
+- (UIImage*)productPicture:(NSArray*)productName atIndex:(id)index {
+    return [UIImage imageNamed:index];
 }
 
 /*

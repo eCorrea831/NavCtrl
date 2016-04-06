@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CompanyViewController.h"
 
 @interface ProductViewController : UITableViewController
 @property (nonatomic, retain) NSArray *products;
+
+- (UIImage*)productPicture:(NSArray*)productName atIndex:(id)index;
+
 @end

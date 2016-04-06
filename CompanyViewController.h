@@ -16,4 +16,6 @@
 
 @property (nonatomic, retain) IBOutlet  ProductViewController * productViewController;
 
+- (UIImage*)companyLogo:(NSArray*)companyName atIndex:(id)index;
+
 @end

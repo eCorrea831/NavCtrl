@@ -23,6 +23,22 @@
 		48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A656E518163C1B00746D36 /* CompanyViewController.xib */; };
 		48A656EB18163F8700746D36 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A656E918163F8700746D36 /* ProductViewController.m */; };
 		48A656EE1816468000746D36 /* Sunflower.gif in Resources */ = {isa = PBXBuildFile; fileRef = 48A656ED1816468000746D36 /* Sunflower.gif */; };
+		7B49C3E21CB5B58F00AE47E2 /* Samsung Mobile Devices in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3DF1CB5B58F00AE47E2 /* Samsung Mobile Devices */; };
+		7B49C3F01CB5CC0600AE47E2 /* Apple Mobile Devices in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3EF1CB5CC0600AE47E2 /* Apple Mobile Devices */; };
+		7B49C3F21CB5CC1B00AE47E2 /* Google Mobile Devices in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3F11CB5CC1B00AE47E2 /* Google Mobile Devices */; };
+		7B49C3F41CB5CC2500AE47E2 /* Huawei Mobile Devices in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3F31CB5CC2500AE47E2 /* Huawei Mobile Devices */; };
+		7B49C4011CB5CE9B00AE47E2 /* Android Phone in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3F51CB5CE9B00AE47E2 /* Android Phone */; };
+		7B49C4021CB5CE9B00AE47E2 /* Android Tablet in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3F61CB5CE9B00AE47E2 /* Android Tablet */; };
+		7B49C4031CB5CE9B00AE47E2 /* Android Wear in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3F71CB5CE9B00AE47E2 /* Android Wear */; };
+		7B49C4041CB5CE9B00AE47E2 /* Galaxy Note in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3F81CB5CE9B00AE47E2 /* Galaxy Note */; };
+		7B49C4051CB5CE9B00AE47E2 /* Galaxy S4 in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3F91CB5CE9B00AE47E2 /* Galaxy S4 */; };
+		7B49C40A1CB5CE9B00AE47E2 /* iPad in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3FE1CB5CE9B00AE47E2 /* iPad */; };
+		7B49C40B1CB5CE9B00AE47E2 /* iPhone in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3FF1CB5CE9B00AE47E2 /* iPhone */; };
+		7B49C40C1CB5CE9B00AE47E2 /* iPod Touch in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C4001CB5CE9B00AE47E2 /* iPod Touch */; };
+		7B49C40E1CB5CF3C00AE47E2 /* Galaxy Tab in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C40D1CB5CF3C00AE47E2 /* Galaxy Tab */; };
+		7B49C41A1CB5D47D00AE47E2 /* Huawei Mate in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C4171CB5D47D00AE47E2 /* Huawei Mate */; };
+		7B49C41B1CB5D47D00AE47E2 /* Huawei Matebook in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C4181CB5D47D00AE47E2 /* Huawei Matebook */; };
+		7B49C41C1CB5D47D00AE47E2 /* Huawei Talkband in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C4191CB5D47D00AE47E2 /* Huawei Talkband */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +74,22 @@
 		48A656E818163F8700746D36 /* ProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductViewController.h; path = ../ProductViewController.h; sourceTree = "<group>"; };
 		48A656E918163F8700746D36 /* ProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductViewController.m; path = ../ProductViewController.m; sourceTree = "<group>"; };
 		48A656ED1816468000746D36 /* Sunflower.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Sunflower.gif; sourceTree = "<group>"; };
+		7B49C3DF1CB5B58F00AE47E2 /* Samsung Mobile Devices */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Samsung Mobile Devices"; path = "logos/Samsung Mobile Devices"; sourceTree = "<group>"; };
+		7B49C3EF1CB5CC0600AE47E2 /* Apple Mobile Devices */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Apple Mobile Devices"; path = "logos/Apple Mobile Devices"; sourceTree = "<group>"; };
+		7B49C3F11CB5CC1B00AE47E2 /* Google Mobile Devices */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Google Mobile Devices"; path = "logos/Google Mobile Devices"; sourceTree = "<group>"; };
+		7B49C3F31CB5CC2500AE47E2 /* Huawei Mobile Devices */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Huawei Mobile Devices"; path = "logos/Huawei Mobile Devices"; sourceTree = "<group>"; };
+		7B49C3F51CB5CE9B00AE47E2 /* Android Phone */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Android Phone"; path = "products/Android Phone"; sourceTree = "<group>"; };
+		7B49C3F61CB5CE9B00AE47E2 /* Android Tablet */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Android Tablet"; path = "products/Android Tablet"; sourceTree = "<group>"; };
+		7B49C3F71CB5CE9B00AE47E2 /* Android Wear */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Android Wear"; path = "products/Android Wear"; sourceTree = "<group>"; };
+		7B49C3F81CB5CE9B00AE47E2 /* Galaxy Note */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Galaxy Note"; path = "products/Galaxy Note"; sourceTree = "<group>"; };
+		7B49C3F91CB5CE9B00AE47E2 /* Galaxy S4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Galaxy S4"; path = "products/Galaxy S4"; sourceTree = "<group>"; };
+		7B49C3FE1CB5CE9B00AE47E2 /* iPad */ = {isa = PBXFileReference; lastKnownFileType = file; name = iPad; path = products/iPad; sourceTree = "<group>"; };
+		7B49C3FF1CB5CE9B00AE47E2 /* iPhone */ = {isa = PBXFileReference; lastKnownFileType = file; name = iPhone; path = products/iPhone; sourceTree = "<group>"; };
+		7B49C4001CB5CE9B00AE47E2 /* iPod Touch */ = {isa = PBXFileReference; lastKnownFileType = file; name = "iPod Touch"; path = "products/iPod Touch"; sourceTree = "<group>"; };
+		7B49C40D1CB5CF3C00AE47E2 /* Galaxy Tab */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Galaxy Tab"; path = "products/Galaxy Tab"; sourceTree = "<group>"; };
+		7B49C4171CB5D47D00AE47E2 /* Huawei Mate */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Huawei Mate"; path = "products/Huawei Mate"; sourceTree = "<group>"; };
+		7B49C4181CB5D47D00AE47E2 /* Huawei Matebook */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Huawei Matebook"; path = "products/Huawei Matebook"; sourceTree = "<group>"; };
+		7B49C4191CB5D47D00AE47E2 /* Huawei Talkband */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Huawei Talkband"; path = "products/Huawei Talkband"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +189,22 @@
 		48A656BB18163BF200746D36 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7B49C3EF1CB5CC0600AE47E2 /* Apple Mobile Devices */,
+				7B49C3F11CB5CC1B00AE47E2 /* Google Mobile Devices */,
+				7B49C3F31CB5CC2500AE47E2 /* Huawei Mobile Devices */,
+				7B49C3DF1CB5B58F00AE47E2 /* Samsung Mobile Devices */,
+				7B49C3F51CB5CE9B00AE47E2 /* Android Phone */,
+				7B49C3F61CB5CE9B00AE47E2 /* Android Tablet */,
+				7B49C3F71CB5CE9B00AE47E2 /* Android Wear */,
+				7B49C3F81CB5CE9B00AE47E2 /* Galaxy Note */,
+				7B49C3F91CB5CE9B00AE47E2 /* Galaxy S4 */,
+				7B49C40D1CB5CF3C00AE47E2 /* Galaxy Tab */,
+				7B49C4171CB5D47D00AE47E2 /* Huawei Mate */,
+				7B49C4181CB5D47D00AE47E2 /* Huawei Matebook */,
+				7B49C4191CB5D47D00AE47E2 /* Huawei Talkband */,
+				7B49C3FE1CB5CE9B00AE47E2 /* iPad */,
+				7B49C3FF1CB5CE9B00AE47E2 /* iPhone */,
+				7B49C4001CB5CE9B00AE47E2 /* iPod Touch */,
 				48A656ED1816468000746D36 /* Sunflower.gif */,
 				48A656BC18163BF200746D36 /* NavCtrl-Info.plist */,
 				48A656BD18163BF200746D36 /* InfoPlist.strings */,
@@ -260,10 +308,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B49C4041CB5CE9B00AE47E2 /* Galaxy Note in Resources */,
 				48A656EE1816468000746D36 /* Sunflower.gif in Resources */,
+				7B49C3F41CB5CC2500AE47E2 /* Huawei Mobile Devices in Resources */,
+				7B49C41C1CB5D47D00AE47E2 /* Huawei Talkband in Resources */,
 				48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */,
+				7B49C40B1CB5CE9B00AE47E2 /* iPhone in Resources */,
+				7B49C41A1CB5D47D00AE47E2 /* Huawei Mate in Resources */,
+				7B49C4051CB5CE9B00AE47E2 /* Galaxy S4 in Resources */,
+				7B49C40C1CB5CE9B00AE47E2 /* iPod Touch in Resources */,
+				7B49C40E1CB5CF3C00AE47E2 /* Galaxy Tab in Resources */,
+				7B49C3E21CB5B58F00AE47E2 /* Samsung Mobile Devices in Resources */,
+				7B49C3F21CB5CC1B00AE47E2 /* Google Mobile Devices in Resources */,
+				7B49C3F01CB5CC0600AE47E2 /* Apple Mobile Devices in Resources */,
 				48A656BF18163BF200746D36 /* InfoPlist.strings in Resources */,
 				48A656C718163BF200746D36 /* Images.xcassets in Resources */,
+				7B49C41B1CB5D47D00AE47E2 /* Huawei Matebook in Resources */,
+				7B49C40A1CB5CE9B00AE47E2 /* iPad in Resources */,
+				7B49C4021CB5CE9B00AE47E2 /* Android Tablet in Resources */,
+				7B49C4011CB5CE9B00AE47E2 /* Android Phone in Resources */,
+				7B49C4031CB5CE9B00AE47E2 /* Android Wear in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
