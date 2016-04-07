@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "CompanyViewController.h"
+#import "WebViewController.h"
 
 @interface ProductViewController : UITableViewController
+
 @property (nonatomic, retain) NSArray *products;
+@property (nonatomic, retain) NSArray *urls;
+@property (nonatomic, retain) WebViewController *webViewController;
 
 - (UIImage*)productPicture:(NSArray*)productName atIndex:(id)index;
 

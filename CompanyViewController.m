@@ -38,6 +38,19 @@
     
     self.companyList = @[@"Apple mobile devices",@"Samsung mobile devices", @"Google mobile devices", @"Huawei mobile devices"];
     self.title = @"Mobile device makers";
+    
+    self.appleProductsArray = @[@"iPad", @"iPod Touch", @"iPhone"];
+    self.appleUrlArray = @[@"http://www.apple.com/ipad/", @"http://www.apple.com/ipod/",@"http://www.apple.com/iphone/"];
+    
+    self.samsungProductsArray = @[@"Galaxy S4", @"Galaxy Note", @"Galaxy Tab"];
+    self.samsungUrlArray = @[@"http://www.samsung.com/us/mobile/cell-phones/SCH-I545ZKPVZW", @"http://www.samsung.com/us/explore/galaxy-note-5-features-and-specs/?cid=ppc-", @"http://www.samsung.com/us/explore/tab-s2-features-and-specs/?cid=ppc-"];
+    
+    self.googleProductsArray = @[@"Android Wear", @"Android Tablet",@"Android Phone"];
+    self.googleUrlArray = @[@"https://www.android.com/wear/", @"https://www.android.com/tablets/", @"https://www.android.com/phones/"];
+    
+    self.huaweiProductsArray = @[@"Huawei Mate", @"Huawei MateBook",@"Huawei TalkBand"];
+    self.huaweiUrlArray = @[@"http://consumer.huawei.com/minisite/worldwide/mate8/", @"http://consumer.huawei.com/minisite/worldwide/matebook/screen.htm", @"http://consumer.huawei.com/en/wearables/talkband-b3/"];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,16 +140,23 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-
+    
     if (indexPath.row == 0){
         self.productViewController.title = @"Apple mobile devices";
+        self.productViewController.products = self.appleProductsArray;
+        self.productViewController.urls = self.appleUrlArray;
     } else if (indexPath.row == 1) {
         self.productViewController.title = @"Samsung mobile devices";
+        self.productViewController.products = self.samsungProductsArray;
+        self.productViewController.urls = self.samsungUrlArray;
     } else if (indexPath.row == 2) {
         self.productViewController.title = @"Google mobile devices";
+        self.productViewController.products = self.googleProductsArray;
+        self.productViewController.urls = self.googleUrlArray;
     } else {
         self.productViewController.title = @"Huawei mobile devices";
+        self.productViewController.products = self.huaweiProductsArray;
+        self.productViewController.urls = self.huaweiUrlArray;
     }
     
     [self.navigationController
