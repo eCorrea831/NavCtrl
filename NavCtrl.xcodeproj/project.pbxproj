@@ -39,8 +39,9 @@
 		7B49C41A1CB5D47D00AE47E2 /* Huawei Mate in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C4171CB5D47D00AE47E2 /* Huawei Mate */; };
 		7B49C41B1CB5D47D00AE47E2 /* Huawei Matebook in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C4181CB5D47D00AE47E2 /* Huawei Matebook */; };
 		7B49C41C1CB5D47D00AE47E2 /* Huawei Talkband in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C4191CB5D47D00AE47E2 /* Huawei Talkband */; };
-		7B6675AD1CB70BC90075D46E /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B6675AB1CB70BC90075D46E /* WebViewController.m */; };
-		7B6675AE1CB70BC90075D46E /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B6675AC1CB70BC90075D46E /* WebViewController.xib */; };
+		7B7539741CB84B6A00935272 /* NewWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7539721CB84B6A00935272 /* NewWebViewController.m */; };
+		7B7539751CB84B6A00935272 /* NewWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7539731CB84B6A00935272 /* NewWebViewController.xib */; };
+		7B7539771CB84C1600935272 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7539761CB84C1600935272 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,9 +93,10 @@
 		7B49C4171CB5D47D00AE47E2 /* Huawei Mate */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Huawei Mate"; path = "products/Huawei Mate"; sourceTree = "<group>"; };
 		7B49C4181CB5D47D00AE47E2 /* Huawei Matebook */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Huawei Matebook"; path = "products/Huawei Matebook"; sourceTree = "<group>"; };
 		7B49C4191CB5D47D00AE47E2 /* Huawei Talkband */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Huawei Talkband"; path = "products/Huawei Talkband"; sourceTree = "<group>"; };
-		7B6675AA1CB70BC80075D46E /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
-		7B6675AB1CB70BC90075D46E /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
-		7B6675AC1CB70BC90075D46E /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
+		7B7539711CB84B6A00935272 /* NewWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewWebViewController.h; sourceTree = "<group>"; };
+		7B7539721CB84B6A00935272 /* NewWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewWebViewController.m; sourceTree = "<group>"; };
+		7B7539731CB84B6A00935272 /* NewWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewWebViewController.xib; sourceTree = "<group>"; };
+		7B7539761CB84C1600935272 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B7539771CB84C1600935272 /* WebKit.framework in Frameworks */,
 				48A656B718163BF200746D36 /* CoreGraphics.framework in Frameworks */,
 				48A656B918163BF200746D36 /* UIKit.framework in Frameworks */,
 				48A656B518163BF200746D36 /* Foundation.framework in Frameworks */,
@@ -170,6 +173,7 @@
 		48A656B318163BF200746D36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7B7539761CB84C1600935272 /* WebKit.framework */,
 				48A656B418163BF200746D36 /* Foundation.framework */,
 				48A656B618163BF200746D36 /* CoreGraphics.framework */,
 				48A656B818163BF200746D36 /* UIKit.framework */,
@@ -184,7 +188,7 @@
 				483796CB1BCBF7A00062D5AB /* AppDelegate */,
 				483796CC1BCBF7C70062D5AB /* ParentViewController */,
 				483796CD1BCBF7EB0062D5AB /* ProductViewController */,
-				7B6675861CB6B51D0075D46E /* WebsiteViewController */,
+				7BDCE3781CB8350300F9CE38 /* WKWebViewController */,
 				48A656C618163BF200746D36 /* Images.xcassets */,
 				48A656E518163C1B00746D36 /* CompanyViewController.xib */,
 				48A656BB18163BF200746D36 /* Supporting Files */,
@@ -238,14 +242,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		7B6675861CB6B51D0075D46E /* WebsiteViewController */ = {
+		7BDCE3781CB8350300F9CE38 /* WKWebViewController */ = {
 			isa = PBXGroup;
 			children = (
-				7B6675AA1CB70BC80075D46E /* WebViewController.h */,
-				7B6675AB1CB70BC90075D46E /* WebViewController.m */,
-				7B6675AC1CB70BC90075D46E /* WebViewController.xib */,
+				7B7539711CB84B6A00935272 /* NewWebViewController.h */,
+				7B7539721CB84B6A00935272 /* NewWebViewController.m */,
+				7B7539731CB84B6A00935272 /* NewWebViewController.xib */,
 			);
-			name = WebsiteViewController;
+			name = WKWebViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,7 +331,7 @@
 				7B49C4041CB5CE9B00AE47E2 /* Galaxy Note in Resources */,
 				48A656EE1816468000746D36 /* Sunflower.gif in Resources */,
 				7B49C3F41CB5CC2500AE47E2 /* Huawei Mobile Devices in Resources */,
-				7B6675AE1CB70BC90075D46E /* WebViewController.xib in Resources */,
+				7B7539751CB84B6A00935272 /* NewWebViewController.xib in Resources */,
 				7B49C41C1CB5D47D00AE47E2 /* Huawei Talkband in Resources */,
 				48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */,
 				7B49C40B1CB5CE9B00AE47E2 /* iPhone in Resources */,
@@ -364,10 +368,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				48A656E618163C1B00746D36 /* CompanyViewController.m in Sources */,
-				7B6675AD1CB70BC90075D46E /* WebViewController.m in Sources */,
 				48A656C518163BF200746D36 /* NavControllerAppDelegate.m in Sources */,
 				48A656C118163BF200746D36 /* main.m in Sources */,
 				48A656EB18163F8700746D36 /* ProductViewController.m in Sources */,
+				7B7539741CB84B6A00935272 /* NewWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

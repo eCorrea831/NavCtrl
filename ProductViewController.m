@@ -7,6 +7,7 @@
 //
 
 #import "ProductViewController.h"
+#import "NewWebViewController.h"
 
 @interface ProductViewController ()
 
@@ -23,21 +24,14 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-     self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    self.clearsSelectionOnViewWillAppear = NO;
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
     [super viewWillAppear:animated];
-    
     if ([self.title isEqualToString:@"Apple mobile devices"]) {
         self.products = @[@"iPad", @"iPod Touch",@"iPhone"];
     } else if ([self.title isEqualToString:@"Google mobile devices"]) {
@@ -47,44 +41,31 @@
     } else {
         self.products = @[@"Galaxy S4", @"Galaxy Note", @"Galaxy Tab"];
     }
-    
     [self.tableView reloadData];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.products count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    // Configure the cell...
     cell.textLabel.text = [self.products objectAtIndex:[indexPath row]];
-    
     cell.imageView.image = [self productPicture:self.products atIndex:[self.products objectAtIndex:[indexPath row]]];
-    
     return cell;
 }
 
@@ -135,12 +116,9 @@
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    WebViewController *websiteViewController = [[WebViewController alloc] init];
-    
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+    NewWebViewController *websiteViewController = [[NewWebViewController alloc] init];
     websiteViewController.url = [NSURL URLWithString:self.urls[indexPath.row]];
-    
     [self.navigationController
      pushViewController:websiteViewController
      animated:YES];

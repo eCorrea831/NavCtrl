@@ -15,26 +15,18 @@
 
 @implementation CompanyViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
-    
     if (self) {
         // Custom initialization
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-     self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    self.clearsSelectionOnViewWillAppear = NO;
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     
     self.companyList = @[@"Apple mobile devices",@"Samsung mobile devices", @"Google mobile devices", @"Huawei mobile devices"];
     self.title = @"Mobile device makers";
@@ -50,40 +42,28 @@
     
     self.huaweiProductsArray = @[@"Huawei Mate", @"Huawei MateBook",@"Huawei TalkBand"];
     self.huaweiUrlArray = @[@"http://consumer.huawei.com/minisite/worldwide/mate8/", @"http://consumer.huawei.com/minisite/worldwide/matebook/screen.htm", @"http://consumer.huawei.com/en/wearables/talkband-b3/"];
-
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.companyList count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    // Configure the cell...
     
     cell.textLabel.text = [self.companyList objectAtIndex:[indexPath row]];
     cell.imageView.image = [self companyLogo:self.companyList atIndex:[self.companyList objectAtIndex:[indexPath row]]];
@@ -138,9 +118,7 @@
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0){
         self.productViewController.title = @"Apple mobile devices";
         self.productViewController.products = self.appleProductsArray;
@@ -158,12 +136,9 @@
         self.productViewController.products = self.huaweiProductsArray;
         self.productViewController.urls = self.huaweiUrlArray;
     }
-    
     [self.navigationController
         pushViewController:self.productViewController
         animated:YES];
 }
- 
-
 
 @end
