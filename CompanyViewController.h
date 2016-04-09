@@ -12,18 +12,18 @@
 
 @interface CompanyViewController : UITableViewController
 
-@property (nonatomic, retain) NSArray *companyList;
+@property (nonatomic, retain) NSMutableArray *companyList;
 
-@property (nonatomic, retain) NSArray *appleProductsArray;
+@property (nonatomic, retain) NSMutableArray *appleProductsArray;
 @property (nonatomic, retain) NSArray *appleUrlArray;
 
-@property (nonatomic, retain) NSArray *samsungProductsArray;
+@property (nonatomic, retain) NSMutableArray *samsungProductsArray;
 @property (nonatomic, retain) NSArray *samsungUrlArray;
 
-@property (nonatomic, retain) NSArray *googleProductsArray;
+@property (nonatomic, retain) NSMutableArray *googleProductsArray;
 @property (nonatomic, retain) NSArray *googleUrlArray;
 
-@property (nonatomic, retain) NSArray *huaweiProductsArray;
+@property (nonatomic, retain) NSMutableArray *huaweiProductsArray;
 @property (nonatomic, retain) NSArray *huaweiUrlArray;
 
 @property (nonatomic, retain) IBOutlet  ProductViewController *productViewController;

@@ -33,13 +33,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if ([self.title isEqualToString:@"Apple mobile devices"]) {
-        self.products = @[@"iPad", @"iPod Touch",@"iPhone"];
+        self.products = [NSMutableArray arrayWithObjects:@"iPad", @"iPod Touch",@"iPhone", nil];
     } else if ([self.title isEqualToString:@"Google mobile devices"]) {
-        self.products = @[@"Android Wear", @"Android Tablet",@"Android Phone"];
+        self.products = [NSMutableArray arrayWithObjects:@"Android Wear", @"Android Tablet",@"Android Phone", nil];
     } else if ([self.title isEqualToString:@"Huawei mobile devices"]) {
-        self.products = @[@"Huawei Mate", @"Huawei MateBook",@"Huawei TalkBand"];
+        self.products = [NSMutableArray arrayWithObjects:@"Huawei Mate", @"Huawei MateBook",@"Huawei TalkBand", nil];
     } else {
-        self.products = @[@"Galaxy S4", @"Galaxy Note", @"Galaxy Tab"];
+        self.products = [NSMutableArray arrayWithObjects:@"Galaxy S4", @"Galaxy Note", @"Galaxy Tab", nil];
     }
     [self.tableView reloadData];
 }
@@ -127,4 +127,27 @@
 - (void)dealloc {
     [super dealloc];
 }
+
+#pragma mark - Sets editing of a selected row and sets action for deletion
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+    [self.tableView setEditing:editing animated:YES];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == [self.products count]) {
+        return UITableViewCellEditingStyleInsert;
+    } else {
+        return UITableViewCellEditingStyleDelete;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.products removeObjectAtIndex:indexPath.row];
+        //FIXME: When user leaves app and comes back product should still be deleted
+        [tableView reloadData];
+    }
+}
+
 @end

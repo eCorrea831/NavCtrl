@@ -199,22 +199,8 @@
 		48A656BB18163BF200746D36 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7B49C3EF1CB5CC0600AE47E2 /* Apple Mobile Devices */,
-				7B49C3F11CB5CC1B00AE47E2 /* Google Mobile Devices */,
-				7B49C3F31CB5CC2500AE47E2 /* Huawei Mobile Devices */,
-				7B49C3DF1CB5B58F00AE47E2 /* Samsung Mobile Devices */,
-				7B49C3F51CB5CE9B00AE47E2 /* Android Phone */,
-				7B49C3F61CB5CE9B00AE47E2 /* Android Tablet */,
-				7B49C3F71CB5CE9B00AE47E2 /* Android Wear */,
-				7B49C3F81CB5CE9B00AE47E2 /* Galaxy Note */,
-				7B49C3F91CB5CE9B00AE47E2 /* Galaxy S4 */,
-				7B49C40D1CB5CF3C00AE47E2 /* Galaxy Tab */,
-				7B49C4171CB5D47D00AE47E2 /* Huawei Mate */,
-				7B49C4181CB5D47D00AE47E2 /* Huawei Matebook */,
-				7B49C4191CB5D47D00AE47E2 /* Huawei Talkband */,
-				7B49C3FE1CB5CE9B00AE47E2 /* iPad */,
-				7B49C3FF1CB5CE9B00AE47E2 /* iPhone */,
-				7B49C4001CB5CE9B00AE47E2 /* iPod Touch */,
+				7BE415611CB9C67A00A9B880 /* CompanyLogos */,
+				7BE415621CB9C69400A9B880 /* DevicePictures */,
 				48A656ED1816468000746D36 /* Sunflower.gif */,
 				48A656BC18163BF200746D36 /* NavCtrl-Info.plist */,
 				48A656BD18163BF200746D36 /* InfoPlist.strings */,
@@ -250,6 +236,36 @@
 				7B7539731CB84B6A00935272 /* NewWebViewController.xib */,
 			);
 			name = WKWebViewController;
+			sourceTree = "<group>";
+		};
+		7BE415611CB9C67A00A9B880 /* CompanyLogos */ = {
+			isa = PBXGroup;
+			children = (
+				7B49C3EF1CB5CC0600AE47E2 /* Apple Mobile Devices */,
+				7B49C3F11CB5CC1B00AE47E2 /* Google Mobile Devices */,
+				7B49C3F31CB5CC2500AE47E2 /* Huawei Mobile Devices */,
+				7B49C3DF1CB5B58F00AE47E2 /* Samsung Mobile Devices */,
+			);
+			name = CompanyLogos;
+			sourceTree = "<group>";
+		};
+		7BE415621CB9C69400A9B880 /* DevicePictures */ = {
+			isa = PBXGroup;
+			children = (
+				7B49C3F51CB5CE9B00AE47E2 /* Android Phone */,
+				7B49C3F61CB5CE9B00AE47E2 /* Android Tablet */,
+				7B49C3F71CB5CE9B00AE47E2 /* Android Wear */,
+				7B49C3F81CB5CE9B00AE47E2 /* Galaxy Note */,
+				7B49C3F91CB5CE9B00AE47E2 /* Galaxy S4 */,
+				7B49C40D1CB5CF3C00AE47E2 /* Galaxy Tab */,
+				7B49C4171CB5D47D00AE47E2 /* Huawei Mate */,
+				7B49C4181CB5D47D00AE47E2 /* Huawei Matebook */,
+				7B49C4191CB5D47D00AE47E2 /* Huawei Talkband */,
+				7B49C3FE1CB5CE9B00AE47E2 /* iPad */,
+				7B49C3FF1CB5CE9B00AE47E2 /* iPhone */,
+				7B49C4001CB5CE9B00AE47E2 /* iPod Touch */,
+			);
+			name = DevicePictures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -12,7 +12,7 @@
 
 @interface ProductViewController : UITableViewController
 
-@property (nonatomic, retain) NSArray *products;
+@property (nonatomic, retain) NSMutableArray *products;
 @property (nonatomic, retain) NSArray *urls;
 @property (nonatomic, retain) NewWebViewController *webViewController;
 
