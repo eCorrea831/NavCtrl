@@ -26,6 +26,9 @@
 @property (nonatomic, retain) NSMutableArray *huaweiProductsArray;
 @property (nonatomic, retain) NSArray *huaweiUrlArray;
 
+@property (nonatomic, retain) NSMutableArray *productsArray;
+@property (nonatomic, retain) NSMutableArray *urlArray;
+
 @property (nonatomic, retain) IBOutlet  ProductViewController *productViewController;
 
 - (UIImage*)companyLogo:(NSArray*)companyName atIndex:(id)index;

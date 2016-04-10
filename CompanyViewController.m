@@ -42,6 +42,9 @@
     
     self.huaweiProductsArray = [NSMutableArray arrayWithObjects:@"Huawei Mate", @"Huawei MateBook",@"Huawei TalkBand", nil];
     self.huaweiUrlArray = @[@"http://consumer.huawei.com/minisite/worldwide/mate8/", @"http://consumer.huawei.com/minisite/worldwide/matebook/screen.htm", @"http://consumer.huawei.com/en/wearables/talkband-b3/"];
+    
+    self.productsArray = [NSMutableArray arrayWithObjects:self.appleProductsArray, self.samsungProductsArray, self.googleProductsArray, self.huaweiProductsArray, nil];
+    self.urlArray = [NSMutableArray arrayWithObjects:self.appleUrlArray, self.samsungUrlArray, self.googleUrlArray, self.huaweiUrlArray, nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,61 +86,31 @@
 }
 */
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    
-   // Override to support rearranging the table view.
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0){
-        self.productViewController.title = @"Apple mobile devices";
-        self.productViewController.products = self.appleProductsArray;
-        self.productViewController.urls = self.appleUrlArray;
+        self.productViewController.title = self.companyList[0];
+        self.productViewController.products = self.productsArray[0];
+        self.productViewController.urls = self.urlArray[0];
     } else if (indexPath.row == 1) {
-        self.productViewController.title = @"Samsung mobile devices";
-        self.productViewController.products = self.samsungProductsArray;
-        self.productViewController.urls = self.samsungUrlArray;
+        self.productViewController.title = self.companyList[1];
+        self.productViewController.products = self.productsArray[1];
+        self.productViewController.urls = self.urlArray[1];
     } else if (indexPath.row == 2) {
-        self.productViewController.title = @"Google mobile devices";
-        self.productViewController.products = self.googleProductsArray;
-        self.productViewController.urls = self.googleUrlArray;
+        self.productViewController.title = self.companyList[2];
+        self.productViewController.products = self.productsArray[2];
+        self.productViewController.urls = self.urlArray[2];
     } else {
-        self.productViewController.title = @"Huawei mobile devices";
-        self.productViewController.products = self.huaweiProductsArray;
-        self.productViewController.urls = self.huaweiUrlArray;
+        self.productViewController.title = self.companyList[3];
+        self.productViewController.products = self.productsArray[3];
+        self.productViewController.urls = self.urlArray[3];
     }
     [self.navigationController
         pushViewController:self.productViewController
         animated:YES];
 }
 
-#pragma mark - Sets editing of a selected row and sets action for deletion
+#pragma mark - Sets editing, moving, and deletion of a selected row
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
     [self.tableView setEditing:editing animated:YES];
@@ -151,12 +124,27 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.companyList removeObjectAtIndex:indexPath.row];
-        //FIXME: Put logic here to also delete the product rows from the productview controller
+        [self.productViewController.products removeObjectAtIndex:indexPath.row];
         [tableView reloadData];
     }
 }
+
+ - (BOOL)tableView:(UITableView*)tableView canMoveRowAtIndexPath:(NSIndexPath*)indexPath {
+     return YES;
+ }
+
+ - (void)tableView:(UITableView*)tableView moveRowAtIndexPath:(NSIndexPath*)fromIndexPath toIndexPath:(NSIndexPath*)toIndexPath {
+     NSString *stringToMove = [self.companyList objectAtIndex:fromIndexPath.row];
+     NSString *otherStringToMove = [self.productViewController.products objectAtIndex:fromIndexPath.row];
+     
+     [self.companyList removeObjectAtIndex:fromIndexPath.row];
+     [self.companyList insertObject:stringToMove atIndex:toIndexPath.row];
+     
+     [self.productViewController.products removeObjectAtIndex:fromIndexPath.row];
+     [self.productViewController.products insertObject:otherStringToMove atIndex:toIndexPath.row];
+ }
 
 @end
