@@ -32,15 +32,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if ([self.title isEqualToString:@"Apple mobile devices"]) {
-        self.products = [NSMutableArray arrayWithObjects:@"iPad", @"iPod Touch",@"iPhone", nil];
-    } else if ([self.title isEqualToString:@"Google mobile devices"]) {
-        self.products = [NSMutableArray arrayWithObjects:@"Android Wear", @"Android Tablet",@"Android Phone", nil];
-    } else if ([self.title isEqualToString:@"Huawei mobile devices"]) {
-        self.products = [NSMutableArray arrayWithObjects:@"Huawei Mate", @"Huawei MateBook",@"Huawei TalkBand", nil];
-    } else {
-        self.products = [NSMutableArray arrayWithObjects:@"Galaxy S4", @"Galaxy Note", @"Galaxy Tab", nil];
-    }
     [self.tableView reloadData];
 }
 
@@ -113,9 +104,6 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.products removeObjectAtIndex:indexPath.row];
         
-        //FIXME: Need to also delete from array in companyList
-        
-        
         [tableView reloadData];
     }
 }
@@ -128,8 +116,6 @@
     NSString *stringToMove = [self.products objectAtIndex:fromIndexPath.row];
     [self.products removeObjectAtIndex:fromIndexPath.row];
     [self.products insertObject:stringToMove atIndex:toIndexPath.row];
-    
-    //FIXME: Need to also move in array in companyList
 }
 
 @end
