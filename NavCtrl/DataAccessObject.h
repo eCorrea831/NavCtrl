@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CompanyClass.h"
+#import "ProductClass.h"
 
 @interface DataAccessObject : NSObject
+
+@property (nonatomic, retain) NSMutableArray *companyList;
+
++ (void)createData;
 
 @end

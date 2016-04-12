@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DataAccessObject.h"
 
 @interface CompanyClass : NSObject
 
-@property (nonatomic, retain) NSString *company;
+@property (nonatomic, retain) NSString *companyName;
 @property (nonatomic, retain) NSArray *productArray;
 @property (nonatomic, retain) UIImage *companyPicture;
+
+- (CompanyClass*)initWithCompanyName:(NSString*)name companyPicture:(UIImage*)image andProductArray:(NSArray*)array;
 
 @end

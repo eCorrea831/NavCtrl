@@ -27,24 +27,7 @@
     [super viewDidLoad];
     self.clearsSelectionOnViewWillAppear = NO;
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    self.companyList = [NSMutableArray arrayWithObjects:@"Apple mobile devices",@"Samsung mobile devices", @"Google mobile devices", @"Huawei mobile devices", nil];
-    self.title = @"Mobile device makers";
-    
-    self.appleProductsArray = [NSMutableArray arrayWithObjects:@"iPad", @"iPod Touch", @"iPhone", nil];
-    self.appleUrlArray = @[@"http://www.apple.com/ipad/", @"http://www.apple.com/ipod/",@"http://www.apple.com/iphone/"];
-    
-    self.samsungProductsArray = [NSMutableArray arrayWithObjects:@"Galaxy S4", @"Galaxy Note", @"Galaxy Tab", nil];
-    self.samsungUrlArray = @[@"http://www.samsung.com/us/mobile/cell-phones/SCH-I545ZKPVZW", @"http://www.samsung.com/us/explore/galaxy-note-5-features-and-specs/?cid=ppc-", @"http://www.samsung.com/us/explore/tab-s2-features-and-specs/?cid=ppc-"];
-    
-    self.googleProductsArray = [NSMutableArray arrayWithObjects:@"Android Wear", @"Android Tablet",@"Android Phone", nil];
-    self.googleUrlArray = @[@"https://www.android.com/wear/", @"https://www.android.com/tablets/", @"https://www.android.com/phones/"];
-    
-    self.huaweiProductsArray = [NSMutableArray arrayWithObjects:@"Huawei Mate", @"Huawei MateBook",@"Huawei TalkBand", nil];
-    self.huaweiUrlArray = @[@"http://consumer.huawei.com/minisite/worldwide/mate8/", @"http://consumer.huawei.com/minisite/worldwide/matebook/screen.htm", @"http://consumer.huawei.com/en/wearables/talkband-b3/"];
-    
-    self.productsArray = [NSMutableArray arrayWithObjects:self.appleProductsArray, self.samsungProductsArray, self.googleProductsArray, self.huaweiProductsArray, nil];
-    self.urlArray = [NSMutableArray arrayWithObjects:self.appleUrlArray, self.samsungUrlArray, self.googleUrlArray, self.huaweiUrlArray, nil];
+    [DataAccessObject createData];
 }
 
 - (void)didReceiveMemoryWarning {

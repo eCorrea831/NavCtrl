@@ -10,5 +10,19 @@
 
 @implementation ProductClass
 
+- (ProductClass*)initWithProductName:(NSString*)name productPicture:(UIImage*)image andProductUrl:(NSString*)url {
+    
+    self = [super init];
+    
+    ProductClass *product = [[ProductClass alloc] init];
+    
+    if (self) {
+        product.productName = name;
+        product.productPicture = image;
+        product.productUrl = url;
+        return product;
+    }
+    return product;
+}
 
 @end

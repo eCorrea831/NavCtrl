@@ -10,4 +10,19 @@
 
 @implementation CompanyClass
 
+- (CompanyClass*)initWithCompanyName:(NSString*)name companyPicture:(UIImage*)image andProductArray:(NSArray*)array  {
+    
+    self = [super init];
+    
+    CompanyClass *company = [[CompanyClass alloc] init];
+    
+    if (self) {
+        company.companyName = name;
+        company.companyPicture = image;
+        company.productArray = array;
+        return company;
+    }
+    return company;
+}
+
 @end
