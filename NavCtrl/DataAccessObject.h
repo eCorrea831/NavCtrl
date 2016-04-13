@@ -14,6 +14,8 @@
 
 @property (nonatomic, retain) NSMutableArray *companyList;
 
-+ (void)createData;
++ (DataAccessObject*)sharedInstance;
+
+- (id)initWithData;
 
 @end

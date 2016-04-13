@@ -10,7 +10,7 @@
 
 @implementation ProductClass
 
-- (ProductClass*)initWithProductName:(NSString*)name productPicture:(UIImage*)image andProductUrl:(NSString*)url {
+- (ProductClass*)initWithProductName:(NSString*)name productImage:(UIImage*)image andProductUrl:(NSString*)url {
     
     self = [super init];
     
@@ -18,7 +18,7 @@
     
     if (self) {
         product.productName = name;
-        product.productPicture = image;
+        product.productImage = image;
         product.productUrl = url;
         return product;
     }

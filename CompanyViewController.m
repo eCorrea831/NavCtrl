@@ -27,7 +27,7 @@
     [super viewDidLoad];
     self.clearsSelectionOnViewWillAppear = NO;
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [DataAccessObject createData];
+    self.dao = [DataAccessObject sharedInstance];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,19 +40,17 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.companyList count];
+    return [self.dao.companyList count];
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
-    cell.textLabel.text = [self.companyList objectAtIndex:[indexPath row]];
-    cell.imageView.image = [self companyLogo:self.companyList atIndex:[self.companyList objectAtIndex:[indexPath row]]];
-    
+    CompanyClass *company = [self.dao.companyList objectAtIndex:[indexPath row]];
+    cell.textLabel.text = [company companyName];
+    cell.imageView.image = [company companyImage];
     return cell;
 }
 
@@ -70,27 +68,12 @@
 */
 
 #pragma mark - Table view delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0){
-        self.productViewController.title = self.companyList[0];
-        self.productViewController.products = self.productsArray[0];
-        self.productViewController.urls = self.urlArray[0];
-    } else if (indexPath.row == 1) {
-        self.productViewController.title = self.companyList[1];
-        self.productViewController.products = self.productsArray[1];
-        self.productViewController.urls = self.urlArray[1];
-    } else if (indexPath.row == 2) {
-        self.productViewController.title = self.companyList[2];
-        self.productViewController.products = self.productsArray[2];
-        self.productViewController.urls = self.urlArray[2];
-    } else {
-        self.productViewController.title = self.companyList[3];
-        self.productViewController.products = self.productsArray[3];
-        self.productViewController.urls = self.urlArray[3];
-    }
-    [self.navigationController
-        pushViewController:self.productViewController
-        animated:YES];
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+    CompanyClass *company = [self.dao.companyList objectAtIndex:[indexPath row]];
+    self.productViewController.title = [company companyName];
+    self.productViewController.products = [company productArray];
+    self.productViewController.urls = [company urlArray];
+    [self.navigationController pushViewController:self.productViewController animated:YES];
 }
 
 #pragma mark - Sets editing, moving, and deletion of a selected row
@@ -100,16 +83,13 @@
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == [self.companyList count]) {
-        return UITableViewCellEditingStyleInsert;
-    } else {
-        return UITableViewCellEditingStyleDelete;
-    }
+    if (indexPath.row == [self.dao.companyList count]) return UITableViewCellEditingStyleInsert;
+    else return UITableViewCellEditingStyleDelete;
 }
 
 - (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.companyList removeObjectAtIndex:indexPath.row];
+        [self.dao.companyList removeObjectAtIndex:indexPath.row];
         [self.productViewController.products removeObjectAtIndex:indexPath.row];
         [tableView reloadData];
     }
@@ -120,11 +100,11 @@
  }
 
  - (void)tableView:(UITableView*)tableView moveRowAtIndexPath:(NSIndexPath*)fromIndexPath toIndexPath:(NSIndexPath*)toIndexPath {
-     NSString *stringToMove = [self.companyList objectAtIndex:fromIndexPath.row];
+     NSString *stringToMove = [self.dao.companyList objectAtIndex:fromIndexPath.row];
      NSString *otherStringToMove = [self.productViewController.products objectAtIndex:fromIndexPath.row];
      
-     [self.companyList removeObjectAtIndex:fromIndexPath.row];
-     [self.companyList insertObject:stringToMove atIndex:toIndexPath.row];
+     [self.dao.companyList removeObjectAtIndex:fromIndexPath.row];
+     [self.dao.companyList insertObject:stringToMove atIndex:toIndexPath.row];
      
      [self.productViewController.products removeObjectAtIndex:fromIndexPath.row];
      [self.productViewController.products insertObject:otherStringToMove atIndex:toIndexPath.row];

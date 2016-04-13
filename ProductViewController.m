@@ -52,11 +52,10 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    cell.textLabel.text = [self.products objectAtIndex:[indexPath row]];
-    cell.imageView.image = [self productPicture:self.products atIndex:[self.products objectAtIndex:[indexPath row]]];
+    if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    
+    cell.textLabel.text = [[self.products objectAtIndex:[indexPath row] ]productName];
+    cell.imageView.image = [[self.products objectAtIndex:[indexPath row] ]productImage];
     return cell;
 }
 
@@ -77,9 +76,7 @@
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     NewWebViewController *websiteViewController = [[NewWebViewController alloc] init];
     websiteViewController.url = [NSURL URLWithString:self.urls[indexPath.row]];
-    [self.navigationController
-     pushViewController:websiteViewController
-     animated:YES];
+    [self.navigationController pushViewController:websiteViewController animated:YES];
 }
 
 - (void)dealloc {
@@ -93,17 +90,13 @@
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView*)tableView editingStyleForRowAtIndexPath:(NSIndexPath*)indexPath {
-    if (indexPath.row == [self.products count]) {
-        return UITableViewCellEditingStyleInsert;
-    } else {
-        return UITableViewCellEditingStyleDelete;
-    }
+    if (indexPath.row == [self.products count]) return UITableViewCellEditingStyleInsert;
+    else return UITableViewCellEditingStyleDelete;
 }
 
 - (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.products removeObjectAtIndex:indexPath.row];
-        
         [tableView reloadData];
     }
 }
