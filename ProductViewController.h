@@ -14,6 +14,5 @@
 
 @property (nonatomic, retain) NewWebViewController *webViewController;
 @property (nonatomic, retain) NSMutableArray *products;
-@property (nonatomic, retain) NSMutableArray *urls;
 
 @end

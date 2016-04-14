@@ -15,7 +15,8 @@
 @property (nonatomic, retain) NSMutableArray *companyList;
 
 + (DataAccessObject*)sharedInstance;
-
 - (id)initWithData;
+- (UIImage*)createDefaultCompanyImage;
+- (CompanyClass*)createNewCompanyWithName:(NSString*)addNewCompanyName;
 
 @end

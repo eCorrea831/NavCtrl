@@ -25,10 +25,5 @@
         <viewController id="Xwu-Pd-0Xh" userLabel="ProductViewController" customClass="ProductViewController">
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
         </viewController>
-        <view contentMode="scaleToFill" id="bKn-UP-3Lv">
-            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-        </view>
     </objects>
 </document>

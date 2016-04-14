@@ -10,7 +10,7 @@
 
 @implementation CompanyClass
 
-- (CompanyClass*)initWithCompanyName:(NSString*)name companyImage:(UIImage*)image productArray:(NSMutableArray*)productArray andUrlArray:(NSMutableArray*)urlArray  {
+- (CompanyClass*)initWithCompanyName:(NSString*)name companyImage:(UIImage*)image {
     
     self = [super init];
     
@@ -19,8 +19,7 @@
     if (self) {
         company.companyName = name;
         company.companyImage = image;
-        company.productArray = productArray;
-        company.urlArray = urlArray;
+        company.productArray = [[NSMutableArray alloc] init];
         return company;
     }
     return company;
