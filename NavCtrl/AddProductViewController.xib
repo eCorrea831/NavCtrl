@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddProductViewController">
+            <connections>
+                <outlet property="userNewProductNameTextField" destination="L0s-Ew-Wch" id="CI8-yF-9ik"/>
+                <outlet property="userNewProductUrlTextField" destination="2oe-E8-EPG" id="Sq5-zU-BAu"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's the Product's Name?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sh-WS-WWK">
+                    <rect key="frame" x="99" y="92" width="403" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="8sh-WS-WWK" secondAttribute="height" multiplier="403:36" id="djL-eT-9CJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter product name here..." textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L0s-Ew-Wch">
+                    <rect key="frame" x="142" y="209" width="316" height="30"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's the Product's Website?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMf-Hv-51f">
+                    <rect key="frame" x="82" y="282" width="436" height="36"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQV-CU-N0g">
+                    <rect key="frame" x="258" y="478" width="85" height="48"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="jQV-CU-N0g" secondAttribute="height" multiplier="39:22" id="xFj-z0-LET"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                    <state key="normal" title="Save">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="saveUserNewProductButton:" destination="-1" eventType="touchUpInside" id="HeN-UQ-qhm"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter website here..." textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2oe-E8-EPG">
+                    <rect key="frame" x="72" y="399" width="457" height="30"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" red="0.42164860300000001" green="0.39027273680000002" blue="0.66917539270000004" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="8sh-WS-WWK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="BlR-rt-GjO"/>
+                <constraint firstItem="2oe-E8-EPG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CA8-NV-xcY"/>
+                <constraint firstItem="lMf-Hv-51f" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CAT-6X-t8H"/>
+                <constraint firstItem="2oe-E8-EPG" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="457:600" id="ETQ-Gr-NmK"/>
+                <constraint firstItem="lMf-Hv-51f" firstAttribute="top" secondItem="L0s-Ew-Wch" secondAttribute="bottom" constant="43" id="Jvw-Vj-hNV"/>
+                <constraint firstItem="L0s-Ew-Wch" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="79:150" id="OWR-jp-oyu"/>
+                <constraint firstItem="2oe-E8-EPG" firstAttribute="top" secondItem="lMf-Hv-51f" secondAttribute="bottom" constant="81" id="StB-Bt-vEB"/>
+                <constraint firstItem="lMf-Hv-51f" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="UXM-rF-NIL"/>
+                <constraint firstItem="jQV-CU-N0g" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Wge-of-E6F"/>
+                <constraint firstItem="L0s-Ew-Wch" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cz9-DY-Mfx"/>
+                <constraint firstItem="L0s-Ew-Wch" firstAttribute="top" secondItem="8sh-WS-WWK" secondAttribute="bottom" constant="81" id="i5g-6e-5Kp"/>
+                <constraint firstItem="jQV-CU-N0g" firstAttribute="top" secondItem="2oe-E8-EPG" secondAttribute="bottom" constant="49" id="kZP-fT-Gif"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

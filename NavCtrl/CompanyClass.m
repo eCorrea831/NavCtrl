@@ -10,11 +10,11 @@
 
 @implementation CompanyClass
 
-- (CompanyClass*)initWithCompanyName:(NSString*)name companyImage:(UIImage*)image {
+- (CompanyClass *)initWithCompanyName:(NSString *)name companyImage:(UIImage *)image {
     
     self = [super init];
     
-    CompanyClass *company = [[CompanyClass alloc] init];
+    CompanyClass * company = [[CompanyClass alloc] init];
     
     if (self) {
         company.companyName = name;

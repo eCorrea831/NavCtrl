@@ -15,7 +15,7 @@
 {
     
     // Override point for customization after application launch.
-    UIViewController *rootController =
+    UIViewController * rootController =
     [[CompanyViewController alloc]
      initWithNibName:@"CompanyViewController" bundle:nil];
     

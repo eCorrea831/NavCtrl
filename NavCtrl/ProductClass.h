@@ -7,14 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DataAccessObject.h"
 
 @interface ProductClass : NSObject
 
-@property (nonatomic, retain) NSString* productName;
-@property (nonatomic, retain) UIImage *productImage;
-@property (nonatomic, retain) NSString* productUrl;
+@property (nonatomic, retain) NSString * productName;
+@property (nonatomic, retain) UIImage * productImage;
+@property (nonatomic, retain) NSString * productUrl;
 
-- (ProductClass*)initWithProductName:(NSString*)name productImage:(UIImage*)image andProductUrl:(NSString*)url;
+- (ProductClass *)initWithProductName:(NSString *)name productImage:(UIImage *)image andProductUrl:(NSString *)url;
 
 @end

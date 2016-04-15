@@ -27,6 +27,9 @@
 		7B01DEA41CBFF824005A7AF9 /* AddCompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B01DEA21CBFF824005A7AF9 /* AddCompanyViewController.xib */; };
 		7B01DEA81CC0010F005A7AF9 /* Default Company Image in Resources */ = {isa = PBXBuildFile; fileRef = 7B01DEA71CC0010F005A7AF9 /* Default Company Image */; };
 		7B01DEAA1CC0011D005A7AF9 /* Apple Mobile Devices in Resources */ = {isa = PBXBuildFile; fileRef = 7B01DEA91CC0011D005A7AF9 /* Apple Mobile Devices */; };
+		7B01DEAE1CC032D0005A7AF9 /* AddProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B01DEAC1CC032D0005A7AF9 /* AddProductViewController.m */; };
+		7B01DEAF1CC032D0005A7AF9 /* AddProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B01DEAD1CC032D0005A7AF9 /* AddProductViewController.xib */; };
+		7B01DEB11CC03702005A7AF9 /* Default Product Image in Resources */ = {isa = PBXBuildFile; fileRef = 7B01DEB01CC03702005A7AF9 /* Default Product Image */; };
 		7B49C3E21CB5B58F00AE47E2 /* Samsung Mobile Devices in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3DF1CB5B58F00AE47E2 /* Samsung Mobile Devices */; };
 		7B49C3F21CB5CC1B00AE47E2 /* Google Mobile Devices in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3F11CB5CC1B00AE47E2 /* Google Mobile Devices */; };
 		7B49C3F41CB5CC2500AE47E2 /* Huawei Mobile Devices in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3F31CB5CC2500AE47E2 /* Huawei Mobile Devices */; };
@@ -88,6 +91,10 @@
 		7B01DEA21CBFF824005A7AF9 /* AddCompanyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCompanyViewController.xib; sourceTree = "<group>"; };
 		7B01DEA71CC0010F005A7AF9 /* Default Company Image */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Default Company Image"; path = "logos/Default Company Image"; sourceTree = "<group>"; };
 		7B01DEA91CC0011D005A7AF9 /* Apple Mobile Devices */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Apple Mobile Devices"; path = "logos/Apple Mobile Devices"; sourceTree = "<group>"; };
+		7B01DEAB1CC032D0005A7AF9 /* AddProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductViewController.h; sourceTree = "<group>"; };
+		7B01DEAC1CC032D0005A7AF9 /* AddProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewController.m; sourceTree = "<group>"; };
+		7B01DEAD1CC032D0005A7AF9 /* AddProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddProductViewController.xib; sourceTree = "<group>"; };
+		7B01DEB01CC03702005A7AF9 /* Default Product Image */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Default Product Image"; path = "products/Default Product Image"; sourceTree = "<group>"; };
 		7B49C3DF1CB5B58F00AE47E2 /* Samsung Mobile Devices */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Samsung Mobile Devices"; path = "logos/Samsung Mobile Devices"; sourceTree = "<group>"; };
 		7B49C3F11CB5CC1B00AE47E2 /* Google Mobile Devices */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Google Mobile Devices"; path = "logos/Google Mobile Devices"; sourceTree = "<group>"; };
 		7B49C3F31CB5CC2500AE47E2 /* Huawei Mobile Devices */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Huawei Mobile Devices"; path = "logos/Huawei Mobile Devices"; sourceTree = "<group>"; };
@@ -154,6 +161,8 @@
 			children = (
 				7B01DEA01CBFF824005A7AF9 /* AddCompanyViewController.h */,
 				7B01DEA11CBFF824005A7AF9 /* AddCompanyViewController.m */,
+				7B01DEAB1CC032D0005A7AF9 /* AddProductViewController.h */,
+				7B01DEAC1CC032D0005A7AF9 /* AddProductViewController.m */,
 				48A656E318163C1B00746D36 /* CompanyViewController.h */,
 				48A656E418163C1B00746D36 /* CompanyViewController.m */,
 				48A656E818163F8700746D36 /* ProductViewController.h */,
@@ -168,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				7B01DEA21CBFF824005A7AF9 /* AddCompanyViewController.xib */,
+				7B01DEAD1CC032D0005A7AF9 /* AddProductViewController.xib */,
 				48A656E518163C1B00746D36 /* CompanyViewController.xib */,
 				7B7539731CB84B6A00935272 /* NewWebViewController.xib */,
 			);
@@ -289,6 +299,7 @@
 				7B49C3F51CB5CE9B00AE47E2 /* Android Phone */,
 				7B49C3F61CB5CE9B00AE47E2 /* Android Tablet */,
 				7B49C3F71CB5CE9B00AE47E2 /* Android Wear */,
+				7B01DEB01CC03702005A7AF9 /* Default Product Image */,
 				7B49C3F81CB5CE9B00AE47E2 /* Galaxy Note */,
 				7B49C3F91CB5CE9B00AE47E2 /* Galaxy S4 */,
 				7B49C40D1CB5CF3C00AE47E2 /* Galaxy Tab */,
@@ -392,6 +403,7 @@
 				7B49C40C1CB5CE9B00AE47E2 /* iPod Touch in Resources */,
 				7B49C40E1CB5CF3C00AE47E2 /* Galaxy Tab in Resources */,
 				7B49C3E21CB5B58F00AE47E2 /* Samsung Mobile Devices in Resources */,
+				7B01DEAF1CC032D0005A7AF9 /* AddProductViewController.xib in Resources */,
 				7B49C3F21CB5CC1B00AE47E2 /* Google Mobile Devices in Resources */,
 				48A656BF18163BF200746D36 /* InfoPlist.strings in Resources */,
 				48A656C718163BF200746D36 /* Images.xcassets in Resources */,
@@ -401,6 +413,7 @@
 				7B49C4021CB5CE9B00AE47E2 /* Android Tablet in Resources */,
 				7B49C4011CB5CE9B00AE47E2 /* Android Phone in Resources */,
 				7B49C4031CB5CE9B00AE47E2 /* Android Wear in Resources */,
+				7B01DEB11CC03702005A7AF9 /* Default Product Image in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B01DEAE1CC032D0005A7AF9 /* AddProductViewController.m in Sources */,
 				7B01DEA31CBFF824005A7AF9 /* AddCompanyViewController.m in Sources */,
 				7B568E871CBC0B9000E8BEED /* DataAccessObject.m in Sources */,
 				48A656E618163C1B00746D36 /* CompanyViewController.m in Sources */,

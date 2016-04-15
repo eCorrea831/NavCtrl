@@ -11,7 +11,7 @@
 
 @interface AddCompanyViewController : UIViewController
 
-@property (nonatomic, retain) IBOutlet UITextField *userNewCompanyNameTextField;
+@property (nonatomic, retain) IBOutlet UITextField * userNewCompanyNameTextField;
 
 - (IBAction)saveUserNewCompanyButton:(id)sender;
 

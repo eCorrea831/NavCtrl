@@ -11,6 +11,6 @@
 
 @interface NewWebViewController : UIViewController <WKNavigationDelegate>
 
-@property (retain, nonatomic) NSURL *url;
+@property (retain, nonatomic) NSURL * url;
 
 @end

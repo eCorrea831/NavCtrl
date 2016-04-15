@@ -14,9 +14,9 @@
 @end
 
 @implementation ProductViewController
+//TODO: Move button elsewhere
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -27,12 +27,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.clearsSelectionOnViewWillAppear = NO;
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.tableView reloadData];
+    
+    NSMutableArray* buttons = [[NSMutableArray alloc] initWithCapacity:2];
+    [buttons addObject:self.editButtonItem];
+    self.addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
+    [buttons addObject:self.addButton];
+    self.navigationItem.rightBarButtonItems = buttons;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,7 +41,7 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
@@ -49,22 +49,22 @@
     return [self.products count];
 }
 
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString * CellIdentifier = @"Cell";
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     cell.textLabel.text = [[self.products objectAtIndex:[indexPath row] ]productName];
     cell.imageView.image = [[self.products objectAtIndex:[indexPath row] ]productImage];
     return cell;
 }
 
-- (UIImage*)productPicture:(NSArray*)productName atIndex:(id)index {
+- (UIImage *)productPicture:(NSArray *)productName atIndex:(id)index {
     return [UIImage imageNamed:index];
 }
 
 #pragma mark - Table view delegate
-- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-    NewWebViewController *websiteViewController = [[NewWebViewController alloc] init];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NewWebViewController * websiteViewController = [[NewWebViewController alloc] init];
     websiteViewController.url = [NSURL URLWithString:[self.products[indexPath.row] productUrl]];
     [self.navigationController pushViewController:websiteViewController animated:YES];
 }
@@ -79,26 +79,37 @@
     [self.tableView setEditing:editing animated:YES];
 }
 
-- (UITableViewCellEditingStyle)tableView:(UITableView*)tableView editingStyleForRowAtIndexPath:(NSIndexPath*)indexPath {
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == [self.products count]) return UITableViewCellEditingStyleInsert;
     else return UITableViewCellEditingStyleDelete;
 }
 
-- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.products removeObjectAtIndex:indexPath.row];
         [tableView reloadData];
     }
 }
 
-- (BOOL)tableView:(UITableView*)tableView canMoveRowAtIndexPath:(NSIndexPath*)indexPath {
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
 
-- (void)tableView:(UITableView*)tableView moveRowAtIndexPath:(NSIndexPath*)fromIndexPath toIndexPath:(NSIndexPath*)toIndexPath {
-    NSString *stringToMove = [self.products objectAtIndex:fromIndexPath.row];
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    NSString * stringToMove = [self.products objectAtIndex:fromIndexPath.row];
     [self.products removeObjectAtIndex:fromIndexPath.row];
     [self.products insertObject:stringToMove atIndex:toIndexPath.row];
+}
+
+- (void)addItem:sender {
+    if (self.addProductViewController == nil) self.addProductViewController = [[AddProductViewController alloc] init];
+    self.addProductViewController.company = self.company;
+    [self.navigationController pushViewController:self.addProductViewController animated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 /*

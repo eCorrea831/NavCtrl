@@ -14,9 +14,9 @@
 
 @interface CompanyViewController : UITableViewController
 
-@property (nonatomic, retain) UIBarButtonItem *addButton;
-@property (nonatomic, retain) DataAccessObject *dao;
-@property (nonatomic, retain) IBOutlet ProductViewController *productViewController;
-@property (nonatomic, retain) AddCompanyViewController *addCompanyViewController;
+@property (nonatomic, retain) UIBarButtonItem * addButton;
+@property (nonatomic, retain) DataAccessObject * dao;
+@property (nonatomic, retain) IBOutlet ProductViewController * productViewController;
+@property (nonatomic, retain) AddCompanyViewController * addCompanyViewController;
 
 @end

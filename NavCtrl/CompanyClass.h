@@ -10,10 +10,10 @@
 
 @interface CompanyClass : NSObject
 
-@property (nonatomic, retain) NSString *companyName;
-@property (nonatomic, retain) UIImage *companyImage;
-@property (nonatomic, retain) NSMutableArray *productArray;
+@property (nonatomic, retain) NSString * companyName;
+@property (nonatomic, retain) UIImage * companyImage;
+@property (nonatomic, retain) NSMutableArray * productArray;
 
-- (CompanyClass*)initWithCompanyName:(NSString*)name companyImage:(UIImage*)image;
+- (CompanyClass *)initWithCompanyName:(NSString *)name companyImage:(UIImage *)image;
 
 @end

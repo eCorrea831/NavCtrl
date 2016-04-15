@@ -21,10 +21,10 @@
 - (void)viewDidAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    WKWebViewConfiguration *theConfiguration = [[WKWebViewConfiguration alloc] init];
-    WKWebView *webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:theConfiguration];
+    WKWebViewConfiguration * theConfiguration = [[WKWebViewConfiguration alloc] init];
+    WKWebView * webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:theConfiguration];
     webView.navigationDelegate = self;
-    NSURLRequest *nsrequest = [NSURLRequest requestWithURL:self.url];
+    NSURLRequest * nsrequest = [NSURLRequest requestWithURL:self.url];
     [webView loadRequest:nsrequest];
     [self.view addSubview:webView];
 }

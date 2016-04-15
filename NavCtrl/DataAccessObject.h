@@ -12,11 +12,13 @@
 
 @interface DataAccessObject : NSObject
 
-@property (nonatomic, retain) NSMutableArray *companyList;
+@property (nonatomic, retain) NSMutableArray * companyList;
 
-+ (DataAccessObject*)sharedInstance;
++ (DataAccessObject *)sharedInstance;
 - (id)initWithData;
-- (UIImage*)createDefaultCompanyImage;
-- (CompanyClass*)createNewCompanyWithName:(NSString*)addNewCompanyName;
+- (UIImage *)createDefaultCompanyImage;
+- (CompanyClass *)createNewCompanyWithName:(NSString *)addNewCompanyName;
+- (UIImage*)createDefaultProductImage;
+- (ProductClass *)createNewProductWithName:(NSString *)addNewProductName url:(NSString *)addNewProductUrl;
 
 @end
