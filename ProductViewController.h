@@ -20,8 +20,8 @@
 @property (nonatomic, retain) NSMutableArray * products;
 @property (nonatomic, retain) AddProductViewController * addProductViewController;
 @property (nonatomic, retain) EditProductViewController * editProductViewController;
-@property (retain, nonatomic) CompanyClass * company;
-@property (retain, nonatomic) ProductClass * product;
+@property (retain, nonatomic) Company * company;
+@property (retain, nonatomic) Product * product;
 @property (nonatomic, retain) UITapGestureRecognizer *tap;
 
 @end

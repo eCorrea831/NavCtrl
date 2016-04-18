@@ -15,8 +15,8 @@
 @property (retain, nonatomic) IBOutlet UITextField * editedProductNameTextField;
 @property (retain, nonatomic) IBOutlet UILabel * currentProductUrlLabel;
 @property (retain, nonatomic) IBOutlet UITextField * editedProductUrlTextField;
-@property (retain, nonatomic) CompanyClass * company;
-@property (retain, nonatomic) ProductClass *product;
+@property (retain, nonatomic) Company * company;
+@property (retain, nonatomic) Product *product;
 
 - (IBAction)saveEditedProductButton:(id)sender;
 - (NSString *)checkStringForPrefix:(NSString *)string;

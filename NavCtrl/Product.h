@@ -1,5 +1,5 @@
 //
-//  ProductClass.h
+//  Product.h
 //  NavCtrl
 //
 //  Created by Erica Correa on 4/11/16.
@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ProductClass : NSObject
+@interface Product : NSObject
 
 @property (nonatomic, retain) NSString * productName;
 @property (nonatomic, retain) UIImage * productImage;
 @property (nonatomic, retain) NSString * productUrl;
 
-- (ProductClass *)initWithProductName:(NSString *)name productImage:(UIImage *)image andProductUrl:(NSString *)url;
+- (Product *)initWithProductName:(NSString *)name productImage:(UIImage *)image andProductUrl:(NSString *)url;
 
 @end

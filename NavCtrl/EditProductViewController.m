@@ -12,7 +12,6 @@
 
 @end
 
-//FIXME: url not updating for correct product and updating for all the rest
 @implementation EditProductViewController
 
 - (void)viewDidLoad {

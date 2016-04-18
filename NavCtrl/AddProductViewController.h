@@ -13,7 +13,7 @@
 
 @property (retain, nonatomic) IBOutlet UITextField * userNewProductNameTextField;
 @property (retain, nonatomic) IBOutlet UITextField * userNewProductUrlTextField;
-@property (retain, nonatomic) CompanyClass * company;
+@property (retain, nonatomic) Company * company;
 
 - (IBAction)saveUserNewProductButton:(id)sender;
 

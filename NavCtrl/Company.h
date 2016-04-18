@@ -1,5 +1,5 @@
 //
-//  CompanyClass.h
+//  Company.h
 //  NavCtrl
 //
 //  Created by Erica Correa on 4/11/16.
@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CompanyClass : NSObject
+@interface Company : NSObject
 
 @property (nonatomic, retain) NSString * companyName;
 @property (nonatomic, retain) UIImage * companyImage;
+@property (nonatomic, retain) NSString * companyStockPrice;
 @property (nonatomic, retain) NSMutableArray * productArray;
 
-- (CompanyClass *)initWithCompanyName:(NSString *)name companyImage:(UIImage *)image;
+- (Company *)initWithCompanyName:(NSString *)name companyImage:(UIImage *)image;
 
 @end

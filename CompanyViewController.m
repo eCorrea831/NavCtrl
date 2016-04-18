@@ -33,6 +33,8 @@
     self.navigationItem.rightBarButtonItems = buttons;
     
     self.dao = [DataAccessObject sharedInstance];
+    
+    //TODO: Add code to create connection and request for stock info
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,9 +56,14 @@
     if (cell == nil) {
       cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    CompanyClass * company = [self.dao.companyList objectAtIndex:[indexPath row]];
+    Company * company = [self.dao.companyList objectAtIndex:[indexPath row]];
     cell.textLabel.text = [company companyName];
     cell.imageView.image = [company companyImage];
+    UILabel *stockPrice = [[UILabel alloc]init];
+    //TODO: below line should update based on stock price for that company
+    stockPrice.text = @"hi";
+    cell.accessoryView = stockPrice;
+    [cell.accessoryView setFrame:CGRectMake(0, 0, 24, 24)];
     return cell;
 }
 
@@ -120,6 +127,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    //TODO: Add code to create connection and request for stock info?
     [super viewWillAppear:animated];
     [self.tableView reloadData];
 }

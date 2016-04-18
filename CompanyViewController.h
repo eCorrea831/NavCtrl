@@ -21,7 +21,7 @@
 @property (nonatomic, retain) AddCompanyViewController * addCompanyViewController;
 @property (nonatomic, retain) EditCompanyViewController * editCompanyViewController;
 @property (nonatomic, retain) UITapGestureRecognizer *tap;
-@property (nonatomic, retain) CompanyClass * company;
+@property (nonatomic, retain) Company * company;
 
 - (void)showCompanyInfo;
 

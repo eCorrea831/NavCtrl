@@ -45,8 +45,8 @@
 		7B49C41A1CB5D47D00AE47E2 /* Huawei Mate in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C4171CB5D47D00AE47E2 /* Huawei Mate */; };
 		7B49C41B1CB5D47D00AE47E2 /* Huawei Matebook in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C4181CB5D47D00AE47E2 /* Huawei Matebook */; };
 		7B49C41C1CB5D47D00AE47E2 /* Huawei Talkband in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C4191CB5D47D00AE47E2 /* Huawei Talkband */; };
-		7B568E7F1CBBF8EA00E8BEED /* CompanyClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B568E7E1CBBF8EA00E8BEED /* CompanyClass.m */; };
-		7B568E821CBBF8F700E8BEED /* ProductClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B568E811CBBF8F700E8BEED /* ProductClass.m */; };
+		7B568E7F1CBBF8EA00E8BEED /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B568E7E1CBBF8EA00E8BEED /* Company.m */; };
+		7B568E821CBBF8F700E8BEED /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B568E811CBBF8F700E8BEED /* Product.m */; };
 		7B568E871CBC0B9000E8BEED /* DataAccessObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B568E861CBC0B9000E8BEED /* DataAccessObject.m */; };
 		7B74571F1CC178440041BEC4 /* EditCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B74571D1CC178440041BEC4 /* EditCompanyViewController.m */; };
 		7B7457201CC178440041BEC4 /* EditCompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B74571E1CC178440041BEC4 /* EditCompanyViewController.xib */; };
@@ -114,10 +114,10 @@
 		7B49C4171CB5D47D00AE47E2 /* Huawei Mate */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Huawei Mate"; path = "products/Huawei Mate"; sourceTree = "<group>"; };
 		7B49C4181CB5D47D00AE47E2 /* Huawei Matebook */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Huawei Matebook"; path = "products/Huawei Matebook"; sourceTree = "<group>"; };
 		7B49C4191CB5D47D00AE47E2 /* Huawei Talkband */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Huawei Talkband"; path = "products/Huawei Talkband"; sourceTree = "<group>"; };
-		7B568E7D1CBBF8EA00E8BEED /* CompanyClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyClass.h; sourceTree = "<group>"; };
-		7B568E7E1CBBF8EA00E8BEED /* CompanyClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyClass.m; sourceTree = "<group>"; };
-		7B568E801CBBF8F700E8BEED /* ProductClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductClass.h; sourceTree = "<group>"; };
-		7B568E811CBBF8F700E8BEED /* ProductClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductClass.m; sourceTree = "<group>"; };
+		7B568E7D1CBBF8EA00E8BEED /* Company.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Company.h; sourceTree = "<group>"; };
+		7B568E7E1CBBF8EA00E8BEED /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
+		7B568E801CBBF8F700E8BEED /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		7B568E811CBBF8F700E8BEED /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		7B568E851CBC0B9000E8BEED /* DataAccessObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAccessObject.h; sourceTree = "<group>"; };
 		7B568E861CBC0B9000E8BEED /* DataAccessObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAccessObject.m; sourceTree = "<group>"; };
 		7B74571C1CC178440041BEC4 /* EditCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCompanyViewController.h; sourceTree = "<group>"; };
@@ -280,10 +280,10 @@
 		7B568E831CBBF8FF00E8BEED /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7B568E7D1CBBF8EA00E8BEED /* CompanyClass.h */,
-				7B568E7E1CBBF8EA00E8BEED /* CompanyClass.m */,
-				7B568E801CBBF8F700E8BEED /* ProductClass.h */,
-				7B568E811CBBF8F700E8BEED /* ProductClass.m */,
+				7B568E7D1CBBF8EA00E8BEED /* Company.h */,
+				7B568E7E1CBBF8EA00E8BEED /* Company.m */,
+				7B568E801CBBF8F700E8BEED /* Product.h */,
+				7B568E811CBBF8F700E8BEED /* Product.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -455,11 +455,11 @@
 				7B568E871CBC0B9000E8BEED /* DataAccessObject.m in Sources */,
 				48A656E618163C1B00746D36 /* CompanyViewController.m in Sources */,
 				48A656C518163BF200746D36 /* NavControllerAppDelegate.m in Sources */,
-				7B568E821CBBF8F700E8BEED /* ProductClass.m in Sources */,
+				7B568E821CBBF8F700E8BEED /* Product.m in Sources */,
 				48A656C118163BF200746D36 /* main.m in Sources */,
 				48A656EB18163F8700746D36 /* ProductViewController.m in Sources */,
 				7B7457241CC17BF10041BEC4 /* EditProductViewController.m in Sources */,
-				7B568E7F1CBBF8EA00E8BEED /* CompanyClass.m in Sources */,
+				7B568E7F1CBBF8EA00E8BEED /* Company.m in Sources */,
 				7B7539741CB84B6A00935272 /* NewWebViewController.m in Sources */,
 				7B74571F1CC178440041BEC4 /* EditCompanyViewController.m in Sources */,
 			);

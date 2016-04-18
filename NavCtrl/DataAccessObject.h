@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CompanyClass.h"
-#import "ProductClass.h"
+#import "Company.h"
+#import "Product.h"
 
 @interface DataAccessObject : NSObject
 
@@ -17,10 +17,10 @@
 + (DataAccessObject *)sharedInstance;
 - (id)initWithData;
 - (UIImage *)createDefaultCompanyImage;
-- (CompanyClass *)createNewCompanyWithName:(NSString *)addNewCompanyName;
-- (CompanyClass *)editCompany:(CompanyClass *)company withName:(NSString *)updatedCompanyName;
+- (Company *)createNewCompanyWithName:(NSString *)addNewCompanyName;
+- (Company *)editCompany:(Company *)company withName:(NSString *)updatedCompanyName;
 - (UIImage*)createDefaultProductImage;
-- (ProductClass *)createNewProductWithName:(NSString *)addNewProductName url:(NSString *)addNewProductUrl;
-- (ProductClass *)editProduct:(ProductClass *)product withName:(NSString *)updatedProductName withUrl:(NSString *)updatedUrl;
+- (Product *)createNewProductWithName:(NSString *)addNewProductName url:(NSString *)addNewProductUrl;
+- (Product *)editProduct:(Product *)product withName:(NSString *)updatedProductName withUrl:(NSString *)updatedUrl;
 
 @end
