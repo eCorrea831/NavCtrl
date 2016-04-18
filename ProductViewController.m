@@ -14,7 +14,6 @@
 @end
 
 @implementation ProductViewController
-//TODO: Move button elsewhere
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -52,7 +51,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * CellIdentifier = @"Cell";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     cell.textLabel.text = [[self.products objectAtIndex:[indexPath row] ]productName];
     cell.imageView.image = [[self.products objectAtIndex:[indexPath row] ]productImage];
     return cell;
@@ -64,9 +65,14 @@
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NewWebViewController * websiteViewController = [[NewWebViewController alloc] init];
-    websiteViewController.url = [NSURL URLWithString:[self.products[indexPath.row] productUrl]];
-    [self.navigationController pushViewController:websiteViewController animated:YES];
+    self.webViewController = [[NewWebViewController alloc] init];
+    self.product = [self.company.productArray objectAtIndex:[indexPath row]];
+    if (self.isEditing) {
+        [self showProductInfo];
+    } else {
+        self.webViewController.url = [NSURL URLWithString:[self.products[indexPath.row] productUrl]];
+        [self.navigationController pushViewController:self.webViewController animated:YES];
+    }
 }
 
 - (void)dealloc {
@@ -77,11 +83,15 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
     [self.tableView setEditing:editing animated:YES];
+    self.tableView.allowsSelectionDuringEditing = YES;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == [self.products count]) return UITableViewCellEditingStyleInsert;
-    else return UITableViewCellEditingStyleDelete;
+    if (indexPath.row == [self.products count]) {
+        return UITableViewCellEditingStyleInsert;
+    } else {
+      return UITableViewCellEditingStyleDelete;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -102,7 +112,9 @@
 }
 
 - (void)addItem:sender {
-    if (self.addProductViewController == nil) self.addProductViewController = [[AddProductViewController alloc] init];
+    if (self.addProductViewController == nil) {
+        self.addProductViewController = [[AddProductViewController alloc] init];
+    }
     self.addProductViewController.company = self.company;
     [self.navigationController pushViewController:self.addProductViewController animated:YES];
 }
@@ -112,13 +124,13 @@
     [self.tableView reloadData];
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
+- (void)showProductInfo {
+    if (self.editProductViewController == nil) {
+        self.editProductViewController = [[EditProductViewController alloc] init];
+    }
+    self.editProductViewController.company = self.company;
+    self.editProductViewController.product = self.product;
+    [self.navigationController pushViewController:self.editProductViewController animated:YES];
+}
 
 @end

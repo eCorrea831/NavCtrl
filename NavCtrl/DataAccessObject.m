@@ -67,6 +67,11 @@
     return newCompany;
 }
 
+- (CompanyClass *)editCompany:(CompanyClass *)company withName:(NSString *)updatedCompanyName {
+    company.companyName = updatedCompanyName;
+    return company;
+}
+
 - (UIImage *)createDefaultProductImage {
     UIImage * defaultProductImage = [[UIImage alloc] init];
     defaultProductImage = [UIImage imageNamed:@"Default Product Image"];
@@ -76,6 +81,12 @@
 - (ProductClass *)createNewProductWithName:(NSString*)addNewProductName url:(NSString*)addNewProductUrl {
     ProductClass * newProduct = [[ProductClass alloc]initWithProductName:addNewProductName productImage:[self createDefaultProductImage] andProductUrl:addNewProductUrl];
     return newProduct;
+}
+
+- (ProductClass *)editProduct:(ProductClass *)product withName:(NSString *)updatedProductName withUrl:(NSString *)updatedUrl {
+    product.productName = updatedProductName;
+    product.productUrl = updatedUrl;
+    return product;
 }
 
 @end

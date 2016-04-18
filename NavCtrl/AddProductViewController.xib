@@ -9,8 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddProductViewController">
             <connections>
-                <outlet property="userNewProductNameTextField" destination="L0s-Ew-Wch" id="CI8-yF-9ik"/>
-                <outlet property="userNewProductUrlTextField" destination="2oe-E8-EPG" id="Sq5-zU-BAu"/>
+                <outlet property="userNewProductNameTextField" destination="L0s-Ew-Wch" id="NPJ-ze-FIK"/>
+                <outlet property="userNewProductUrlTextField" destination="2oe-E8-EPG" id="qLK-Zh-HDs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -32,7 +32,7 @@
                     <rect key="frame" x="142" y="209" width="316" height="30"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's the Product's Website?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMf-Hv-51f">
                     <rect key="frame" x="82" y="282" width="436" height="36"/>
@@ -51,7 +51,7 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="saveUserNewProductButton:" destination="-1" eventType="touchUpInside" id="HeN-UQ-qhm"/>
+                        <action selector="saveUserNewProductButton:" destination="-1" eventType="touchUpInside" id="iz5-FY-1Os"/>
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter website here..." textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2oe-E8-EPG">

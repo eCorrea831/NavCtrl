@@ -10,13 +10,18 @@
 #import "CompanyViewController.h"
 #import "NewWebViewController.h"
 #import "AddProductViewController.h"
+#import "EditProductViewController.h"
 
 @interface ProductViewController : UITableViewController
 
 @property (nonatomic, retain) UIBarButtonItem * addButton;
+@property (nonatomic, retain) UIButton * infoButton;
 @property (nonatomic, retain) NewWebViewController * webViewController;
 @property (nonatomic, retain) NSMutableArray * products;
 @property (nonatomic, retain) AddProductViewController * addProductViewController;
+@property (nonatomic, retain) EditProductViewController * editProductViewController;
 @property (retain, nonatomic) CompanyClass * company;
+@property (retain, nonatomic) ProductClass * product;
+@property (nonatomic, retain) UITapGestureRecognizer *tap;
 
 @end

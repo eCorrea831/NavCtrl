@@ -18,7 +18,6 @@
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -27,7 +26,7 @@
     [super viewDidLoad];
     self.clearsSelectionOnViewWillAppear = NO;
     
-    NSMutableArray* buttons = [[NSMutableArray alloc] initWithCapacity:2];
+    NSMutableArray * buttons = [[NSMutableArray alloc] initWithCapacity:2];
     [buttons addObject:self.editButtonItem];
     self.addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
     [buttons addObject:self.addButton];
@@ -52,8 +51,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * CellIdentifier = @"Cell";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    
+    if (cell == nil) {
+      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     CompanyClass * company = [self.dao.companyList objectAtIndex:[indexPath row]];
     cell.textLabel.text = [company companyName];
     cell.imageView.image = [company companyImage];
@@ -66,11 +66,15 @@
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    CompanyClass *company = [self.dao.companyList objectAtIndex:[indexPath row]];
-    self.productViewController.title = [company companyName];
-    self.productViewController.products = [company productArray];
-    self.productViewController.company = company;
-    [self.navigationController pushViewController:self.productViewController animated:YES];
+    self.company = [self.dao.companyList objectAtIndex:[indexPath row]];
+    if (self.isEditing) {
+        [self showCompanyInfo];
+    } else {
+        self.productViewController.title = [self.company companyName];
+        self.productViewController.products = [self.company productArray];
+        self.productViewController.company = self.company;
+        [self.navigationController pushViewController:self.productViewController animated:YES];
+    }
 }
 
 #pragma mark - Sets editing, moving, and deletion of a selected row
@@ -80,8 +84,11 @@
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == [self.dao.companyList count]) return UITableViewCellEditingStyleInsert;
-    else return UITableViewCellEditingStyleDelete;
+    if (indexPath.row == [self.dao.companyList count]) {
+        return UITableViewCellEditingStyleInsert;
+    } else {
+        return UITableViewCellEditingStyleDelete;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -106,8 +113,9 @@
  }
 
 - (void)addItem:sender {
-    if (self.addCompanyViewController == nil) self.addCompanyViewController = [[AddCompanyViewController alloc] init];
-    
+    if (self.addCompanyViewController == nil) {
+       self.addCompanyViewController = [[AddCompanyViewController alloc] init];
+    }
     [self.navigationController pushViewController:self.addCompanyViewController animated:YES];
 }
 
@@ -116,13 +124,16 @@
     [self.tableView reloadData];
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
+- (void)showCompanyInfo {
+    if (self.editCompanyViewController == nil) {
+        self.editCompanyViewController = [[EditCompanyViewController alloc] init];
+    }
+    self.editCompanyViewController.company = self.company;
+    [self.navigationController pushViewController:self.editCompanyViewController animated:YES];
+}
+
+- (void)dealloc {
+    [super dealloc];
+}
 
 @end

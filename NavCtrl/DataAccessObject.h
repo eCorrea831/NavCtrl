@@ -18,7 +18,9 @@
 - (id)initWithData;
 - (UIImage *)createDefaultCompanyImage;
 - (CompanyClass *)createNewCompanyWithName:(NSString *)addNewCompanyName;
+- (CompanyClass *)editCompany:(CompanyClass *)company withName:(NSString *)updatedCompanyName;
 - (UIImage*)createDefaultProductImage;
 - (ProductClass *)createNewProductWithName:(NSString *)addNewProductName url:(NSString *)addNewProductUrl;
+- (ProductClass *)editProduct:(ProductClass *)product withName:(NSString *)updatedProductName withUrl:(NSString *)updatedUrl;
 
 @end

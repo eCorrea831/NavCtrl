@@ -48,6 +48,10 @@
 		7B568E7F1CBBF8EA00E8BEED /* CompanyClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B568E7E1CBBF8EA00E8BEED /* CompanyClass.m */; };
 		7B568E821CBBF8F700E8BEED /* ProductClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B568E811CBBF8F700E8BEED /* ProductClass.m */; };
 		7B568E871CBC0B9000E8BEED /* DataAccessObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B568E861CBC0B9000E8BEED /* DataAccessObject.m */; };
+		7B74571F1CC178440041BEC4 /* EditCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B74571D1CC178440041BEC4 /* EditCompanyViewController.m */; };
+		7B7457201CC178440041BEC4 /* EditCompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B74571E1CC178440041BEC4 /* EditCompanyViewController.xib */; };
+		7B7457241CC17BF10041BEC4 /* EditProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7457221CC17BF10041BEC4 /* EditProductViewController.m */; };
+		7B7457251CC17BF10041BEC4 /* EditProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7457231CC17BF10041BEC4 /* EditProductViewController.xib */; };
 		7B7539741CB84B6A00935272 /* NewWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7539721CB84B6A00935272 /* NewWebViewController.m */; };
 		7B7539751CB84B6A00935272 /* NewWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7539731CB84B6A00935272 /* NewWebViewController.xib */; };
 		7B7539771CB84C1600935272 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7539761CB84C1600935272 /* WebKit.framework */; };
@@ -116,6 +120,12 @@
 		7B568E811CBBF8F700E8BEED /* ProductClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductClass.m; sourceTree = "<group>"; };
 		7B568E851CBC0B9000E8BEED /* DataAccessObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAccessObject.h; sourceTree = "<group>"; };
 		7B568E861CBC0B9000E8BEED /* DataAccessObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAccessObject.m; sourceTree = "<group>"; };
+		7B74571C1CC178440041BEC4 /* EditCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCompanyViewController.h; sourceTree = "<group>"; };
+		7B74571D1CC178440041BEC4 /* EditCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCompanyViewController.m; sourceTree = "<group>"; };
+		7B74571E1CC178440041BEC4 /* EditCompanyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditCompanyViewController.xib; sourceTree = "<group>"; };
+		7B7457211CC17BF10041BEC4 /* EditProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProductViewController.h; sourceTree = "<group>"; };
+		7B7457221CC17BF10041BEC4 /* EditProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProductViewController.m; sourceTree = "<group>"; };
+		7B7457231CC17BF10041BEC4 /* EditProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProductViewController.xib; sourceTree = "<group>"; };
 		7B7539711CB84B6A00935272 /* NewWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewWebViewController.h; sourceTree = "<group>"; };
 		7B7539721CB84B6A00935272 /* NewWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewWebViewController.m; sourceTree = "<group>"; };
 		7B7539731CB84B6A00935272 /* NewWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewWebViewController.xib; sourceTree = "<group>"; };
@@ -159,6 +169,10 @@
 		483796CC1BCBF7C70062D5AB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7B74571C1CC178440041BEC4 /* EditCompanyViewController.h */,
+				7B74571D1CC178440041BEC4 /* EditCompanyViewController.m */,
+				7B7457211CC17BF10041BEC4 /* EditProductViewController.h */,
+				7B7457221CC17BF10041BEC4 /* EditProductViewController.m */,
 				7B01DEA01CBFF824005A7AF9 /* AddCompanyViewController.h */,
 				7B01DEA11CBFF824005A7AF9 /* AddCompanyViewController.m */,
 				7B01DEAB1CC032D0005A7AF9 /* AddProductViewController.h */,
@@ -176,6 +190,8 @@
 		483796CD1BCBF7EB0062D5AB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7B74571E1CC178440041BEC4 /* EditCompanyViewController.xib */,
+				7B7457231CC17BF10041BEC4 /* EditProductViewController.xib */,
 				7B01DEA21CBFF824005A7AF9 /* AddCompanyViewController.xib */,
 				7B01DEAD1CC032D0005A7AF9 /* AddProductViewController.xib */,
 				48A656E518163C1B00746D36 /* CompanyViewController.xib */,
@@ -401,6 +417,7 @@
 				7B49C41A1CB5D47D00AE47E2 /* Huawei Mate in Resources */,
 				7B49C4051CB5CE9B00AE47E2 /* Galaxy S4 in Resources */,
 				7B49C40C1CB5CE9B00AE47E2 /* iPod Touch in Resources */,
+				7B7457201CC178440041BEC4 /* EditCompanyViewController.xib in Resources */,
 				7B49C40E1CB5CF3C00AE47E2 /* Galaxy Tab in Resources */,
 				7B49C3E21CB5B58F00AE47E2 /* Samsung Mobile Devices in Resources */,
 				7B01DEAF1CC032D0005A7AF9 /* AddProductViewController.xib in Resources */,
@@ -414,6 +431,7 @@
 				7B49C4011CB5CE9B00AE47E2 /* Android Phone in Resources */,
 				7B49C4031CB5CE9B00AE47E2 /* Android Wear in Resources */,
 				7B01DEB11CC03702005A7AF9 /* Default Product Image in Resources */,
+				7B7457251CC17BF10041BEC4 /* EditProductViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,8 +458,10 @@
 				7B568E821CBBF8F700E8BEED /* ProductClass.m in Sources */,
 				48A656C118163BF200746D36 /* main.m in Sources */,
 				48A656EB18163F8700746D36 /* ProductViewController.m in Sources */,
+				7B7457241CC17BF10041BEC4 /* EditProductViewController.m in Sources */,
 				7B568E7F1CBBF8EA00E8BEED /* CompanyClass.m in Sources */,
 				7B7539741CB84B6A00935272 /* NewWebViewController.m in Sources */,
+				7B74571F1CC178440041BEC4 /* EditCompanyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

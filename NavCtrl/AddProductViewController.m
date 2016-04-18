@@ -23,16 +23,22 @@
 }
 
 - (IBAction)saveUserNewProductButton:(id)sender {
-    NSString * userNewProductName = self.userNewProductNameTextField.text;
-    NSString * userNewUrlName = self.userNewProductUrlTextField.text;
-    
-    if (([userNewProductName isEqualToString: @"Enter product name here..."]) || ([userNewProductName isEqualToString: @""]) || ([userNewUrlName isEqualToString:@"Enter website here..."]) || ([userNewUrlName isEqualToString:@""])){
+    if (([self.userNewProductNameTextField.text isEqualToString: @""]) || ([self.userNewProductUrlTextField.text isEqualToString:@""])){
         [self showIncompleteErrorMessage];
     } else {
         DataAccessObject * dao = [DataAccessObject sharedInstance];
-        [self.company.productArray addObject:[dao createNewProductWithName:userNewProductName url:userNewUrlName]];
+        [self.company.productArray addObject:[dao createNewProductWithName:self.userNewProductNameTextField.text url:[self checkStringForPrefix:self.userNewProductUrlTextField.text]]];
         NSLog(@"New product saved");
         [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (NSString *)checkStringForPrefix:(NSString *)string {
+    if([string hasPrefix:@"http://"]) {
+        return self.userNewProductUrlTextField.text;
+    } else {
+        NSString *prefix = @"http://";
+        return [prefix stringByAppendingString:self.userNewProductUrlTextField.text];
     }
 }
 

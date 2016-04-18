@@ -23,13 +23,11 @@
 }
 
 - (IBAction)saveUserNewCompanyButton:(id)sender {
-    NSString * userNewCompanyName = self.userNewCompanyNameTextField.text;
-
-    if (([userNewCompanyName isEqualToString: @"Enter company name here..."]) || ([userNewCompanyName isEqualToString: @""])) {
+    if ([self.userNewCompanyNameTextField.text isEqualToString: @""]) {
          [self showIncompleteErrorMessage];
     } else {
         DataAccessObject * dao = [DataAccessObject sharedInstance];
-        [dao createNewCompanyWithName:userNewCompanyName];
+        [dao createNewCompanyWithName:self.userNewCompanyNameTextField.text];
         NSLog(@"New company saved");
         [self.navigationController popViewControllerAnimated:YES];
     }
