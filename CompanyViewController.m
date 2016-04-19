@@ -18,6 +18,7 @@
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
+        //make accessory view larger?
     }
     return self;
 }
@@ -64,9 +65,10 @@
     cell.textLabel.text = [self.selectedCompany companyName];
     cell.imageView.image = [self.selectedCompany companyImage];
     UILabel *stockPrice = [[UILabel alloc]init];
+    stockPrice.adjustsFontSizeToFitWidth = YES;
     stockPrice.text = self.selectedCompany.companyStockPrice;
     cell.accessoryView = stockPrice;
-    [cell.accessoryView setFrame:CGRectMake(0, 0, 24, 24)];
+    [cell.accessoryView setFrame:CGRectMake(0, 0, 50, 50)];
     return cell;
 }
 
