@@ -18,7 +18,10 @@
 @property (retain, nonatomic) Company * company;
 @property (retain, nonatomic) Product *product;
 
+- (void)viewWillAppear:(BOOL)animated;
 - (IBAction)saveEditedProductButton:(id)sender;
+- (void)showIncompleteErrorMessage;
 - (NSString *)checkStringForPrefix:(NSString *)string;
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 
 @end

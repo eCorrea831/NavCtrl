@@ -14,5 +14,7 @@
 @property (nonatomic, retain) IBOutlet UITextField * userNewCompanyNameTextField;
 
 - (IBAction)saveUserNewCompanyButton:(id)sender;
+- (void)showIncompleteErrorMessage;
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 
 @end

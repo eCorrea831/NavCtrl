@@ -20,6 +20,14 @@
     self.currentProductUrlLabel.text = self.product.productUrl;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.currentProductNameLabel.text = self.product.productName;
+    self.currentProductUrlLabel.text = self.product.productUrl;
+    self.editedProductNameTextField.text = nil;
+    self.editedProductUrlTextField.text = nil;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -43,6 +51,16 @@
     }
 }
 
+- (void)showIncompleteErrorMessage {
+    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Must enter a new product name and/or website before saving." preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){[errorAlert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [errorAlert addAction:alertAction];
+    [self presentViewController:errorAlert animated:YES completion:nil];
+}
+
 - (NSString *)checkStringForPrefix:(NSString *)string {
     if([string hasPrefix:@"http://"]) {
         return self.editedProductUrlTextField.text;
@@ -57,24 +75,6 @@
     [[self view] endEditing:YES];
     [self.editedProductUrlTextField resignFirstResponder];
     [[self view] endEditing:YES];
-}
-
-- (void)showIncompleteErrorMessage {
-    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Must enter a new product name and/or website before saving." preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){[errorAlert dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    [errorAlert addAction:alertAction];
-    [self presentViewController:errorAlert animated:YES completion:nil];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.currentProductNameLabel.text = self.product.productName;
-    self.currentProductUrlLabel.text = self.product.productUrl;
-    self.editedProductNameTextField.text = nil;
-    self.editedProductUrlTextField.text = nil;
 }
 
 - (void)dealloc {

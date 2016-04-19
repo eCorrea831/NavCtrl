@@ -16,5 +16,7 @@
 @property (retain, nonatomic) Company * company;
 
 - (IBAction)saveEditedCompanyButton:(id)sender;
+- (void)showIncompleteErrorMessage;
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 
 @end

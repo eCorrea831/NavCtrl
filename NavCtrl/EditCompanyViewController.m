@@ -35,11 +35,6 @@
     }
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self.editedCompanyNameTextField resignFirstResponder];
-    [[self view] endEditing:YES];
-}
-
 - (void)showIncompleteErrorMessage {
     UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Must enter a new company name before saving." preferredStyle:UIAlertControllerStyleAlert];
     
@@ -48,6 +43,11 @@
     
     [errorAlert addAction:alertAction];
     [self presentViewController:errorAlert animated:YES completion:nil];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.editedCompanyNameTextField resignFirstResponder];
+    [[self view] endEditing:YES];
 }
 
 - (void)dealloc {

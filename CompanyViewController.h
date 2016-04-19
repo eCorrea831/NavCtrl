@@ -8,21 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "DataAccessObject.h"
-#import "AddCompanyViewController.h"
 #import "EditCompanyViewController.h"
+#import "AddCompanyViewController.h"
 
 @class ProductViewController;
 
 @interface CompanyViewController : UITableViewController
 
-@property (nonatomic, retain) UIBarButtonItem * addButton;
-@property (nonatomic, retain) DataAccessObject * dao;
 @property (nonatomic, retain) IBOutlet ProductViewController * productViewController;
-@property (nonatomic, retain) AddCompanyViewController * addCompanyViewController;
 @property (nonatomic, retain) EditCompanyViewController * editCompanyViewController;
+@property (nonatomic, retain) AddCompanyViewController * addCompanyViewController;
+@property (nonatomic, retain) DataAccessObject *dao;
+@property (nonatomic, retain) Company * selectedCompany;
+@property (nonatomic, retain) UIBarButtonItem * addButton;
 @property (nonatomic, retain) UITapGestureRecognizer *tap;
-@property (nonatomic, retain) Company * company;
 
+- (UIImage *)companyLogo:(NSArray *)companyName atIndex:(id)index;
 - (void)showCompanyInfo;
+- (void)addItem:sender;
 
 @end

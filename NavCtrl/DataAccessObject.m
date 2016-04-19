@@ -7,6 +7,13 @@
 //
 
 #import "DataAccessObject.h"
+#import "CompanyViewController.h"
+
+@interface DataAccessObject ()
+
+- (void)getStockPrices:(CompanyViewController*)CompanyVC;
+
+@end
 
 @implementation DataAccessObject
 
@@ -23,14 +30,12 @@
 
     self = [super init];
     if (self) {
-    
         Company * apple = [[Company alloc]initWithCompanyName:@"Apple mobile devices" companyImage:[UIImage imageNamed:@"Apple Mobile Devices"]];
         
         Product * iPad = [[Product alloc]initWithProductName:@"iPad" productImage: [UIImage imageNamed:@"iPad"] andProductUrl:@"http://www.apple.com/ipad/"];
         Product * iPodTouch = [[Product alloc]initWithProductName:@"iPod Touch" productImage: [UIImage imageNamed:@"iPod Touch"] andProductUrl:@"http://www.apple.com/ipod/"];
         Product * iPhone = [[Product alloc]initWithProductName:@"iPhone" productImage: [UIImage imageNamed:@"iPhone"] andProductUrl:@"http://www.apple.com/iphone/"];
         apple.productArray = [NSMutableArray arrayWithObjects:iPad, iPodTouch, iPhone, nil];
-        
         
         Company * samsung = [[Company alloc]initWithCompanyName:@"Samsung mobile devices" companyImage:[UIImage imageNamed:@"Samsung Mobile Devices"]];
         Product * galaxyS4 = [[Product alloc]initWithProductName:@"Galaxy S4" productImage: [UIImage imageNamed:@"Galaxy S4"] andProductUrl:@"http://www.samsung.com/us/mobile/cell-phones/SCH-I545ZKPVZW"];
@@ -54,21 +59,6 @@
     }
     return self;
 }
-
-- (void)getStockPrices:(Company *)company {
-    
-    //TODO: Format url to be dynamic in getting specific company's stock price
-    NSString *getUrl = [NSString stringWithFormat:@"http://protected-wildwood-8664.herokuapp.com/users/%@.json", company];
-    
-    //creating the get request
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:getUrl]];
-    
-    //creating the url connection and fire request
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-
-}
-
-
 
 - (UIImage *)createDefaultCompanyImage {
     UIImage * defaultCompanyImage = [[UIImage alloc] init];
@@ -102,6 +92,22 @@
     product.productName = updatedProductName;
     product.productUrl = updatedUrl;
     return product;
+}
+
+- (void)getStockPrices:(CompanyViewController*)companyVC {
+    NSURLSession * session = [NSURLSession sharedSession];
+    NSURLSessionDataTask * stockData = [session dataTaskWithURL:[NSURL URLWithString:@"http://finance.yahoo.com/d/quotes.csv?s=AAPL+SSNLF+GOOG+TSLA&f=a"] completionHandler:^(NSData *data, NSURLResponse *response, NSError * error) {
+        NSString *csv = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSArray * stockArray = [csv componentsSeparatedByString:@"\n"];
+        for (int index = 0; index < [self.companyList count]; index++) {
+            [self.companyList[index] setCompanyStockPrice:stockArray[index]];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [companyVC.tableView reloadData];
+        });
+    }];
+    [stockData resume];
 }
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "ProductViewController.h"
-#import "NewWebViewController.h"
 
 @interface ProductViewController ()
 
@@ -32,6 +31,11 @@
     self.addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
     [buttons addObject:self.addButton];
     self.navigationItem.rightBarButtonItems = buttons;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,10 +79,6 @@
     }
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
-
 #pragma mark - Sets editing, moving, and deletion of a selected row 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
@@ -106,9 +106,18 @@
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    NSString * stringToMove = [self.products objectAtIndex:fromIndexPath.row];
+    Product * productToMove = [self.products objectAtIndex:fromIndexPath.row];
     [self.products removeObjectAtIndex:fromIndexPath.row];
-    [self.products insertObject:stringToMove atIndex:toIndexPath.row];
+    [self.products insertObject:productToMove atIndex:toIndexPath.row];
+}
+
+- (void)showProductInfo {
+    if (self.editProductViewController == nil) {
+        self.editProductViewController = [[EditProductViewController alloc] init];
+    }
+    self.editProductViewController.company = self.company;
+    self.editProductViewController.product = self.product;
+    [self.navigationController pushViewController:self.editProductViewController animated:YES];
 }
 
 - (void)addItem:sender {
@@ -119,18 +128,8 @@
     [self.navigationController pushViewController:self.addProductViewController animated:YES];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.tableView reloadData];
-}
-
-- (void)showProductInfo {
-    if (self.editProductViewController == nil) {
-        self.editProductViewController = [[EditProductViewController alloc] init];
-    }
-    self.editProductViewController.company = self.company;
-    self.editProductViewController.product = self.product;
-    [self.navigationController pushViewController:self.editProductViewController animated:YES];
+- (void)dealloc {
+    [super dealloc];
 }
 
 @end

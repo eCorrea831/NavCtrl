@@ -18,6 +18,12 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.userNewProductNameTextField.text = nil;
+    self.userNewProductUrlTextField.text = nil;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -31,6 +37,16 @@
         NSLog(@"New product saved");
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (void)showIncompleteErrorMessage {
+    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Must enter a product name and website before saving." preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){[errorAlert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [errorAlert addAction:alertAction];
+    [self presentViewController:errorAlert animated:YES completion:nil];
 }
 
 - (NSString *)checkStringForPrefix:(NSString *)string {
@@ -47,22 +63,6 @@
     [[self view] endEditing:YES];
     [self.userNewProductUrlTextField resignFirstResponder];
     [[self view] endEditing:YES];
-}
-
-- (void)showIncompleteErrorMessage {
-    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Must enter a product name and website before saving." preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){[errorAlert dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    [errorAlert addAction:alertAction];
-    [self presentViewController:errorAlert animated:YES completion:nil];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.userNewProductNameTextField.text = nil;
-    self.userNewProductUrlTextField.text = nil;
 }
 
 - (void)dealloc {

@@ -33,8 +33,12 @@
     self.navigationItem.rightBarButtonItems = buttons;
     
     self.dao = [DataAccessObject sharedInstance];
-    
-    //TODO: Add code to create connection and request for stock info
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.dao getStockPrices:self];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,12 +60,11 @@
     if (cell == nil) {
       cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    Company * company = [self.dao.companyList objectAtIndex:[indexPath row]];
-    cell.textLabel.text = [company companyName];
-    cell.imageView.image = [company companyImage];
+    self.selectedCompany = [self.dao.companyList objectAtIndex:[indexPath row]];
+    cell.textLabel.text = [self.selectedCompany companyName];
+    cell.imageView.image = [self.selectedCompany companyImage];
     UILabel *stockPrice = [[UILabel alloc]init];
-    //TODO: below line should update based on stock price for that company
-    stockPrice.text = @"hi";
+    stockPrice.text = self.selectedCompany.companyStockPrice;
     cell.accessoryView = stockPrice;
     [cell.accessoryView setFrame:CGRectMake(0, 0, 24, 24)];
     return cell;
@@ -73,13 +76,13 @@
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.company = [self.dao.companyList objectAtIndex:[indexPath row]];
+    self.selectedCompany = [self.dao.companyList objectAtIndex:[indexPath row]];
     if (self.isEditing) {
         [self showCompanyInfo];
     } else {
-        self.productViewController.title = [self.company companyName];
-        self.productViewController.products = [self.company productArray];
-        self.productViewController.company = self.company;
+        self.productViewController.title = [self.selectedCompany companyName];
+        self.productViewController.products = [self.selectedCompany productArray];
+        self.productViewController.company = self.selectedCompany;
         [self.navigationController pushViewController:self.productViewController animated:YES];
     }
 }
@@ -111,33 +114,27 @@
  }
 
  - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-     NSString * stringToMove = [self.dao.companyList objectAtIndex:fromIndexPath.row];
-     NSString * otherStringToMove = [self.productViewController.products objectAtIndex:fromIndexPath.row];
+     Company * companyToMove = [self.dao.companyList objectAtIndex:fromIndexPath.row];
+     Company * otherCompanyToMove = [self.productViewController.products objectAtIndex:fromIndexPath.row];
      [self.dao.companyList removeObjectAtIndex:fromIndexPath.row];
-     [self.dao.companyList insertObject:stringToMove atIndex:toIndexPath.row];
+     [self.dao.companyList insertObject:companyToMove atIndex:toIndexPath.row];
      [self.productViewController.products removeObjectAtIndex:fromIndexPath.row];
-     [self.productViewController.products insertObject:otherStringToMove atIndex:toIndexPath.row];
+     [self.productViewController.products insertObject:otherCompanyToMove atIndex:toIndexPath.row];
  }
-
-- (void)addItem:sender {
-    if (self.addCompanyViewController == nil) {
-       self.addCompanyViewController = [[AddCompanyViewController alloc] init];
-    }
-    [self.navigationController pushViewController:self.addCompanyViewController animated:YES];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    //TODO: Add code to create connection and request for stock info?
-    [super viewWillAppear:animated];
-    [self.tableView reloadData];
-}
 
 - (void)showCompanyInfo {
     if (self.editCompanyViewController == nil) {
         self.editCompanyViewController = [[EditCompanyViewController alloc] init];
     }
-    self.editCompanyViewController.company = self.company;
+    self.editCompanyViewController.company = self.selectedCompany;
     [self.navigationController pushViewController:self.editCompanyViewController animated:YES];
+}
+
+- (void)addItem:sender {
+    if (self.addCompanyViewController == nil) {
+        self.addCompanyViewController = [[AddCompanyViewController alloc] init];
+    }
+    [self.navigationController pushViewController:self.addCompanyViewController animated:YES];
 }
 
 - (void)dealloc {
