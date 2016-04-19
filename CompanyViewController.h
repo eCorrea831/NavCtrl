@@ -12,12 +12,11 @@
 #import "AddCompanyViewController.h"
 
 @class ProductViewController;
+@class DataAccessObject;
 
 @interface CompanyViewController : UITableViewController
 
 @property (nonatomic, retain) IBOutlet ProductViewController * productViewController;
-@property (nonatomic, retain) EditCompanyViewController * editCompanyViewController;
-@property (nonatomic, retain) AddCompanyViewController * addCompanyViewController;
 @property (nonatomic, retain) DataAccessObject *dao;
 @property (nonatomic, retain) Company * selectedCompany;
 @property (nonatomic, retain) UIBarButtonItem * addButton;

@@ -11,6 +11,9 @@
 
 @interface CompanyViewController ()
 
+@property (nonatomic, retain) AddCompanyViewController * addCompanyViewController;
+@property (nonatomic, retain) EditCompanyViewController * editCompanyViewController;
+
 @end
 
 @implementation CompanyViewController
@@ -18,7 +21,6 @@
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-        //make accessory view larger?
     }
     return self;
 }

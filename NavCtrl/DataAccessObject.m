@@ -7,11 +7,10 @@
 //
 
 #import "DataAccessObject.h"
-#import "CompanyViewController.h"
 
 @interface DataAccessObject ()
 
-- (void)getStockPrices:(CompanyViewController*)CompanyVC;
+
 
 @end
 

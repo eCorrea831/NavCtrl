@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "Company.h"
 #import "Product.h"
+#import "CompanyViewController.h"
+@class CompanyViewController;
 
 @interface DataAccessObject : NSObject
-
 @property (nonatomic, retain) NSMutableArray <Company*> * companyList;
 
 + (DataAccessObject *)sharedInstance;
@@ -22,5 +23,5 @@
 - (UIImage*)createDefaultProductImage;
 - (Product *)createNewProductWithName:(NSString *)addNewProductName url:(NSString *)addNewProductUrl;
 - (Product *)editProduct:(Product *)product withName:(NSString *)updatedProductName withUrl:(NSString *)updatedUrl;
-
+- (void)getStockPrices:(CompanyViewController*)CompanyVC;
 @end
