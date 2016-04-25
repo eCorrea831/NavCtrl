@@ -7,23 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DataAccessObject.h"
-#import "EditCompanyViewController.h"
-#import "AddCompanyViewController.h"
-
-@class ProductViewController;
-@class DataAccessObject;
 
 @interface CompanyViewController : UITableViewController
-
-@property (nonatomic, retain) IBOutlet ProductViewController * productViewController;
-@property (nonatomic, retain) DataAccessObject *dao;
-@property (nonatomic, retain) Company * selectedCompany;
-@property (nonatomic, retain) UIBarButtonItem * addButton;
-@property (nonatomic, retain) UITapGestureRecognizer *tap;
-
-- (UIImage *)companyLogo:(NSArray *)companyName atIndex:(id)index;
-- (void)showCompanyInfo;
-- (void)addItem:sender;
 
 @end

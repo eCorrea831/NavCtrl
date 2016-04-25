@@ -10,6 +10,14 @@
 
 @interface AddProductViewController ()
 
+@property (retain, nonatomic) IBOutlet UITextField * userNewProductNameTextField;
+@property (retain, nonatomic) IBOutlet UITextField * userNewProductUrlTextField;
+
+- (IBAction)saveUserNewProductButton:(id)sender;
+- (void)showIncompleteErrorMessage;
+- (NSString *)checkStringForPrefix:(NSString *)string;
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+
 @end
 
 @implementation AddProductViewController

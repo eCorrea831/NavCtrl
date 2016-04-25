@@ -10,6 +10,9 @@
 
 @interface DataAccessObject ()
 
+- (id)initWithData;
+- (UIImage *)createDefaultCompanyImage;
+- (UIImage*)createDefaultProductImage;
 
 
 @end
@@ -29,6 +32,7 @@
 
     self = [super init];
     if (self) {
+        
         Company * apple = [[Company alloc]initWithCompanyName:@"Apple mobile devices" companyImage:[UIImage imageNamed:@"Apple Mobile Devices"]];
         
         Product * iPad = [[Product alloc]initWithProductName:@"iPad" productImage: [UIImage imageNamed:@"iPad"] andProductUrl:@"http://www.apple.com/ipad/"];

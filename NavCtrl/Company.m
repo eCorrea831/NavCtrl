@@ -11,11 +11,8 @@
 @implementation Company
 
 - (Company *)initWithCompanyName:(NSString *)name companyImage:(UIImage *)image {
-    
     self = [super init];
-    
     Company * company = [[Company alloc] init];
-    
     if (self) {
         company.companyName = name;
         company.companyImage = image;

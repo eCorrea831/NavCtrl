@@ -11,12 +11,6 @@
 
 @interface EditCompanyViewController : UIViewController
 
-@property (retain, nonatomic) IBOutlet UILabel * currentCompanyNameLabel;
-@property (retain, nonatomic) IBOutlet UITextField * editedCompanyNameTextField;
 @property (retain, nonatomic) Company * company;
-
-- (IBAction)saveEditedCompanyButton:(id)sender;
-- (void)showIncompleteErrorMessage;
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 
 @end

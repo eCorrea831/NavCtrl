@@ -7,8 +7,21 @@
 //
 
 #import "ProductViewController.h"
+#import "NewWebViewController.h"
+#import "EditProductViewController.h"
+#import "AddProductViewController.h"
 
 @interface ProductViewController ()
+
+@property (nonatomic, retain) Product * product;
+@property (nonatomic, retain) NewWebViewController * webViewController;
+@property (nonatomic, retain) EditProductViewController * editProductViewController;
+@property (nonatomic, retain) AddProductViewController * addProductViewController;
+@property (nonatomic, retain) UIBarButtonItem * addButton;
+@property (nonatomic, retain) UITapGestureRecognizer *tap;
+
+- (void)showProductInfo;
+- (void)addItem:sender;
 
 @end
 

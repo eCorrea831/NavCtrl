@@ -11,17 +11,7 @@
 
 @interface EditProductViewController : UIViewController
 
-@property (retain, nonatomic) IBOutlet UILabel * currentProductNameLabel;
-@property (retain, nonatomic) IBOutlet UITextField * editedProductNameTextField;
-@property (retain, nonatomic) IBOutlet UILabel * currentProductUrlLabel;
-@property (retain, nonatomic) IBOutlet UITextField * editedProductUrlTextField;
 @property (retain, nonatomic) Company * company;
 @property (retain, nonatomic) Product *product;
-
-- (void)viewWillAppear:(BOOL)animated;
-- (IBAction)saveEditedProductButton:(id)sender;
-- (void)showIncompleteErrorMessage;
-- (NSString *)checkStringForPrefix:(NSString *)string;
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 
 @end

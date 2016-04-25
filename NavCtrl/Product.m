@@ -11,11 +11,8 @@
 @implementation Product
 
 - (Product *)initWithProductName:(NSString *)name productImage:(UIImage *)image andProductUrl:(NSString *)url {
-    
     self = [super init];
-    
     Product * product = [[Product alloc] init];
-    
     if (self) {
         product.productName = name;
         product.productImage = image;
