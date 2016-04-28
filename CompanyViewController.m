@@ -124,6 +124,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.dao.companyList removeObjectAtIndex:indexPath.row];
         [self.productViewController.products removeObjectAtIndex:indexPath.row];
+        [self.dao deleteCompanyAndItsProducts:self.selectedCompany];
         [tableView reloadData];
     }
 }

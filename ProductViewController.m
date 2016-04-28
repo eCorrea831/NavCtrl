@@ -13,7 +13,8 @@
 
 @interface ProductViewController ()
 
-@property (nonatomic, retain) Product * product;
+@property (nonatomic, retain) DataAccessObject *dao;
+@property (nonatomic, retain) Product * selectedProduct;
 @property (nonatomic, retain) NewWebViewController * webViewController;
 @property (nonatomic, retain) EditProductViewController * editProductViewController;
 @property (nonatomic, retain) AddProductViewController * addProductViewController;
@@ -44,6 +45,8 @@
     self.addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
     [buttons addObject:self.addButton];
     self.navigationItem.rightBarButtonItems = buttons;
+    
+    self.dao = [DataAccessObject sharedInstance];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -83,7 +86,7 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.webViewController = [[NewWebViewController alloc] init];
-    self.product = [self.company.productArray objectAtIndex:[indexPath row]];
+    self.selectedProduct = [self.company.productArray objectAtIndex:[indexPath row]];
     if (self.isEditing) {
         [self showProductInfo];
     } else {
@@ -109,7 +112,9 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        self.selectedProduct = [self.company.productArray objectAtIndex:[indexPath row]];
         [self.products removeObjectAtIndex:indexPath.row];
+        [self.dao deleteProduct:self.selectedProduct];
         [tableView reloadData];
     }
 }
@@ -119,9 +124,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    Product * productToMove = [self.products objectAtIndex:fromIndexPath.row];
+    self.selectedProduct = [self.products objectAtIndex:fromIndexPath.row];
     [self.products removeObjectAtIndex:fromIndexPath.row];
-    [self.products insertObject:productToMove atIndex:toIndexPath.row];
+    [self.products insertObject:self.selectedProduct atIndex:toIndexPath.row];
 }
 
 - (void)showProductInfo {
@@ -129,7 +134,7 @@
         self.editProductViewController = [[EditProductViewController alloc] init];
     }
     self.editProductViewController.company = self.company;
-    self.editProductViewController.product = self.product;
+    self.editProductViewController.product = self.selectedProduct;
     [self.navigationController pushViewController:self.editProductViewController animated:YES];
 }
 

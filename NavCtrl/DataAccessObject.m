@@ -22,7 +22,6 @@ NSString * dbPathString;
 - (UIImage *)createDefaultProductImage;
 - (instancetype)initDatabase;
 - (void)copyDatabaseIntoDocumentsDirectory;
-- (void)deleteData:(NSString *)deleteQuery;
 - (void)displayData;
 
 @end
@@ -126,7 +125,7 @@ NSString * dbPathString;
         NSString *csv = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSArray * stockArray = [csv componentsSeparatedByString:@"\n"];
         //hard-coded max num below so it doesn't fail on new companies that are added
-        for (int index = 0; index < 4; index++) {
+        for (int index = 0; index < 1; index++) {
             [self.companyList[index] setCompanyStockPrice:stockArray[index]];
         }
         
@@ -186,8 +185,8 @@ NSString * dbPathString;
 - (Company *)editCompany:(Company *)company withName:(NSString *)updatedCompanyName {
     company.companyName = updatedCompanyName;
 
-    NSString *insertStmt = [NSString stringWithFormat:@"UPDATE companies SET company_name = %s WHERE company_id = %d", [updatedCompanyName UTF8String], company.companyID];
-    [self updateSqlWithString:insertStmt];
+    NSString *updateStmt = [NSString stringWithFormat:@"UPDATE companies SET company_name = %s WHERE company_id = %d", [updatedCompanyName UTF8String], company.companyID];
+    [self updateSqlWithString:updateStmt];
     
     return company;
 }
@@ -198,26 +197,31 @@ NSString * dbPathString;
     product.productUrl = updatedUrl;
     
     if ([updatedProductName isEqualToString: @""]) {
-        NSString *insertStmt = [NSString stringWithFormat:@"UPDATE products SET product_url = %s WHERE product_id = %d", [updatedUrl UTF8String], product.productID];
-        [self updateSqlWithString:insertStmt];
+        NSString *updateStmt = [NSString stringWithFormat:@"UPDATE products SET product_url = %s WHERE product_id = %d", [updatedUrl UTF8String], product.productID];
+        [self updateSqlWithString:updateStmt];
     } else if ([updatedUrl isEqualToString:@""]) {
-        NSString *insertStmt = [NSString stringWithFormat:@"UPDATE products SET product_name = %s WHERE product_id = %d", [updatedProductName UTF8String], product.productID];
-        [self updateSqlWithString:insertStmt];
+        NSString *updateStmt = [NSString stringWithFormat:@"UPDATE products SET product_name = %s WHERE product_id = %d", [updatedProductName UTF8String], product.productID];
+        [self updateSqlWithString:updateStmt];
     } else {
-        NSString *insertStmt = [NSString stringWithFormat:@"UPDATE products SET product_name = %s, product_url = %s WHERE product_id = %d", [updatedProductName UTF8String], [updatedUrl UTF8String], product.productID];
-        [self updateSqlWithString:insertStmt];
+        NSString *updateStmt = [NSString stringWithFormat:@"UPDATE products SET product_name = %s, product_url = %s WHERE product_id = %d", [updatedProductName UTF8String], [updatedUrl UTF8String], product.productID];
+        [self updateSqlWithString:updateStmt];
     }
     
     return product;
 }
 
-- (void)deleteData:(NSString *)deleteQuery {
-    char *error;
-    if (sqlite3_exec(dataDB, [deleteQuery UTF8String], NULL, NULL, &error) == SQLITE_OK) {
-        NSLog(@"Data Deleted");
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Delete" message:@"Data Deleted" delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];
-        [alert show];
-    }
+- (void)deleteCompanyAndItsProducts:(Company *)company {
+    
+    NSString * deleteStmt = [NSString stringWithFormat:@"DELETE FROM companies WHERE company_id = %d", company.companyID];
+    [self updateSqlWithString:deleteStmt];
+    NSLog(@"Data Deleted");
+}
+
+- (void)deleteProduct:(Product *)product {
+    
+    NSString * deleteStmt = [NSString stringWithFormat:@"DELETE FROM products WHERE product_id = %d", product.productID];
+    [self updateSqlWithString:deleteStmt];
+    NSLog(@"Data Deleted");
 }
 
 @end

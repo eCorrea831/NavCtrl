@@ -19,11 +19,13 @@
 @property (nonatomic, retain) NSMutableArray <Company*> * companyList;
 
 + (DataAccessObject *)sharedInstance;
+- (void)getStockPrices:(CompanyViewController*)CompanyVC;
 - (Company *)createNewCompanyWithName:(NSString *)addNewCompanyName;
 - (Company *)editCompany:(Company *)company withName:(NSString *)updatedCompanyName;
 - (Product *)createNewProductWithName:(NSString*)addNewProductName url:(NSString*)addNewProductUrl forCompany:(Company *)company;
 - (Product *)editProduct:(Product *)product withName:(NSString *)updatedProductName withUrl:(NSString *)updatedUrl;
-- (void)getStockPrices:(CompanyViewController*)CompanyVC;
 - (void)updateSqlWithString:(NSString *)string;
+- (void)deleteCompanyAndItsProducts:(Company *)company;
+- (void)deleteProduct:(Product *)product;
 
 @end
