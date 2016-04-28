@@ -37,6 +37,7 @@
     } else {
         DataAccessObject * dao = [DataAccessObject sharedInstance];
         [dao editCompany:self.company withName:self.editedCompanyNameTextField.text];
+        
         NSLog(@"Company updated");
         [self.navigationController popViewControllerAnimated:YES];
     }

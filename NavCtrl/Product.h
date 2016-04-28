@@ -10,6 +10,7 @@
 
 @interface Product : NSObject
 
+@property (nonatomic) int productID;
 @property (nonatomic, retain) NSString * productName;
 @property (nonatomic, retain) NSString * productUrl;
 @property (nonatomic, retain) UIImage * productImage;

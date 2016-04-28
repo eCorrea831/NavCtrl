@@ -8,12 +8,22 @@
 
 #import "DataAccessObject.h"
 
-@interface DataAccessObject ()
+@interface DataAccessObject () {
+sqlite3 * dataDB;
+NSString * dbPathString;
+}
+
+@property (nonatomic, strong) NSString * documentsDirectory;
+@property (nonatomic, strong) NSString * databaseFilename;
+@property (nonatomic, retain) NSString * companyDBName;
 
 - (id)initWithData;
 - (UIImage *)createDefaultCompanyImage;
-- (UIImage*)createDefaultProductImage;
-
+- (UIImage *)createDefaultProductImage;
+- (instancetype)initDatabase;
+- (void)copyDatabaseIntoDocumentsDirectory;
+- (void)deleteData:(NSString *)deleteQuery;
+- (void)displayData;
 
 @end
 
@@ -32,69 +42,82 @@
 
     self = [super init];
     if (self) {
-        
-        Company * apple = [[Company alloc]initWithCompanyName:@"Apple mobile devices" companyImage:[UIImage imageNamed:@"Apple Mobile Devices"]];
-        
-        Product * iPad = [[Product alloc]initWithProductName:@"iPad" productImage: [UIImage imageNamed:@"iPad"] andProductUrl:@"http://www.apple.com/ipad/"];
-        Product * iPodTouch = [[Product alloc]initWithProductName:@"iPod Touch" productImage: [UIImage imageNamed:@"iPod Touch"] andProductUrl:@"http://www.apple.com/ipod/"];
-        Product * iPhone = [[Product alloc]initWithProductName:@"iPhone" productImage: [UIImage imageNamed:@"iPhone"] andProductUrl:@"http://www.apple.com/iphone/"];
-        apple.productArray = [NSMutableArray arrayWithObjects:iPad, iPodTouch, iPhone, nil];
-        
-        Company * samsung = [[Company alloc]initWithCompanyName:@"Samsung mobile devices" companyImage:[UIImage imageNamed:@"Samsung Mobile Devices"]];
-        Product * galaxyS4 = [[Product alloc]initWithProductName:@"Galaxy S4" productImage: [UIImage imageNamed:@"Galaxy S4"] andProductUrl:@"http://www.samsung.com/us/mobile/cell-phones/SCH-I545ZKPVZW"];
-        Product * galaxyNote = [[Product alloc]initWithProductName:@"Galaxy Note" productImage: [UIImage imageNamed:@"Galaxy Note"] andProductUrl:@"http://www.samsung.com/us/explore/galaxy-note-5-features-and-specs/?cid=ppc-"];
-        Product * galaxyTab = [[Product alloc]initWithProductName:@"Galaxy Tab" productImage: [UIImage imageNamed:@"Galaxy Tab"] andProductUrl:@"http://www.samsung.com/us/explore/tab-s2-features-and-specs/?cid=ppc-"];
-        samsung.productArray = [NSMutableArray arrayWithObjects:galaxyS4, galaxyNote, galaxyTab, nil];
-        
-        Company * google = [[Company alloc]initWithCompanyName:@"Google mobile devices" companyImage:[UIImage imageNamed:@"Google Mobile Devices"]];
-        Product * androidWear = [[Product alloc]initWithProductName:@"Android Wear" productImage:[UIImage imageNamed:@"Android Wear"] andProductUrl:@"https://www.android.com/wear/"];
-        Product * androidTablet = [[Product alloc]initWithProductName:@"Android Tablet" productImage:[UIImage imageNamed:@"Android Tablet"] andProductUrl:@"https://www.android.com/tablets/"];
-        Product * androidPhone = [[Product alloc]initWithProductName:@"Android Phone" productImage:[UIImage imageNamed:@"Android Phone"] andProductUrl:@"https://www.android.com/phones/"];
-        google.productArray = [NSMutableArray arrayWithObjects:androidWear, androidTablet, androidPhone, nil];
-        
-        Company * huawei = [[Company alloc]initWithCompanyName:@"Huawei mobile devices" companyImage:[UIImage imageNamed:@"Huawei Mobile Devices"]];
-        Product * huaweiMate = [[Product alloc]initWithProductName:@"Huawei Mate" productImage:[UIImage imageNamed:@"Huawei Mate"] andProductUrl:@"http://consumer.huawei.com/minisite/worldwide/mate8/"];
-        Product * huaweiMateBook = [[Product alloc]initWithProductName:@"Huawei MateBook" productImage:[UIImage imageNamed:@"Huawei Matebook"] andProductUrl:@"http://consumer.huawei.com/minisite/worldwide/matebook/screen.htm"];
-        Product * huaweiTalkBand = [[Product alloc]initWithProductName:@"Huawei TalkBand" productImage:[UIImage imageNamed:@"Huawei Talkband"] andProductUrl:@"http://consumer.huawei.com/en/wearables/talkband-b3/"];
-        huawei.productArray = [NSMutableArray arrayWithObjects:huaweiMate, huaweiMateBook, huaweiTalkBand, nil];
-
-        self.companyList = [NSMutableArray arrayWithObjects:apple, samsung, google, huawei, nil];
+        self.companyList = [[NSMutableArray alloc]init];
+        [self initDatabase];
+        [self displayData];
     }
     return self;
 }
 
-- (UIImage *)createDefaultCompanyImage {
-    UIImage * defaultCompanyImage = [[UIImage alloc] init];
-    defaultCompanyImage = [UIImage imageNamed:@"Default Company Image"];
-    return defaultCompanyImage;
+- (instancetype)initDatabase {
+    self = [super init];
+    if (self) {
+        // Set the documents directory path to the documentsDirectory property.
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        self.documentsDirectory = [paths objectAtIndex:0];
+        
+        // Keep the database filename.
+        self.databaseFilename = @"sqlData.db";
+        
+        // Copy the database file into the documents directory if necessary.
+        [self copyDatabaseIntoDocumentsDirectory];
+    }
+    return self;
 }
 
-- (Company *)createNewCompanyWithName:(NSString*)addNewCompanyName {
-    Company * newCompany = [[Company alloc]initWithCompanyName:addNewCompanyName companyImage:[self createDefaultCompanyImage]];
-    [self.companyList addObject:newCompany];
-    return newCompany;
+- (void)copyDatabaseIntoDocumentsDirectory{
+    // Check if the database file exists in the documents directory.
+    
+    NSString *destinationPath = [self.documentsDirectory stringByAppendingPathComponent:self.databaseFilename];
+    dbPathString = destinationPath;
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:destinationPath]) {
+        // The database file does not exist in the documents directory, so copy it from the main bundle now.
+        NSString *sourcePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:self.databaseFilename];
+        NSError *error;
+        [[NSFileManager defaultManager] copyItemAtPath:sourcePath toPath:destinationPath error:&error];
+        
+        // Check if any error occurred during copying and display it.
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+    }
 }
 
-- (Company *)editCompany:(Company *)company withName:(NSString *)updatedCompanyName {
-    company.companyName = updatedCompanyName;
-    return company;
-}
-
-- (UIImage *)createDefaultProductImage {
-    UIImage * defaultProductImage = [[UIImage alloc] init];
-    defaultProductImage = [UIImage imageNamed:@"Default Product Image"];
-    return defaultProductImage;
-}
-
-- (Product *)createNewProductWithName:(NSString*)addNewProductName url:(NSString*)addNewProductUrl {
-    Product * newProduct = [[Product alloc]initWithProductName:addNewProductName productImage:[self createDefaultProductImage] andProductUrl:addNewProductUrl];
-    return newProduct;
-}
-
-- (Product *)editProduct:(Product *)product withName:(NSString *)updatedProductName withUrl:(NSString *)updatedUrl {
-    product.productName = updatedProductName;
-    product.productUrl = updatedUrl;
-    return product;
+- (void)displayData {
+    sqlite3_stmt *companyStatement;
+    if (sqlite3_open([dbPathString UTF8String], &dataDB) == SQLITE_OK) {
+        [self.companyList removeAllObjects];
+        NSString *querySQLCompanies = [NSString stringWithFormat:@"SELECT * FROM companies"];
+        const char *query_sql_companies = [querySQLCompanies UTF8String];
+        if (sqlite3_prepare(dataDB, query_sql_companies, -1, &companyStatement, NULL) == SQLITE_OK) {
+            while (sqlite3_step(companyStatement) == SQLITE_ROW) {
+                int companyID = sqlite3_column_int(companyStatement, 0);
+                NSString * companyDBName = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(companyStatement, 1)];
+                NSString * companyDBImage = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(companyStatement, 2)];
+                Company * dbCompany = [[Company alloc]initWithCompanyName:companyDBName companyImage:[UIImage imageNamed:companyDBImage]];
+                [dbCompany setCompanyID:companyID];
+                NSLog(@"%@", dbCompany.companyName);
+                
+                sqlite3_stmt *productStatement;
+                NSString *querySQLProducts = [NSString stringWithFormat:@"SELECT * FROM products WHERE company_id = %d", dbCompany.companyID];
+                const char *query_sql_products = [querySQLProducts UTF8String];
+                if (sqlite3_prepare(dataDB, query_sql_products, -1, &productStatement, NULL) == SQLITE_OK) {
+                    while (sqlite3_step(productStatement) == SQLITE_ROW) {
+                        int productID = sqlite3_column_int(productStatement, 0);
+                        NSString * productDBName = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(productStatement, 1)];
+                        NSString * productDBImage = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(productStatement, 2)];
+                        NSString * productDBUrl = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(productStatement, 3)];
+                        Product * dbProduct = [[Product alloc]initWithProductName:productDBName productImage:[UIImage imageNamed:productDBImage] andProductUrl:productDBUrl];
+                        [dbProduct setProductID:productID];
+                        [dbCompany.productArray addObject:dbProduct];
+                        NSLog(@"%@", dbProduct.productName);
+                    }
+                }
+                [self.companyList addObject:dbCompany];
+            }
+        }
+    }
 }
 
 - (void)getStockPrices:(CompanyViewController*)companyVC {
@@ -102,7 +125,8 @@
     NSURLSessionDataTask * stockData = [session dataTaskWithURL:[NSURL URLWithString:@"http://finance.yahoo.com/d/quotes.csv?s=AAPL+SSNLF+GOOG+TSLA&f=a"] completionHandler:^(NSData *data, NSURLResponse *response, NSError * error) {
         NSString *csv = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSArray * stockArray = [csv componentsSeparatedByString:@"\n"];
-        for (int index = 0; index < [self.companyList count]; index++) {
+        //hard-coded max num below so it doesn't fail on new companies that are added
+        for (int index = 0; index < 4; index++) {
             [self.companyList[index] setCompanyStockPrice:stockArray[index]];
         }
         
@@ -111,6 +135,89 @@
         });
     }];
     [stockData resume];
+}
+
+- (Company *)createNewCompanyWithName:(NSString*)addNewCompanyName {
+    Company * newCompany = [[Company alloc] initWithCompanyName:addNewCompanyName companyImage:[self createDefaultCompanyImage]];
+    [self.companyList addObject:newCompany];
+    
+    NSString *insertStmt = [NSString stringWithFormat:@"INSERT INTO companies (company_name, company_image) VALUES ('%s','%s')",[addNewCompanyName UTF8String],[@"Default Company Image" UTF8String]];
+    [self updateSqlWithString:insertStmt];
+
+    return newCompany;
+}
+
+- (UIImage *)createDefaultCompanyImage {
+    UIImage * defaultCompanyImage = [[UIImage alloc] init];
+    defaultCompanyImage = [UIImage imageNamed:@"Default Company Image"];
+    return defaultCompanyImage;
+}
+
+- (Product *)createNewProductWithName:(NSString*)addNewProductName url:(NSString*)addNewProductUrl forCompany:(Company *)company {
+    Product * newProduct = [[Product alloc]initWithProductName:addNewProductName productImage:[self createDefaultProductImage] andProductUrl:addNewProductUrl];
+    
+    NSString * insertStmt = [NSString stringWithFormat:@"INSERT INTO products (company_id, product_name, product_image, product_url) VALUES ('%d','%s','%s', '%s')", company.companyID, [addNewProductName UTF8String], [@"Default Company Image" UTF8String], [addNewProductUrl UTF8String]];
+    [self updateSqlWithString:insertStmt];
+    
+    return newProduct;
+}
+
+- (UIImage *)createDefaultProductImage {
+    UIImage * defaultProductImage = [[UIImage alloc] init];
+    defaultProductImage = [UIImage imageNamed:@"Default Product Image"];
+    return defaultProductImage;
+}
+
+- (void)updateSqlWithString:(NSString *)string {
+    NSString *destinationPath = [self.documentsDirectory stringByAppendingPathComponent:self.databaseFilename];
+    dbPathString = destinationPath;
+    char *error;
+    if(sqlite3_open([dbPathString UTF8String], &dataDB) == SQLITE_OK) {
+        const char *insert_stmt = [string UTF8String];
+        //this line isn't executing for methods: editCompany & editProduct
+        if (sqlite3_exec(dataDB, insert_stmt, NULL, NULL, &error) == SQLITE_OK) {
+            [self displayData];
+        }
+        sqlite3_close(dataDB);
+    }
+}
+
+//FIXME: updated company name not persisting
+- (Company *)editCompany:(Company *)company withName:(NSString *)updatedCompanyName {
+    company.companyName = updatedCompanyName;
+
+    NSString *insertStmt = [NSString stringWithFormat:@"UPDATE companies SET company_name = %s WHERE company_id = %d", [updatedCompanyName UTF8String], company.companyID];
+    [self updateSqlWithString:insertStmt];
+    
+    return company;
+}
+
+//FIXME: updated product not persisting
+- (Product *)editProduct:(Product *)product withName:(NSString *)updatedProductName withUrl:(NSString *)updatedUrl {
+    product.productName = updatedProductName;
+    product.productUrl = updatedUrl;
+    
+    if ([updatedProductName isEqualToString: @""]) {
+        NSString *insertStmt = [NSString stringWithFormat:@"UPDATE products SET product_url = %s WHERE product_id = %d", [updatedUrl UTF8String], product.productID];
+        [self updateSqlWithString:insertStmt];
+    } else if ([updatedUrl isEqualToString:@""]) {
+        NSString *insertStmt = [NSString stringWithFormat:@"UPDATE products SET product_name = %s WHERE product_id = %d", [updatedProductName UTF8String], product.productID];
+        [self updateSqlWithString:insertStmt];
+    } else {
+        NSString *insertStmt = [NSString stringWithFormat:@"UPDATE products SET product_name = %s, product_url = %s WHERE product_id = %d", [updatedProductName UTF8String], [updatedUrl UTF8String], product.productID];
+        [self updateSqlWithString:insertStmt];
+    }
+    
+    return product;
+}
+
+- (void)deleteData:(NSString *)deleteQuery {
+    char *error;
+    if (sqlite3_exec(dataDB, [deleteQuery UTF8String], NULL, NULL, &error) == SQLITE_OK) {
+        NSLog(@"Data Deleted");
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Delete" message:@"Data Deleted" delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 @end

@@ -11,6 +11,7 @@
 
 @interface AddProductViewController : UIViewController
 
-@property (retain, nonatomic) Company * company;
+@property (nonatomic, retain) Company * company;
+@property (nonatomic, retain) DataAccessObject * dao;
 
 @end

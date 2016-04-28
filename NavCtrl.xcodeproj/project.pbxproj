@@ -57,7 +57,6 @@
 		7B7539771CB84C1600935272 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7539761CB84C1600935272 /* WebKit.framework */; };
 		7B80E3B81CCD3F7900A04013 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B80E3B71CCD3F7900A04013 /* libz.1.dylib */; };
 		7B80E3BA1CCD3FC300A04013 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B80E3B91CCD3FC200A04013 /* libsqlite3.dylib */; };
-		7B80E3C01CCE6BB000A04013 /* SqliteDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B80E3BF1CCE6BB000A04013 /* SqliteDB.m */; };
 		7B80E3C31CCE81BC00A04013 /* sqlData.db in Resources */ = {isa = PBXBuildFile; fileRef = 7B80E3C21CCE81BC00A04013 /* sqlData.db */; };
 /* End PBXBuildFile section */
 
@@ -137,8 +136,6 @@
 		7B80E3B51CCD375A00A04013 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		7B80E3B71CCD3F7900A04013 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
 		7B80E3B91CCD3FC200A04013 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
-		7B80E3BE1CCE6BB000A04013 /* SqliteDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteDB.h; sourceTree = "<group>"; };
-		7B80E3BF1CCE6BB000A04013 /* SqliteDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SqliteDB.m; sourceTree = "<group>"; };
 		7B80E3C11CCE6C8F00A04013 /* SQLLite_TEST-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SQLLite_TEST-Prefix.pch"; sourceTree = "<group>"; };
 		7B80E3C21CCE81BC00A04013 /* sqlData.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = sqlData.db; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -310,8 +307,6 @@
 				7B80E3C21CCE81BC00A04013 /* sqlData.db */,
 				7B568E851CBC0B9000E8BEED /* DataAccessObject.h */,
 				7B568E861CBC0B9000E8BEED /* DataAccessObject.m */,
-				7B80E3BE1CCE6BB000A04013 /* SqliteDB.h */,
-				7B80E3BF1CCE6BB000A04013 /* SqliteDB.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -471,7 +466,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B80E3C01CCE6BB000A04013 /* SqliteDB.m in Sources */,
 				7B01DEAE1CC032D0005A7AF9 /* AddProductViewController.m in Sources */,
 				7B01DEA31CBFF824005A7AF9 /* AddCompanyViewController.m in Sources */,
 				7B568E871CBC0B9000E8BEED /* DataAccessObject.m in Sources */,

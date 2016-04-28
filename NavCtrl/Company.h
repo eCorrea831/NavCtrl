@@ -10,6 +10,7 @@
 
 @interface Company : NSObject
 
+@property (nonatomic) int companyID;
 @property (nonatomic, retain) NSString * companyName;
 @property (nonatomic, retain) UIImage * companyImage;
 @property (nonatomic, retain) NSMutableArray * productArray;

@@ -41,7 +41,8 @@
         [self showIncompleteErrorMessage];
     } else {
         DataAccessObject * dao = [DataAccessObject sharedInstance];
-        [self.company.productArray addObject:[dao createNewProductWithName:self.userNewProductNameTextField.text url:[self checkStringForPrefix:self.userNewProductUrlTextField.text]]];
+        [self.company.productArray addObject:[dao createNewProductWithName:self.userNewProductNameTextField.text url:[self checkStringForPrefix:self.userNewProductUrlTextField.text] forCompany:self.company]];
+        
         NSLog(@"New product saved");
         [self.navigationController popViewControllerAnimated:YES];
     }
