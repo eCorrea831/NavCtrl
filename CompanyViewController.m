@@ -18,12 +18,12 @@
 @interface CompanyViewController ()
 
 @property (nonatomic, retain) IBOutlet ProductViewController * productViewController;
-@property (nonatomic, retain) DataAccessObject *dao;
+@property (nonatomic, retain) DataAccessObject * dao;
 @property (nonatomic, retain) Company * selectedCompany;
 @property (nonatomic, retain) AddCompanyViewController * addCompanyViewController;
 @property (nonatomic, retain) EditCompanyViewController * editCompanyViewController;
 @property (nonatomic, retain) UIBarButtonItem * addButton;
-@property (nonatomic, retain) UITapGestureRecognizer *tap;
+@property (nonatomic, retain) UITapGestureRecognizer * tap;
 
 - (UIImage *)companyLogo:(NSArray *)companyName atIndex:(id)index;
 - (void)showCompanyInfo;
@@ -59,6 +59,14 @@
     [self.tableView reloadData];
 }
 
+- (void)showCompanyInfo {
+    if (self.editCompanyViewController == nil) {
+        self.editCompanyViewController = [[EditCompanyViewController alloc] init];
+    }
+    self.editCompanyViewController.company = self.selectedCompany;
+    [self.navigationController pushViewController:self.editCompanyViewController animated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -76,7 +84,7 @@
     static NSString * CellIdentifier = @"Cell";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     self.selectedCompany = [self.dao.companyList objectAtIndex:[indexPath row]];
     cell.textLabel.text = [self.selectedCompany companyName];
@@ -124,30 +132,29 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.dao.companyList removeObjectAtIndex:indexPath.row];
         [self.productViewController.products removeObjectAtIndex:indexPath.row];
-        [self.dao deleteCompanyAndItsProducts:self.selectedCompany];
+        
+        [self.dao deleteCompanyAndItsProducts:[self.dao.companyList objectAtIndex:indexPath.row]];
         [tableView reloadData];
     }
 }
 
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-     return YES;
- }
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
 
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-     Company * companyToMove = [self.dao.companyList objectAtIndex:fromIndexPath.row];
-     Company * otherCompanyToMove = [self.productViewController.products objectAtIndex:fromIndexPath.row];
-     [self.dao.companyList removeObjectAtIndex:fromIndexPath.row];
-     [self.dao.companyList insertObject:companyToMove atIndex:toIndexPath.row];
-     [self.productViewController.products removeObjectAtIndex:fromIndexPath.row];
-     [self.productViewController.products insertObject:otherCompanyToMove atIndex:toIndexPath.row];
- }
-
-- (void)showCompanyInfo {
-    if (self.editCompanyViewController == nil) {
-        self.editCompanyViewController = [[EditCompanyViewController alloc] init];
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    Company * companyToMove =[self.dao.companyList objectAtIndex:fromIndexPath.row];
+    [self.tableView beginUpdates];
+    [self.dao.companyList removeObjectAtIndex:fromIndexPath.row];
+    [self.dao.companyList insertObject:companyToMove atIndex:toIndexPath.row];
+    [self.tableView moveRowAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
+    
+    for (int i = 0; i < self.dao.companyList.count; i++ ) {
+        [self.dao.companyList[i] setCompanyOrderNum:i];
     }
-    self.editCompanyViewController.company = self.selectedCompany;
-    [self.navigationController pushViewController:self.editCompanyViewController animated:YES];
+    [self.dao moveCompanies];
+    [self.tableView endUpdates];
+    [self.tableView reloadData];
 }
 
 - (void)addItem:sender {

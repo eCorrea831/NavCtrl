@@ -10,8 +10,8 @@
 
 @interface EditCompanyViewController ()
 
-@property (retain, nonatomic) IBOutlet UILabel * currentCompanyNameLabel;
-@property (retain, nonatomic) IBOutlet UITextField * editedCompanyNameTextField;
+@property (nonatomic, retain) IBOutlet UILabel * currentCompanyNameLabel;
+@property (nonatomic, retain) IBOutlet UITextField * editedCompanyNameTextField;
 
 - (IBAction)saveEditedCompanyButton:(id)sender;
 - (void)showIncompleteErrorMessage;
@@ -31,11 +31,10 @@
 }
 
 - (IBAction)saveEditedCompanyButton:(id)sender {
-    
+    DataAccessObject * dao = [DataAccessObject sharedInstance];
     if ([self.editedCompanyNameTextField.text isEqualToString: @""]) {
         [self showIncompleteErrorMessage];
     } else {
-        DataAccessObject * dao = [DataAccessObject sharedInstance];
         [dao editCompany:self.company withName:self.editedCompanyNameTextField.text];
         
         NSLog(@"Company updated");

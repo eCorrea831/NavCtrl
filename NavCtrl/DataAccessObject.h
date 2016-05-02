@@ -27,5 +27,7 @@
 - (void)updateSqlWithString:(NSString *)string;
 - (void)deleteCompanyAndItsProducts:(Company *)company;
 - (void)deleteProduct:(Product *)product;
+- (void)moveCompanies;
+- (void)moveProductsForCompany:(Company *)company;
 
 @end

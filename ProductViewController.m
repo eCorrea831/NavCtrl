@@ -125,8 +125,18 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     self.selectedProduct = [self.products objectAtIndex:fromIndexPath.row];
+    [self.tableView beginUpdates];
     [self.products removeObjectAtIndex:fromIndexPath.row];
     [self.products insertObject:self.selectedProduct atIndex:toIndexPath.row];
+    [self.tableView moveRowAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
+    
+    for (int i = 0; i < self.company.productArray.count; i++ ) {
+        [self.company.productArray[i] setProductOrderNum:i];
+    }
+    
+    [self.dao moveProductsForCompany:self.company];
+    [self.tableView endUpdates];
+    [self.tableView reloadData];
 }
 
 - (void)showProductInfo {
