@@ -20,11 +20,21 @@
 
 + (DataAccessObject *)sharedInstance;
 - (void)getStockPrices:(CompanyViewController*)CompanyVC;
-- (Company *)createNewCompanyWithName:(NSString *)addNewCompanyName;
-- (Company *)editCompany:(Company *)company withName:(NSString *)updatedCompanyName;
-- (Product *)createNewProductWithName:(NSString*)addNewProductName url:(NSString*)addNewProductUrl forCompany:(Company *)company;
-- (Product *)editProduct:(Product *)product withName:(NSString *)updatedProductName withUrl:(NSString *)updatedUrl;
 - (void)updateSqlWithString:(NSString *)string;
+
+//methods to create new company or product
+- (Company *)createNewCompanyWithName:(NSString *)addNewCompanyName stockSymbol:(NSString *)addNewStockSymbol withCompanyImageName:(NSString *)addNewcompanyImageName;
+- (Product *)createNewProductWithName:(NSString*)addNewProductName image:(NSString *)addNewProductImageName url:(NSString*)addNewProductUrl forCompany:(Company *)company;
+//methods to edit company
+- (Company *)editCompany:(Company *)company withName:(NSString *)updatedCompanyName;
+- (Company *)editCompany:(Company *)company withStockSymbol:(NSString *)updatedStockSymbol;
+- (Company *)editCompany:(Company *)company withImageName:(NSString *)updatedCompanyImageName;
+//methods to edit product
+- (Product *)editProduct:(Product *)product withName:(NSString *)updatedProductName;
+- (Product *)editProduct:(Product *)product withUrl:(NSString *)updatedUrl;
+- (Product *)editProduct:(Product *)product withImageName:(NSString *)updatedProductImageName;
+
+//methods for other editing
 - (void)deleteCompanyAndItsProducts:(Company *)company;
 - (void)deleteProduct:(Product *)product;
 - (void)moveCompanies;

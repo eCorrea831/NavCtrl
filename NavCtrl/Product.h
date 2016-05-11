@@ -15,7 +15,8 @@
 @property (nonatomic, retain) NSString * productName;
 @property (nonatomic, retain) NSString * productUrl;
 @property (nonatomic, retain) UIImage * productImage;
+@property (nonatomic, retain) NSString * productImageName;
 
-- (Product *)initWithProductName:(NSString *)name productImage:(UIImage *)image andProductUrl:(NSString *)url;
+- (Product *)initWithProductName:(NSString *)name productImageName:(NSString *)imageName andProductUrl:(NSString *)url;
 
 @end

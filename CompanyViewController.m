@@ -25,7 +25,6 @@
 @property (nonatomic, retain) UIBarButtonItem * addButton;
 @property (nonatomic, retain) UITapGestureRecognizer * tap;
 
-- (UIImage *)companyLogo:(NSArray *)companyName atIndex:(id)index;
 - (void)showCompanyInfo;
 - (void)addItem:sender;
 
@@ -91,14 +90,10 @@
     cell.imageView.image = [self.selectedCompany companyImage];
     UILabel *stockPrice = [[UILabel alloc]init];
     stockPrice.adjustsFontSizeToFitWidth = YES;
-    stockPrice.text = self.selectedCompany.companyStockPrice;
+    stockPrice.text = [NSString stringWithFormat:@"%.2f", [self.selectedCompany.companyStockPrice floatValue]];
     cell.accessoryView = stockPrice;
     [cell.accessoryView setFrame:CGRectMake(0, 0, 50, 50)];
     return cell;
-}
-
-- (UIImage *)companyLogo:(NSArray *)companyName atIndex:(id)index {
-    return [UIImage imageNamed:index];
 }
 
 #pragma mark - Table view delegate
@@ -130,10 +125,10 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.dao deleteCompanyAndItsProducts:[self.dao.companyList objectAtIndex:indexPath.row]];
+        
         [self.dao.companyList removeObjectAtIndex:indexPath.row];
         [self.productViewController.products removeObjectAtIndex:indexPath.row];
-        
-        [self.dao deleteCompanyAndItsProducts:[self.dao.companyList objectAtIndex:indexPath.row]];
         [tableView reloadData];
     }
 }

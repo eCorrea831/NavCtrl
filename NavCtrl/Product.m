@@ -10,13 +10,15 @@
 
 @implementation Product
 
-- (Product *)initWithProductName:(NSString *)name productImage:(UIImage *)image andProductUrl:(NSString *)url {
+- (Product *)initWithProductName:(NSString *)name productImageName:(NSString *)imageName andProductUrl:(NSString *)url {
     self = [super init];
     Product * product = [[Product alloc] init];
     if (self) {
         product.productName = name;
-        product.productImage = image;
+        product.productImageName = imageName;
+        product.productImage = [UIImage imageNamed:imageName];
         product.productUrl = url;
+        
         return product;
     }
     return product;

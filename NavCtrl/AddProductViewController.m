@@ -12,6 +12,7 @@
 
 @property (retain, nonatomic) IBOutlet UITextField * userNewProductNameTextField;
 @property (retain, nonatomic) IBOutlet UITextField * userNewProductUrlTextField;
+@property (retain, nonatomic) IBOutlet UITextField *userNewProductImageNameTextField;
 
 - (IBAction)saveUserNewProductButton:(id)sender;
 - (void)showIncompleteErrorMessage;
@@ -41,9 +42,15 @@
         [self showIncompleteErrorMessage];
     } else {
         DataAccessObject * dao = [DataAccessObject sharedInstance];
-        [self.company.productArray addObject:[dao createNewProductWithName:self.userNewProductNameTextField.text url:[self checkStringForPrefix:self.userNewProductUrlTextField.text] forCompany:self.company]];
+        if ([self.userNewProductImageNameTextField.text isEqualToString:@""]) {
+            [self.company.productArray addObject:[dao createNewProductWithName:self.userNewProductNameTextField.text image:@"Default Product Image" url:[self checkStringForPrefix:self.userNewProductUrlTextField.text] forCompany:self.company]];
+            NSLog(@"New product saved with default image");
+        } else {
+            [self.company.productArray addObject:[dao createNewProductWithName:self.userNewProductNameTextField.text image:self.userNewProductImageNameTextField.text url:[self checkStringForPrefix:self.userNewProductUrlTextField.text] forCompany:self.company]];
+            NSLog(@"New product saved with new image");
+        }
         
-        NSLog(@"New product saved");
+
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -77,6 +84,7 @@
 - (void)dealloc {
     [self.userNewProductNameTextField release];
     [self.userNewProductUrlTextField release];
+    [_userNewProductImageNameTextField release];
     [super dealloc];
 }
 

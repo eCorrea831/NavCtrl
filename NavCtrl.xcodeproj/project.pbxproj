@@ -52,6 +52,7 @@
 		7B7457201CC178440041BEC4 /* EditCompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B74571E1CC178440041BEC4 /* EditCompanyViewController.xib */; };
 		7B7457241CC17BF10041BEC4 /* EditProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7457221CC17BF10041BEC4 /* EditProductViewController.m */; };
 		7B7457251CC17BF10041BEC4 /* EditProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7457231CC17BF10041BEC4 /* EditProductViewController.xib */; };
+		7B747D1A1CE3D06100EAA943 /* Test in Resources */ = {isa = PBXBuildFile; fileRef = 7B747D191CE3D06100EAA943 /* Test */; };
 		7B7539741CB84B6A00935272 /* NewWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7539721CB84B6A00935272 /* NewWebViewController.m */; };
 		7B7539751CB84B6A00935272 /* NewWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7539731CB84B6A00935272 /* NewWebViewController.xib */; };
 		7B7539771CB84C1600935272 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7539761CB84C1600935272 /* WebKit.framework */; };
@@ -129,6 +130,7 @@
 		7B7457211CC17BF10041BEC4 /* EditProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProductViewController.h; sourceTree = "<group>"; };
 		7B7457221CC17BF10041BEC4 /* EditProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProductViewController.m; sourceTree = "<group>"; };
 		7B7457231CC17BF10041BEC4 /* EditProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProductViewController.xib; sourceTree = "<group>"; };
+		7B747D191CE3D06100EAA943 /* Test */ = {isa = PBXFileReference; lastKnownFileType = file; name = Test; path = logos/Test; sourceTree = "<group>"; };
 		7B7539711CB84B6A00935272 /* NewWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewWebViewController.h; sourceTree = "<group>"; };
 		7B7539721CB84B6A00935272 /* NewWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewWebViewController.m; sourceTree = "<group>"; };
 		7B7539731CB84B6A00935272 /* NewWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewWebViewController.xib; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 		7BE415611CB9C67A00A9B880 /* CompanyLogos */ = {
 			isa = PBXGroup;
 			children = (
+				7B747D191CE3D06100EAA943 /* Test */,
 				7B01DEA91CC0011D005A7AF9 /* Apple Mobile Devices */,
 				7B01DEA71CC0010F005A7AF9 /* Default Company Image */,
 				7B49C3F11CB5CC1B00AE47E2 /* Google Mobile Devices */,
@@ -435,6 +438,7 @@
 				7B7457201CC178440041BEC4 /* EditCompanyViewController.xib in Resources */,
 				7B49C40E1CB5CF3C00AE47E2 /* Galaxy Tab in Resources */,
 				7B49C3E21CB5B58F00AE47E2 /* Samsung Mobile Devices in Resources */,
+				7B747D1A1CE3D06100EAA943 /* Test in Resources */,
 				7B01DEAF1CC032D0005A7AF9 /* AddProductViewController.xib in Resources */,
 				7B49C3F21CB5CC1B00AE47E2 /* Google Mobile Devices in Resources */,
 				48A656BF18163BF200746D36 /* InfoPlist.strings in Resources */,
@@ -601,6 +605,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NavCtrl/NavCtrl-Prefix.pch";
 				INFOPLIST_FILE = "NavCtrl/NavCtrl-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "qcd.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -616,6 +621,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NavCtrl/NavCtrl-Prefix.pch";
 				INFOPLIST_FILE = "NavCtrl/NavCtrl-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "qcd.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -9,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddProductViewController">
             <connections>
+                <outlet property="userNewProductImageNameTextField" destination="v2a-Dt-9pF" id="Tv8-oO-flB"/>
                 <outlet property="userNewProductNameTextField" destination="L0s-Ew-Wch" id="NPJ-ze-FIK"/>
                 <outlet property="userNewProductUrlTextField" destination="2oe-E8-EPG" id="qLK-Zh-HDs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's the Product's Name?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sh-WS-WWK">
-                    <rect key="frame" x="99" y="92" width="403" height="36"/>
+                    <rect key="frame" x="99" y="42" width="403" height="36"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="8sh-WS-WWK" secondAttribute="height" multiplier="403:36" id="djL-eT-9CJ"/>
                     </constraints>
@@ -29,19 +29,19 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter product name here..." textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L0s-Ew-Wch">
-                    <rect key="frame" x="142" y="209" width="316" height="30"/>
+                    <rect key="frame" x="142" y="120" width="316" height="30"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's the Product's Website?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMf-Hv-51f">
-                    <rect key="frame" x="82" y="282" width="436" height="36"/>
+                    <rect key="frame" x="82" y="203" width="436" height="36"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQV-CU-N0g">
-                    <rect key="frame" x="258" y="478" width="85" height="48"/>
+                    <rect key="frame" x="258" y="530" width="85" height="48"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="jQV-CU-N0g" secondAttribute="height" multiplier="39:22" id="xFj-z0-LET"/>
@@ -55,7 +55,19 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter website here..." textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2oe-E8-EPG">
-                    <rect key="frame" x="72" y="399" width="457" height="30"/>
+                    <rect key="frame" x="72" y="295" width="457" height="30"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's the Product's Image Name?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAi-LR-ktF">
+                    <rect key="frame" x="0.0" y="377" width="600" height="36"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter image name here..." textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v2a-Dt-9pF">
+                    <rect key="frame" x="72" y="469" width="457" height="30"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
@@ -63,18 +75,24 @@
             </subviews>
             <color key="backgroundColor" red="0.42164860300000001" green="0.39027273680000002" blue="0.66917539270000004" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="v2a-Dt-9pF" firstAttribute="width" secondItem="2oe-E8-EPG" secondAttribute="width" id="60J-TV-peq"/>
+                <constraint firstItem="iAi-LR-ktF" firstAttribute="top" secondItem="2oe-E8-EPG" secondAttribute="bottom" constant="52" id="6em-Gl-z1Z"/>
+                <constraint firstItem="v2a-Dt-9pF" firstAttribute="top" secondItem="iAi-LR-ktF" secondAttribute="bottom" constant="56" id="7DD-Sm-5OD"/>
                 <constraint firstItem="8sh-WS-WWK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="BlR-rt-GjO"/>
                 <constraint firstItem="2oe-E8-EPG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CA8-NV-xcY"/>
                 <constraint firstItem="lMf-Hv-51f" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CAT-6X-t8H"/>
                 <constraint firstItem="2oe-E8-EPG" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="457:600" id="ETQ-Gr-NmK"/>
-                <constraint firstItem="lMf-Hv-51f" firstAttribute="top" secondItem="L0s-Ew-Wch" secondAttribute="bottom" constant="43" id="Jvw-Vj-hNV"/>
+                <constraint firstItem="lMf-Hv-51f" firstAttribute="top" secondItem="L0s-Ew-Wch" secondAttribute="bottom" constant="53" id="Jvw-Vj-hNV"/>
+                <constraint firstItem="iAi-LR-ktF" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="L4a-Aw-AWA"/>
                 <constraint firstItem="L0s-Ew-Wch" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="79:150" id="OWR-jp-oyu"/>
-                <constraint firstItem="2oe-E8-EPG" firstAttribute="top" secondItem="lMf-Hv-51f" secondAttribute="bottom" constant="81" id="StB-Bt-vEB"/>
-                <constraint firstItem="lMf-Hv-51f" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="UXM-rF-NIL"/>
+                <constraint firstItem="v2a-Dt-9pF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Seb-Ue-3b9"/>
+                <constraint firstItem="2oe-E8-EPG" firstAttribute="top" secondItem="lMf-Hv-51f" secondAttribute="bottom" constant="56" id="StB-Bt-vEB"/>
+                <constraint firstItem="lMf-Hv-51f" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-79" id="UXM-rF-NIL"/>
                 <constraint firstItem="jQV-CU-N0g" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Wge-of-E6F"/>
+                <constraint firstItem="iAi-LR-ktF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YsU-Mj-wmP"/>
                 <constraint firstItem="L0s-Ew-Wch" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cz9-DY-Mfx"/>
-                <constraint firstItem="L0s-Ew-Wch" firstAttribute="top" secondItem="8sh-WS-WWK" secondAttribute="bottom" constant="81" id="i5g-6e-5Kp"/>
-                <constraint firstItem="jQV-CU-N0g" firstAttribute="top" secondItem="2oe-E8-EPG" secondAttribute="bottom" constant="49" id="kZP-fT-Gif"/>
+                <constraint firstItem="L0s-Ew-Wch" firstAttribute="top" secondItem="8sh-WS-WWK" secondAttribute="bottom" constant="42" id="i5g-6e-5Kp"/>
+                <constraint firstItem="jQV-CU-N0g" firstAttribute="top" secondItem="2oe-E8-EPG" secondAttribute="bottom" constant="205" id="kZP-fT-Gif"/>
             </constraints>
         </view>
     </objects>

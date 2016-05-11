@@ -12,6 +12,8 @@
 @interface AddCompanyViewController ()
 
 @property (nonatomic, retain) IBOutlet UITextField * userNewCompanyNameTextField;
+@property (retain, nonatomic) IBOutlet UITextField *userNewStockSymbolTextField;
+@property (retain, nonatomic) IBOutlet UITextField *userNewCompanyImageName;
 
 - (IBAction)saveUserNewCompanyButton:(id)sender;
 - (void)showIncompleteErrorMessage;
@@ -30,18 +32,23 @@
 }
 
 - (IBAction)saveUserNewCompanyButton:(id)sender {
-    if ([self.userNewCompanyNameTextField.text isEqualToString: @""]) {
+    if (([self.userNewCompanyNameTextField.text isEqualToString: @""]) || ([self.userNewStockSymbolTextField.text isEqualToString:@""])) {
          [self showIncompleteErrorMessage];
     } else {
         DataAccessObject * dao = [DataAccessObject sharedInstance];
-        [dao createNewCompanyWithName:self.userNewCompanyNameTextField.text];
-        NSLog(@"New company saved");
+        if ([self.userNewCompanyImageName.text isEqualToString:@""]) {
+            [dao createNewCompanyWithName:self.userNewCompanyNameTextField.text stockSymbol:self.userNewStockSymbolTextField.text withCompanyImageName:@"Default Company Image"];
+            NSLog(@"New company saved with default image");
+        } else {
+            [dao createNewCompanyWithName:self.userNewCompanyNameTextField.text stockSymbol:self.userNewStockSymbolTextField.text withCompanyImageName:self.userNewCompanyImageName.text];
+            NSLog(@"New company saved with new image");
+        }
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
 - (void)showIncompleteErrorMessage {
-    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Must enter a company name before saving." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Must enter a company name and stock symbol before saving." preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){[errorAlert dismissViewControllerAnimated:YES completion:nil];
     }];
@@ -57,6 +64,8 @@
 
 - (void)dealloc {
     [self.userNewCompanyNameTextField release];
+    [self.userNewStockSymbolTextField release];
+    [self.userNewCompanyImageName release];
     [super dealloc];
 }
 

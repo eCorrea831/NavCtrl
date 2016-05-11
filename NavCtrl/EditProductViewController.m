@@ -15,6 +15,8 @@
 @property (retain, nonatomic) IBOutlet UITextField * editedProductNameTextField;
 @property (retain, nonatomic) IBOutlet UILabel * currentProductUrlLabel;
 @property (retain, nonatomic) IBOutlet UITextField * editedProductUrlTextField;
+@property (retain, nonatomic) IBOutlet UILabel *currentProductImageNameLabel;
+@property (retain, nonatomic) IBOutlet UITextField *editedProductImageNameTextField;
 
 - (IBAction)saveEditedProductButton:(id)sender;
 - (void)showIncompleteErrorMessage;
@@ -27,16 +29,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.currentProductNameLabel.text = self.product.productName;
-    self.currentProductUrlLabel.text = self.product.productUrl;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.currentProductNameLabel.text = self.product.productName;
     self.currentProductUrlLabel.text = self.product.productUrl;
+    self.currentProductImageNameLabel.text = self.product.productImageName;
     self.editedProductNameTextField.text = nil;
     self.editedProductUrlTextField.text = nil;
+    self.editedProductImageNameTextField.text = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,29 +47,26 @@
 
 - (IBAction)saveEditedProductButton:(id)sender {
     DataAccessObject * dao = [DataAccessObject sharedInstance];
-    if (([self.editedProductNameTextField.text isEqualToString: @""]) && ([self.editedProductUrlTextField.text isEqualToString:@""])) {
+    if (([self.editedProductNameTextField.text isEqualToString: @""]) && ([self.editedProductUrlTextField.text isEqualToString:@""]) && ([self.editedProductImageNameTextField.text isEqualToString: @""])) {
         [self showIncompleteErrorMessage];
-    } else if ([self.editedProductNameTextField.text isEqualToString: @""]){
-        [dao editProduct:self.product withName:self.product.productName withUrl:[self checkStringForPrefix:self.editedProductUrlTextField.text]];
-        NSLog(@"Product website updated");
-        [self.navigationController popViewControllerAnimated:YES];
-    } else if ([self.editedProductUrlTextField.text isEqualToString: @""]) {
-        [dao editProduct:self.product withName:self.editedProductNameTextField.text withUrl:self.product.productUrl];
-        NSLog(@"Product name updated");
-        [self.navigationController popViewControllerAnimated:YES];
-    } else {
-        [dao editProduct:self.product withName:self.editedProductNameTextField.text withUrl:[self checkStringForPrefix:self.editedProductUrlTextField.text]];
-        NSLog(@"Product name and website updated");
-        [self.navigationController popViewControllerAnimated:YES];
     }
+    if (![self.editedProductNameTextField.text isEqualToString:@""]) {
+        [dao editProduct:self.product withName:self.editedProductNameTextField.text];
+    }
+    if (![self.editedProductUrlTextField.text isEqualToString:@""]) {
+        [dao editProduct:self.product withUrl:self.editedProductUrlTextField.text];
+    }
+    if (![self.editedProductImageNameTextField.text isEqualToString:@""]) {
+        [dao editProduct:self.product withImageName:self.editedProductImageNameTextField.text];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)showIncompleteErrorMessage {
-    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Must enter a new product name and/or website before saving." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Must enter a new product name, website, and/or image before saving." preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){[errorAlert dismissViewControllerAnimated:YES completion:nil];
     }];
-    
     [errorAlert addAction:alertAction];
     [self presentViewController:errorAlert animated:YES completion:nil];
 }
@@ -93,6 +92,9 @@
     [self.editedProductNameTextField release];
     [self.currentProductUrlLabel release];
     [self.editedProductUrlTextField release];
+    [self.editedProductImageNameTextField release];
+    [self.currentProductImageNameLabel release];
+    [self.editedProductImageNameTextField release];
     [super dealloc];
 }
 
