@@ -36,6 +36,7 @@
     self.currentCompanyNameLabel.text = self.company.companyName;
     self.currentStockSymbolLabel.text = self.company.stockSymbol;
     self.currentImageName = self.company.companyImageName;
+    self.currentCompanyImage.image = [UIImage imageNamed:self.currentImageName];
     self.editedCompanyNameTextField.text = nil;
     self.editedStockSymbolTextField.text = nil;
     self.editedCompanyImageTextField.text = nil;

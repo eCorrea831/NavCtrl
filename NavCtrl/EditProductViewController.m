@@ -15,8 +15,9 @@
 @property (retain, nonatomic) IBOutlet UITextField * editedProductNameTextField;
 @property (retain, nonatomic) IBOutlet UILabel * currentProductUrlLabel;
 @property (retain, nonatomic) IBOutlet UITextField * editedProductUrlTextField;
-@property (retain, nonatomic) IBOutlet UILabel *currentProductImageNameLabel;
 @property (retain, nonatomic) IBOutlet UITextField *editedProductImageNameTextField;
+@property (retain, nonatomic) IBOutlet UIImageView *currentProductImage;
+@property (retain, nonatomic) NSString * currentProductImageName;
 
 - (IBAction)saveEditedProductButton:(id)sender;
 - (void)showIncompleteErrorMessage;
@@ -36,7 +37,8 @@
     [super viewWillAppear:animated];
     self.currentProductNameLabel.text = self.product.productName;
     self.currentProductUrlLabel.text = self.product.productUrl;
-    self.currentProductImageNameLabel.text = self.product.productImageName;
+    self.currentProductImageName = self.product.productImageName;
+    self.currentProductImage.image = [UIImage imageNamed:self.currentProductImageName];
     self.editedProductNameTextField.text = nil;
     self.editedProductUrlTextField.text = nil;
     self.editedProductImageNameTextField.text = nil;

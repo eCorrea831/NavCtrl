@@ -74,9 +74,8 @@
     }
     Product * selectedProduct = [self.company.productArray objectAtIndex:[indexPath row]];
     cell.textLabel.text = selectedProduct.productName;
-    //FIXME: shouldn't have to remake the image
-//    cell.imageView.image = [UIImage imageNamed:selectedProduct.productImageName];
-    cell.imageView.image = selectedProduct.productImage;
+    cell.imageView.image = [UIImage imageNamed:selectedProduct.productImageName];
+    
     return cell;
     [cell release];
 }

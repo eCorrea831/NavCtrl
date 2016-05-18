@@ -10,13 +10,16 @@
 
 @implementation Company
 
-- (Company *)initWithCompanyName:(NSString *)name imageName:(NSString *)imageName stockSymbol:(NSString *)stockSymbol {
+- (instancetype)initWithCompanyName:(NSString *)name imageName:(NSString *)imageName stockSymbol:(NSString *)stockSymbol {
     
     self = [super init];
     if (self) {
         _companyName = name;
         _companyImageName = imageName;
-        _companyImage = [UIImage imageNamed:imageName];
+        
+        UIImage * companyImage = [[UIImage alloc]init];
+        companyImage = [UIImage imageNamed:imageName];
+        
         _stockSymbol = stockSymbol;
         _productArray = [[NSMutableArray alloc] init];
         return self;

@@ -86,7 +86,8 @@
     }
     self.selectedCompany = [self.dao.companyList objectAtIndex:[indexPath row]];
     cell.textLabel.text = [self.selectedCompany companyName];
-    cell.imageView.image = [self.selectedCompany companyImage];
+    cell.imageView.image = [UIImage imageNamed:self.selectedCompany.companyImageName];
+
     UILabel *stockPrice = [[UILabel alloc]init];
     stockPrice.adjustsFontSizeToFitWidth = YES;
     stockPrice.text = [NSString stringWithFormat:@"%.2f", [self.selectedCompany.companyStockPrice floatValue]];
