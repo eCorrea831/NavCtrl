@@ -16,18 +16,18 @@
     if (self) {
         _companyName = name;
         _companyImageName = imageName;
-        
-        UIImage * companyImage = [[UIImage alloc]init];
-        companyImage = [UIImage imageNamed:imageName];
-        
         _stockSymbol = stockSymbol;
         _productArray = [[NSMutableArray alloc] init];
+        
         return self;
     }
     return nil;
 }
 
 - (void)dealloc {
+    
+    
+    
     [super dealloc];
 }
 

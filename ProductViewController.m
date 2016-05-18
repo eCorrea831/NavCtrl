@@ -77,7 +77,6 @@
     cell.imageView.image = [UIImage imageNamed:selectedProduct.productImageName];
     
     return cell;
-    [cell release];
 }
 
 - (UIImage *)productPicture:(NSArray *)productName atIndex:(id)index {

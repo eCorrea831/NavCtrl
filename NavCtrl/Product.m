@@ -16,10 +16,6 @@
     if (self) {
         _productName = name;
         _productImageName = imageName;
-        
-        UIImage * productImage = [[UIImage alloc]init];
-        productImage = [UIImage imageNamed:imageName];
-        
         _productUrl = url;
         
         return self;
@@ -28,8 +24,6 @@
 }
 
 - (void)dealloc {
-    
-    // dealloc of all these things
     
     [super dealloc];
 }

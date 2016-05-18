@@ -93,8 +93,8 @@
     stockPrice.text = [NSString stringWithFormat:@"%.2f", [self.selectedCompany.companyStockPrice floatValue]];
     cell.accessoryView = stockPrice;
     [cell.accessoryView setFrame:CGRectMake(0, 0, 50, 50)];
-    return cell;
     [stockPrice release];
+    return cell;
 }
 
 #pragma mark - Table view delegate

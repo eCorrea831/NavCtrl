@@ -20,8 +20,8 @@
 @property (nonatomic) int largestProductOrderNum;
 @property (nonatomic) int largestProductID;
 
-- (id)initWithData;
-- (void)initDatabase;
+- (instancetype)initWithData;
+- (void)createDatabase;
 - (void)copyDatabaseIntoDocumentsDirectory;
 - (void)displayData;
 
@@ -39,26 +39,23 @@
     return _sharedInstance;
 }
 
-- (id)initWithData {
+- (instancetype)initWithData {
 
     self = [super init];
     if (self) {
         self.companyList = [[NSMutableArray alloc]init];
-        [self initDatabase];
+        [self createDatabase];
         [self displayData];
     }
     return self;
 }
 
-- (void)initDatabase {
+- (void)createDatabase {
     
-    self = [super init];
-    if (self) {
-        NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        self.documentsDirectory = [paths objectAtIndex:0];
-        self.databaseFilename = @"sqlData.db";
-        [self copyDatabaseIntoDocumentsDirectory];
-    }
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    self.documentsDirectory = [paths objectAtIndex:0];
+    self.databaseFilename = @"sqlData.db";
+    [self copyDatabaseIntoDocumentsDirectory];
 }
 
 - (void)copyDatabaseIntoDocumentsDirectory {
@@ -129,12 +126,15 @@
                         [dbProduct setProductID:productID];
                         [dbProduct setProductOrderNum:productOrderNum];
                         [dbCompany.productArray addObject:dbProduct];
+                        [dbProduct release];
                     }
                 }
                 [self.companyList addObject:dbCompany];
+                [dbCompany release];
             }
         }
     }
+    
 }
 
 - (void)getStockPrices:(CompanyViewController*)companyVC {
@@ -187,8 +187,8 @@
     NSString * insertCompanyStmt = [NSString stringWithFormat:@"INSERT INTO companies (company_name, company_image, company_stock_symbol, company_order) VALUES ('%s','%s', '%s', %d)",[name UTF8String],[imageName UTF8String], [stockSymbol UTF8String], self.largestCompanyOrderNum + 1];
     [self updateSqlWithString:insertCompanyStmt];
      NSLog(@"New company created");
-    return newCompany;
     [newCompany release];
+    return newCompany;
 }
 
 - (Product *)createNewProductWithName:(NSString*)name image:(NSString *)imageName url:(NSString*)url forCompany:(Company *)company {
@@ -199,8 +199,8 @@
     NSString * insertProductStmt = [NSString stringWithFormat:@"INSERT INTO products (company_id, product_name, product_image, product_url, product_order) VALUES ('%d','%s','%s', '%s', %d)", company.companyID, [name UTF8String], [imageName UTF8String], [url UTF8String], self.largestProductOrderNum + 1];
     [self updateSqlWithString:insertProductStmt];
      NSLog(@"New product created");
-    return newProduct;
     [newProduct release];
+    return newProduct;
 }
 
 - (Company *)editCompany:(Company *)company withName:(NSString *)name {
@@ -224,10 +224,6 @@
 - (Company *)editCompany:(Company *)company withImageName:(NSString *)imageName {
     
     company.companyImageName = imageName;
-    
-    UIImage * companyImage = [[UIImage alloc]init];
-    companyImage = [UIImage imageNamed:imageName];
-    
     NSString * updateCompanyImageStmt = [NSString stringWithFormat:@"UPDATE companies SET company_image = '%s' WHERE company_id = %d", [imageName UTF8String], company.companyID];
     [self updateSqlWithString:updateCompanyImageStmt];
     NSLog(@"Company image updated");
@@ -255,10 +251,6 @@
 - (Product *)editProduct:(Product *)product withImageName:(NSString *)imageName {
     
     product.productImageName = imageName;
-    
-    UIImage * productImage = [[UIImage alloc]init];
-    productImage = [UIImage imageNamed:imageName];
-    
     NSString * updateProductImageStmt = [NSString stringWithFormat:@"UPDATE products SET product_image = '%s' WHERE product_id = %d", [imageName UTF8String], product.productID];
     [self updateSqlWithString:updateProductImageStmt];
     NSLog(@"Product image updated");
