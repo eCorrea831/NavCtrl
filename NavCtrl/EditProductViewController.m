@@ -32,6 +32,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
     [super viewWillAppear:animated];
     self.currentProductNameLabel.text = self.product.productName;
     self.currentProductUrlLabel.text = self.product.productUrl;
@@ -46,6 +47,7 @@
 }
 
 - (IBAction)saveEditedProductButton:(id)sender {
+    
     DataAccessObject * dao = [DataAccessObject sharedInstance];
     if (([self.editedProductNameTextField.text isEqualToString: @""]) && ([self.editedProductUrlTextField.text isEqualToString:@""]) && ([self.editedProductImageNameTextField.text isEqualToString: @""])) {
         [self showIncompleteErrorMessage];
@@ -63,6 +65,7 @@
 }
 
 - (void)showIncompleteErrorMessage {
+    
     UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Must enter a new product name, website, and/or image before saving." preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){[errorAlert dismissViewControllerAnimated:YES completion:nil];
@@ -72,6 +75,7 @@
 }
 
 - (NSString *)checkStringForPrefix:(NSString *)string {
+    
     if([string hasPrefix:@"http://"]) {
         return self.editedProductUrlTextField.text;
     } else {
@@ -81,20 +85,16 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
     [self.editedProductNameTextField resignFirstResponder];
     [[self view] endEditing:YES];
     [self.editedProductUrlTextField resignFirstResponder];
     [[self view] endEditing:YES];
+    [self.editedProductImageNameTextField resignFirstResponder];
+    [[self view] endEditing:YES];
 }
 
 - (void)dealloc {
-    [self.currentProductNameLabel release];
-    [self.editedProductNameTextField release];
-    [self.currentProductUrlLabel release];
-    [self.editedProductUrlTextField release];
-    [self.editedProductImageNameTextField release];
-    [self.currentProductImageNameLabel release];
-    [self.editedProductImageNameTextField release];
     [super dealloc];
 }
 

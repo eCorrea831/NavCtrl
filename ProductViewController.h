@@ -12,6 +12,5 @@
 @interface ProductViewController : UITableViewController
 
 @property (nonatomic, retain) Company * company;
-@property (nonatomic, retain) NSMutableArray * products;
 
 @end

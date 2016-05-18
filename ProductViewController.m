@@ -13,15 +13,9 @@
 
 @interface ProductViewController ()
 
-@property (nonatomic, retain) DataAccessObject *dao;
-@property (nonatomic, retain) Product * selectedProduct;
-@property (nonatomic, retain) NewWebViewController * webViewController;
-@property (nonatomic, retain) EditProductViewController * editProductViewController;
-@property (nonatomic, retain) AddProductViewController * addProductViewController;
-@property (nonatomic, retain) UIBarButtonItem * addButton;
-@property (nonatomic, retain) UITapGestureRecognizer *tap;
+@property (nonatomic, retain) DataAccessObject * dao;
 
-- (void)showProductInfo;
+- (void)showProductInfoForProduct:(Product *)product;
 - (void)addItem:sender;
 
 @end
@@ -29,24 +23,27 @@
 @implementation ProductViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
+    
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.clearsSelectionOnViewWillAppear = NO;
     
-    NSMutableArray* buttons = [[NSMutableArray alloc] initWithCapacity:2];
+    NSMutableArray * buttons = [[NSMutableArray alloc] initWithCapacity:2];
     [buttons addObject:self.editButtonItem];
-    self.addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
-    [buttons addObject:self.addButton];
+    UIBarButtonItem * addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
+    [buttons addObject:addButton];
     self.navigationItem.rightBarButtonItems = buttons;
     
     self.dao = [DataAccessObject sharedInstance];
+    [buttons release];
+    [addButton release];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -65,18 +62,23 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.products count];
+    return [self.company.productArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     static NSString * CellIdentifier = @"Cell";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [[self.products objectAtIndex:[indexPath row] ]productName];
-    cell.imageView.image = [[self.products objectAtIndex:[indexPath row] ]productImage];
+    Product * selectedProduct = [self.company.productArray objectAtIndex:[indexPath row]];
+    cell.textLabel.text = selectedProduct.productName;
+    //FIXME: shouldn't have to remake the image
+//    cell.imageView.image = [UIImage imageNamed:selectedProduct.productImageName];
+    cell.imageView.image = selectedProduct.productImage;
     return cell;
+    [cell release];
 }
 
 - (UIImage *)productPicture:(NSArray *)productName atIndex:(id)index {
@@ -85,14 +87,16 @@
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.webViewController = [[NewWebViewController alloc] init];
-    self.selectedProduct = [self.company.productArray objectAtIndex:[indexPath row]];
+    
+    NewWebViewController * webViewController = [[NewWebViewController alloc]init];
+    Product * selectedProduct = [self.company.productArray objectAtIndex:[indexPath row]];
     if (self.isEditing) {
-        [self showProductInfo];
+        [self showProductInfoForProduct:selectedProduct];
     } else {
-        self.webViewController.url = [NSURL URLWithString:[self.products[indexPath.row] productUrl]];
-        [self.navigationController pushViewController:self.webViewController animated:YES];
+        webViewController.url = [NSURL URLWithString:[self.company.productArray[indexPath.row] productUrl]];
+        [self.navigationController pushViewController:webViewController animated:YES];
     }
+    [webViewController release];
 }
 
 #pragma mark - Sets editing, moving, and deletion of a selected row 
@@ -103,7 +107,8 @@
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == [self.products count]) {
+    
+    if (indexPath.row == [self.company.productArray count]) {
         return UITableViewCellEditingStyleInsert;
     } else {
       return UITableViewCellEditingStyleDelete;
@@ -111,10 +116,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    Product * selectedProduct = [self.company.productArray objectAtIndex:[indexPath row]];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        self.selectedProduct = [self.company.productArray objectAtIndex:[indexPath row]];
-        [self.products removeObjectAtIndex:indexPath.row];
-        [self.dao deleteProduct:self.selectedProduct];
+        [self.dao deleteProduct:selectedProduct];
+        [self.company.productArray removeObjectAtIndex:indexPath.row];
+        selectedProduct = NULL;
         [tableView reloadData];
     }
 }
@@ -124,10 +131,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    self.selectedProduct = [self.products objectAtIndex:fromIndexPath.row];
+    
+    Product * selectedProduct = [self.company.productArray objectAtIndex:fromIndexPath.row];
     [self.tableView beginUpdates];
-    [self.products removeObjectAtIndex:fromIndexPath.row];
-    [self.products insertObject:self.selectedProduct atIndex:toIndexPath.row];
+    [self.company.productArray removeObjectAtIndex:fromIndexPath.row];
+    [self.company.productArray insertObject:selectedProduct atIndex:toIndexPath.row];
     [self.tableView moveRowAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
     
     for (int i = 0; i < self.company.productArray.count; i++ ) {
@@ -139,21 +147,21 @@
     [self.tableView reloadData];
 }
 
-- (void)showProductInfo {
-    if (self.editProductViewController == nil) {
-        self.editProductViewController = [[EditProductViewController alloc] init];
-    }
-    self.editProductViewController.company = self.company;
-    self.editProductViewController.product = self.selectedProduct;
-    [self.navigationController pushViewController:self.editProductViewController animated:YES];
+- (void)showProductInfoForProduct:(Product *)product {
+    
+    EditProductViewController * editProductVC = [[EditProductViewController alloc] init];
+    editProductVC.company = self.company;
+    editProductVC.product = product;
+    [self.navigationController pushViewController:editProductVC animated:YES];
+    [editProductVC release];
 }
 
 - (void)addItem:sender {
-    if (self.addProductViewController == nil) {
-        self.addProductViewController = [[AddProductViewController alloc] init];
-    }
-    self.addProductViewController.company = self.company;
-    [self.navigationController pushViewController:self.addProductViewController animated:YES];
+    
+    AddProductViewController * addProductViewController = [[AddProductViewController alloc] init];
+    addProductViewController.company = self.company;
+    [self.navigationController pushViewController:addProductViewController animated:YES];
+    [addProductViewController release];
 }
 
 - (void)dealloc {

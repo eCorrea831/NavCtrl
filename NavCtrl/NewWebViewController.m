@@ -20,7 +20,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     WKWebViewConfiguration * theConfiguration = [[WKWebViewConfiguration alloc] init];
     WKWebView * webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:theConfiguration];
     webView.navigationDelegate = self;
@@ -31,6 +31,10 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)dealloc {
+    [super dealloc];
 }
 
 @end

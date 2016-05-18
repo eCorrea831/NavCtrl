@@ -10,18 +10,22 @@
 
 @implementation Company
 
-- (Company *)initWithCompanyName:(NSString *)name companyImage:(NSString *)imageName stockSymbol:(NSString *)stockSymbol {
+- (Company *)initWithCompanyName:(NSString *)name imageName:(NSString *)imageName stockSymbol:(NSString *)stockSymbol {
+    
     self = [super init];
-    Company * company = [[Company alloc] init];
     if (self) {
-        company.companyName = name;
-        company.companyImageName = imageName;
-        company.companyImage = [UIImage imageNamed:imageName];
-        company.stockSymbol = stockSymbol;
-        company.productArray = [[NSMutableArray alloc] init];
-        return company;
+        _companyName = name;
+        _companyImageName = imageName;
+        _companyImage = [UIImage imageNamed:imageName];
+        _stockSymbol = stockSymbol;
+        _productArray = [[NSMutableArray alloc] init];
+        return self;
     }
-    return company;
+    return nil;
+}
+
+- (void)dealloc {
+    [super dealloc];
 }
 
 @end

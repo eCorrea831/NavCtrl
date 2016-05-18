@@ -20,10 +20,6 @@
 @property (nonatomic, retain) IBOutlet ProductViewController * productViewController;
 @property (nonatomic, retain) DataAccessObject * dao;
 @property (nonatomic, retain) Company * selectedCompany;
-@property (nonatomic, retain) AddCompanyViewController * addCompanyViewController;
-@property (nonatomic, retain) EditCompanyViewController * editCompanyViewController;
-@property (nonatomic, retain) UIBarButtonItem * addButton;
-@property (nonatomic, retain) UITapGestureRecognizer * tap;
 
 - (void)showCompanyInfo;
 - (void)addItem:sender;
@@ -33,6 +29,7 @@
 @implementation CompanyViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
+    
     self = [super initWithStyle:style];
     if (self) {
     }
@@ -40,16 +37,18 @@
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.clearsSelectionOnViewWillAppear = NO;
     
     NSMutableArray * buttons = [[NSMutableArray alloc] initWithCapacity:2];
     [buttons addObject:self.editButtonItem];
-    self.addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
-    [buttons addObject:self.addButton];
+    UIBarButtonItem * addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
+    [buttons addObject:addButton];
     self.navigationItem.rightBarButtonItems = buttons;
-    
     self.dao = [DataAccessObject sharedInstance];
+    [buttons release];
+    [addButton release];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -59,11 +58,10 @@
 }
 
 - (void)showCompanyInfo {
-    if (self.editCompanyViewController == nil) {
-        self.editCompanyViewController = [[EditCompanyViewController alloc] init];
-    }
-    self.editCompanyViewController.company = self.selectedCompany;
-    [self.navigationController pushViewController:self.editCompanyViewController animated:YES];
+    EditCompanyViewController * editCompanyVC = [[EditCompanyViewController alloc] init];
+    editCompanyVC.company = self.selectedCompany;
+    [self.navigationController pushViewController:editCompanyVC animated:YES];
+    [editCompanyVC release];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,6 +78,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     static NSString * CellIdentifier = @"Cell";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -94,16 +93,18 @@
     cell.accessoryView = stockPrice;
     [cell.accessoryView setFrame:CGRectMake(0, 0, 50, 50)];
     return cell;
+    [stockPrice release];
 }
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     self.selectedCompany = [self.dao.companyList objectAtIndex:[indexPath row]];
     if (self.isEditing) {
         [self showCompanyInfo];
     } else {
         self.productViewController.title = [self.selectedCompany companyName];
-        self.productViewController.products = [self.selectedCompany productArray];
+        self.productViewController.company.productArray = [self.selectedCompany productArray];
         self.productViewController.company = self.selectedCompany;
         [self.navigationController pushViewController:self.productViewController animated:YES];
     }
@@ -116,6 +117,7 @@
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.row == [self.dao.companyList count]) {
         return UITableViewCellEditingStyleInsert;
     } else {
@@ -124,11 +126,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.dao deleteCompanyAndItsProducts:[self.dao.companyList objectAtIndex:indexPath.row]];
-        
+        [self.dao deleteCompanyAndItsProducts:self.selectedCompany];
+        for (Product *product in self.selectedCompany.productArray) {
+            product = nil;
+        }
         [self.dao.companyList removeObjectAtIndex:indexPath.row];
-        [self.productViewController.products removeObjectAtIndex:indexPath.row];
+        self.selectedCompany = nil;
         [tableView reloadData];
     }
 }
@@ -138,6 +143,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    
     Company * companyToMove =[self.dao.companyList objectAtIndex:fromIndexPath.row];
     [self.tableView beginUpdates];
     [self.dao.companyList removeObjectAtIndex:fromIndexPath.row];
@@ -153,10 +159,9 @@
 }
 
 - (void)addItem:sender {
-    if (self.addCompanyViewController == nil) {
-        self.addCompanyViewController = [[AddCompanyViewController alloc] init];
-    }
-    [self.navigationController pushViewController:self.addCompanyViewController animated:YES];
+    AddCompanyViewController * addCompanyVC = [[AddCompanyViewController alloc]init];
+    [self.navigationController pushViewController:addCompanyVC animated:YES];
+    [addCompanyVC release];
 }
 
 - (void)dealloc {

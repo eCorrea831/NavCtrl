@@ -32,15 +32,16 @@
 }
 
 - (IBAction)saveUserNewCompanyButton:(id)sender {
+    
     if (([self.userNewCompanyNameTextField.text isEqualToString: @""]) || ([self.userNewStockSymbolTextField.text isEqualToString:@""])) {
          [self showIncompleteErrorMessage];
     } else {
         DataAccessObject * dao = [DataAccessObject sharedInstance];
         if ([self.userNewCompanyImageName.text isEqualToString:@""]) {
-            [dao createNewCompanyWithName:self.userNewCompanyNameTextField.text stockSymbol:self.userNewStockSymbolTextField.text withCompanyImageName:@"Default Company Image"];
+            [dao createNewCompanyWithName:self.userNewCompanyNameTextField.text stockSymbol:self.userNewStockSymbolTextField.text imageName:@"Default Company Image"];
             NSLog(@"New company saved with default image");
         } else {
-            [dao createNewCompanyWithName:self.userNewCompanyNameTextField.text stockSymbol:self.userNewStockSymbolTextField.text withCompanyImageName:self.userNewCompanyImageName.text];
+            [dao createNewCompanyWithName:self.userNewCompanyNameTextField.text stockSymbol:self.userNewStockSymbolTextField.text imageName:self.userNewCompanyImageName.text];
             NSLog(@"New company saved with new image");
         }
         [self.navigationController popViewControllerAnimated:YES];
@@ -48,6 +49,7 @@
 }
 
 - (void)showIncompleteErrorMessage {
+    
     UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Must enter a company name and stock symbol before saving." preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){[errorAlert dismissViewControllerAnimated:YES completion:nil];
@@ -58,14 +60,16 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
     [self.userNewCompanyNameTextField resignFirstResponder];
+    [[self view] endEditing:YES];
+    [self.userNewStockSymbolTextField resignFirstResponder];
+    [[self view] endEditing:YES];
+    [self.userNewCompanyImageName resignFirstResponder];
     [[self view] endEditing:YES];
 }
 
 - (void)dealloc {
-    [self.userNewCompanyNameTextField release];
-    [self.userNewStockSymbolTextField release];
-    [self.userNewCompanyImageName release];
     [super dealloc];
 }
 

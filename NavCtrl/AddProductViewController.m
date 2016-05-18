@@ -38,6 +38,7 @@
 }
 
 - (IBAction)saveUserNewProductButton:(id)sender {
+    
     if (([self.userNewProductNameTextField.text isEqualToString: @""]) || ([self.userNewProductUrlTextField.text isEqualToString:@""])){
         [self showIncompleteErrorMessage];
     } else {
@@ -50,12 +51,12 @@
             NSLog(@"New product saved with new image");
         }
         
-
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
 - (void)showIncompleteErrorMessage {
+    
     UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Must enter a product name and website before saving." preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){[errorAlert dismissViewControllerAnimated:YES completion:nil];
@@ -66,6 +67,7 @@
 }
 
 - (NSString *)checkStringForPrefix:(NSString *)string {
+    
     if([string hasPrefix:@"http://"]) {
         return self.userNewProductUrlTextField.text;
     } else {
@@ -75,16 +77,16 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
     [self.userNewProductNameTextField resignFirstResponder];
     [[self view] endEditing:YES];
     [self.userNewProductUrlTextField resignFirstResponder];
     [[self view] endEditing:YES];
+    [self.userNewProductImageNameTextField resignFirstResponder];
+    [[self view] endEditing:YES];
 }
 
 - (void)dealloc {
-    [self.userNewProductNameTextField release];
-    [self.userNewProductUrlTextField release];
-    [_userNewProductImageNameTextField release];
     [super dealloc];
 }
 

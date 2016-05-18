@@ -13,10 +13,10 @@
 @property (nonatomic) int productID;
 @property (nonatomic) int productOrderNum;
 @property (nonatomic, retain) NSString * productName;
-@property (nonatomic, retain) NSString * productUrl;
-@property (nonatomic, retain) UIImage * productImage;
 @property (nonatomic, retain) NSString * productImageName;
+@property (nonatomic, retain) UIImage * productImage;
+@property (nonatomic, retain) NSString * productUrl;
 
-- (Product *)initWithProductName:(NSString *)name productImageName:(NSString *)imageName andProductUrl:(NSString *)url;
+- (Product *)initWithProductName:(NSString *)name imageName:(NSString *)imageName url:(NSString *)url;
 
 @end

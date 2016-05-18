@@ -28,10 +28,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
     self.currentCompanyNameLabel.text = self.company.companyName;
     self.currentStockSymbolLabel.text = self.company.stockSymbol;
     self.currentImageName = self.company.companyImageName;
@@ -45,6 +46,7 @@
 }
 
 - (IBAction)saveEditedCompanyButton:(id)sender {
+    
     DataAccessObject * dao = [DataAccessObject sharedInstance];
     if (([self.editedCompanyNameTextField.text isEqualToString:@""] && [self.editedStockSymbolTextField.text isEqualToString:@""] && [self.editedCompanyImageTextField.text isEqualToString:@""])) {
         [self showIncompleteErrorMessage];
@@ -62,6 +64,7 @@
 }
 
 - (void)showIncompleteErrorMessage {
+    
     UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Must enter a new company name, stock symbol and/or image before saving." preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){[errorAlert dismissViewControllerAnimated:YES completion:nil];
@@ -71,18 +74,22 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
     [self.editedCompanyNameTextField resignFirstResponder];
+    [[self view] endEditing:YES];
+    [self.editedStockSymbolTextField resignFirstResponder];
+    [[self view] endEditing:YES];
+    [self.editedCompanyImageTextField resignFirstResponder];
     [[self view] endEditing:YES];
 }
 
 - (void)dealloc {
-    [self.currentCompanyNameLabel release];
-    [self.editedCompanyNameTextField release];
-    [self.currentStockSymbolLabel release];
-    [self.editedStockSymbolTextField release];
-    [self.currentCompanyImage release];
-    [self.editedCompanyImageTextField release];
-    [self.currentCompanyImage release];
+    [_currentCompanyNameLabel release];
+    [_currentStockSymbolLabel release];
+    [_currentImageName release];
+    [_editedCompanyNameTextField release];
+    [_editedStockSymbolTextField release];
+    [_editedCompanyImageTextField release];
     [super dealloc];
 }
 
