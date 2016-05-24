@@ -137,32 +137,6 @@
     
 }
 
-- (void)getStockPrices:(CompanyViewController*)companyVC {
-    
-    NSURLSession * session = [NSURLSession sharedSession];
-    NSMutableString * stockSymbolString = [[NSMutableString alloc]initWithString:@"http://finance.yahoo.com/d/quotes.csv?s="];
-    for (Company * company in self.companyList) {
-        [stockSymbolString appendString:company.stockSymbol];
-        [stockSymbolString appendString:@"+"];
-    }
-    [stockSymbolString appendString:@"&f=a"];
-    
-    NSURLSessionDataTask * stockData = [session dataTaskWithURL:[NSURL URLWithString:stockSymbolString] completionHandler:^(NSData * data, NSURLResponse *response, NSError * error) {
-        NSString *csv = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSMutableArray * stockArray = (NSMutableArray *)[csv componentsSeparatedByString:@"\n"];
-        [stockArray removeLastObject];
-        for (int index = 0; index < [self.companyList count]; index++) {
-            self.companyList[index].companyStockPrice = stockArray[index];
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [companyVC.tableView reloadData];
-        });
-        [csv release];
-    }];
-    [stockData resume];
-    [stockSymbolString release];
-}
-
 - (void)updateSqlWithString:(NSString *)string {
     
     NSString * destinationPath = [self.documentsDirectory stringByAppendingPathComponent:self.databaseFilename];

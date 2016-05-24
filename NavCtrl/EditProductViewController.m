@@ -51,7 +51,7 @@
 - (IBAction)saveEditedProductButton:(id)sender {
     
     DataAccessObject * dao = [DataAccessObject sharedInstance];
-    if (([self.editedProductNameTextField.text isEqualToString: @""]) && ([self.editedProductUrlTextField.text isEqualToString:@""]) && ([self.editedProductImageNameTextField.text isEqualToString: @""])) {
+    if (([self.editedProductNameTextField.text isEqualToString: @""]) || ([self.editedProductUrlTextField.text isEqualToString:@""]) || ([self.editedProductImageNameTextField.text isEqualToString: @""])) {
         [self showIncompleteErrorMessage];
     }
     if (![self.editedProductNameTextField.text isEqualToString:@""]) {

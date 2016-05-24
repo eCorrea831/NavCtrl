@@ -48,6 +48,17 @@
 		7B568E7F1CBBF8EA00E8BEED /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B568E7E1CBBF8EA00E8BEED /* Company.m */; };
 		7B568E821CBBF8F700E8BEED /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B568E811CBBF8F700E8BEED /* Product.m */; };
 		7B568E871CBC0B9000E8BEED /* DataAccessObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B568E861CBC0B9000E8BEED /* DataAccessObject.m */; };
+		7B5F64581CEFB6DC00495225 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5F644D1CEFB6DC00495225 /* Bolts.framework */; };
+		7B5F64591CEFB6DD00495225 /* DocSets in Resources */ = {isa = PBXBuildFile; fileRef = 7B5F644E1CEFB6DC00495225 /* DocSets */; };
+		7B5F645A1CEFB6DD00495225 /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7B5F644F1CEFB6DC00495225 /* FacebookSDKStrings.bundle */; };
+		7B5F645B1CEFB6DD00495225 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5F64501CEFB6DC00495225 /* FBAudienceNetwork.framework */; };
+		7B5F645C1CEFB6DD00495225 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5F64511CEFB6DC00495225 /* FBSDKCoreKit.framework */; };
+		7B5F645D1CEFB6DD00495225 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5F64521CEFB6DC00495225 /* FBSDKLoginKit.framework */; };
+		7B5F645E1CEFB6DD00495225 /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5F64531CEFB6DC00495225 /* FBSDKMessengerShareKit.framework */; };
+		7B5F645F1CEFB6DD00495225 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5F64541CEFB6DC00495225 /* FBSDKShareKit.framework */; };
+		7B5F64601CEFB6DD00495225 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7B5F64551CEFB6DC00495225 /* LICENSE.txt */; };
+		7B5F64611CEFB6DD00495225 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7B5F64561CEFB6DC00495225 /* README.txt */; };
+		7B5F64621CEFB6DD00495225 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 7B5F64571CEFB6DC00495225 /* Samples */; };
 		7B74571F1CC178440041BEC4 /* EditCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B74571D1CC178440041BEC4 /* EditCompanyViewController.m */; };
 		7B7457201CC178440041BEC4 /* EditCompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B74571E1CC178440041BEC4 /* EditCompanyViewController.xib */; };
 		7B7457241CC17BF10041BEC4 /* EditProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7457221CC17BF10041BEC4 /* EditProductViewController.m */; };
@@ -59,6 +70,7 @@
 		7B80E3B81CCD3F7900A04013 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B80E3B71CCD3F7900A04013 /* libz.1.dylib */; };
 		7B80E3BA1CCD3FC300A04013 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B80E3B91CCD3FC200A04013 /* libsqlite3.dylib */; };
 		7B80E3C31CCE81BC00A04013 /* sqlData.db in Resources */ = {isa = PBXBuildFile; fileRef = 7B80E3C21CCE81BC00A04013 /* sqlData.db */; };
+		7BA189A61CF503A1000D44A1 /* Stocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA189A51CF503A1000D44A1 /* Stocks.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +136,17 @@
 		7B568E811CBBF8F700E8BEED /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		7B568E851CBC0B9000E8BEED /* DataAccessObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAccessObject.h; sourceTree = "<group>"; };
 		7B568E861CBC0B9000E8BEED /* DataAccessObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAccessObject.m; sourceTree = "<group>"; };
+		7B5F644D1CEFB6DC00495225 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		7B5F644E1CEFB6DC00495225 /* DocSets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DocSets; sourceTree = "<group>"; };
+		7B5F644F1CEFB6DC00495225 /* FacebookSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKStrings.bundle; sourceTree = "<group>"; };
+		7B5F64501CEFB6DC00495225 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
+		7B5F64511CEFB6DC00495225 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		7B5F64521CEFB6DC00495225 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		7B5F64531CEFB6DC00495225 /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
+		7B5F64541CEFB6DC00495225 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		7B5F64551CEFB6DC00495225 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		7B5F64561CEFB6DC00495225 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		7B5F64571CEFB6DC00495225 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		7B74571C1CC178440041BEC4 /* EditCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCompanyViewController.h; sourceTree = "<group>"; };
 		7B74571D1CC178440041BEC4 /* EditCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCompanyViewController.m; sourceTree = "<group>"; };
 		7B74571E1CC178440041BEC4 /* EditCompanyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditCompanyViewController.xib; sourceTree = "<group>"; };
@@ -140,6 +163,8 @@
 		7B80E3B91CCD3FC200A04013 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
 		7B80E3C11CCE6C8F00A04013 /* SQLLite_TEST-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SQLLite_TEST-Prefix.pch"; sourceTree = "<group>"; };
 		7B80E3C21CCE81BC00A04013 /* sqlData.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = sqlData.db; sourceTree = "<group>"; };
+		7BA189A41CF503A1000D44A1 /* Stocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stocks.h; sourceTree = "<group>"; };
+		7BA189A51CF503A1000D44A1 /* Stocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stocks.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,10 +174,16 @@
 			files = (
 				7B80E3BA1CCD3FC300A04013 /* libsqlite3.dylib in Frameworks */,
 				7B80E3B81CCD3F7900A04013 /* libz.1.dylib in Frameworks */,
+				7B5F645D1CEFB6DD00495225 /* FBSDKLoginKit.framework in Frameworks */,
 				7B7539771CB84C1600935272 /* WebKit.framework in Frameworks */,
 				48A656B718163BF200746D36 /* CoreGraphics.framework in Frameworks */,
 				48A656B918163BF200746D36 /* UIKit.framework in Frameworks */,
 				48A656B518163BF200746D36 /* Foundation.framework in Frameworks */,
+				7B5F64581CEFB6DC00495225 /* Bolts.framework in Frameworks */,
+				7B5F645F1CEFB6DD00495225 /* FBSDKShareKit.framework in Frameworks */,
+				7B5F645C1CEFB6DD00495225 /* FBSDKCoreKit.framework in Frameworks */,
+				7B5F645B1CEFB6DD00495225 /* FBAudienceNetwork.framework in Frameworks */,
+				7B5F645E1CEFB6DD00495225 /* FBSDKMessengerShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +294,17 @@
 		48A656BB18163BF200746D36 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7B5F644D1CEFB6DC00495225 /* Bolts.framework */,
+				7B5F644E1CEFB6DC00495225 /* DocSets */,
+				7B5F644F1CEFB6DC00495225 /* FacebookSDKStrings.bundle */,
+				7B5F64501CEFB6DC00495225 /* FBAudienceNetwork.framework */,
+				7B5F64511CEFB6DC00495225 /* FBSDKCoreKit.framework */,
+				7B5F64521CEFB6DC00495225 /* FBSDKLoginKit.framework */,
+				7B5F64531CEFB6DC00495225 /* FBSDKMessengerShareKit.framework */,
+				7B5F64541CEFB6DC00495225 /* FBSDKShareKit.framework */,
+				7B5F64551CEFB6DC00495225 /* LICENSE.txt */,
+				7B5F64561CEFB6DC00495225 /* README.txt */,
+				7B5F64571CEFB6DC00495225 /* Samples */,
 				7BE415611CB9C67A00A9B880 /* CompanyLogos */,
 				7BE415621CB9C69400A9B880 /* DevicePictures */,
 				48A656ED1816468000746D36 /* Sunflower.gif */,
@@ -299,6 +341,8 @@
 				7B568E7E1CBBF8EA00E8BEED /* Company.m */,
 				7B568E801CBBF8F700E8BEED /* Product.h */,
 				7B568E811CBBF8F700E8BEED /* Product.m */,
+				7BA189A41CF503A1000D44A1 /* Stocks.h */,
+				7BA189A51CF503A1000D44A1 /* Stocks.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -427,6 +471,7 @@
 				7B49C4041CB5CE9B00AE47E2 /* GalaxyNote in Resources */,
 				48A656EE1816468000746D36 /* Sunflower.gif in Resources */,
 				7B49C3F41CB5CC2500AE47E2 /* HuaweiMobileDevices in Resources */,
+				7B5F64621CEFB6DD00495225 /* Samples in Resources */,
 				7B7539751CB84B6A00935272 /* NewWebViewController.xib in Resources */,
 				7B49C41C1CB5D47D00AE47E2 /* HuaweiTalkband in Resources */,
 				48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */,
@@ -435,8 +480,11 @@
 				7B49C41A1CB5D47D00AE47E2 /* HuaweiMate in Resources */,
 				7B49C4051CB5CE9B00AE47E2 /* GalaxyS4 in Resources */,
 				7B49C40C1CB5CE9B00AE47E2 /* iPodTouch in Resources */,
+				7B5F64591CEFB6DD00495225 /* DocSets in Resources */,
+				7B5F64611CEFB6DD00495225 /* README.txt in Resources */,
 				7B7457201CC178440041BEC4 /* EditCompanyViewController.xib in Resources */,
 				7B49C40E1CB5CF3C00AE47E2 /* GalaxyTab in Resources */,
+				7B5F645A1CEFB6DD00495225 /* FacebookSDKStrings.bundle in Resources */,
 				7B49C3E21CB5B58F00AE47E2 /* SamsungMobileDevices in Resources */,
 				7B747D1A1CE3D06100EAA943 /* Test in Resources */,
 				7B01DEAF1CC032D0005A7AF9 /* AddProductViewController.xib in Resources */,
@@ -449,6 +497,7 @@
 				7B01DEA41CBFF824005A7AF9 /* AddCompanyViewController.xib in Resources */,
 				7B49C4021CB5CE9B00AE47E2 /* AndroidTablet in Resources */,
 				7B49C4011CB5CE9B00AE47E2 /* AndroidPhone in Resources */,
+				7B5F64601CEFB6DD00495225 /* LICENSE.txt in Resources */,
 				7B49C4031CB5CE9B00AE47E2 /* AndroidWear in Resources */,
 				7B01DEB11CC03702005A7AF9 /* DefaultProductImage in Resources */,
 				7B7457251CC17BF10041BEC4 /* EditProductViewController.xib in Resources */,
@@ -472,6 +521,7 @@
 			files = (
 				7B01DEAE1CC032D0005A7AF9 /* AddProductViewController.m in Sources */,
 				7B01DEA31CBFF824005A7AF9 /* AddCompanyViewController.m in Sources */,
+				7BA189A61CF503A1000D44A1 /* Stocks.m in Sources */,
 				7B568E871CBC0B9000E8BEED /* DataAccessObject.m in Sources */,
 				48A656E618163C1B00746D36 /* CompanyViewController.m in Sources */,
 				48A656C518163BF200746D36 /* NavControllerAppDelegate.m in Sources */,
@@ -602,6 +652,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NavCtrl",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NavCtrl/NavCtrl-Prefix.pch";
 				INFOPLIST_FILE = "NavCtrl/NavCtrl-Info.plist";
@@ -618,6 +672,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NavCtrl",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NavCtrl/NavCtrl-Prefix.pch";

@@ -11,6 +11,7 @@
 #import "DataAccessObject.h"
 #import "EditCompanyViewController.h"
 #import "AddCompanyViewController.h"
+#import "Stocks.h"
 
 @class ProductViewController;
 @class DataAccessObject;
@@ -53,7 +54,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.dao getStockPrices:self];
+    
+    Stocks * stockPrice = [[Stocks alloc] init];
+    [stockPrice getStockPrices:self];
+    
     [self.tableView reloadData];
 }
 

@@ -9,10 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Company.h"
 #import "Product.h"
-#import "CompanyViewController.h"
 #import "sqlite3.h"
-
-@class CompanyViewController;
 
 @interface DataAccessObject : NSObject
 
@@ -20,10 +17,9 @@
 
 @property (nonatomic, retain) NSMutableArray <Company*> * companyList;
 
-- (void)getStockPrices:(CompanyViewController*)companyVC;
 - (void)updateSqlWithString:(NSString *)string;
 
-//create new company or product
+//create new company/product
 - (Company *)createNewCompanyWithName:(NSString *)name stockSymbol:(NSString *)stockSymbol imageName:(NSString *)imageName;
 - (Product *)createNewProductWithName:(NSString*)name image:(NSString *)imageName url:(NSString*)url forCompany:(Company *)company;
 
