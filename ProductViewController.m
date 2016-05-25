@@ -8,8 +8,7 @@
 
 #import "ProductViewController.h"
 #import "NewWebViewController.h"
-#import "EditProductViewController.h"
-#import "AddProductViewController.h"
+#import "UserProductViewController.h"
 
 @interface ProductViewController ()
 
@@ -147,19 +146,19 @@
 
 - (void)showProductInfoForProduct:(Product *)product {
     
-    EditProductViewController * editProductVC = [[EditProductViewController alloc] init];
-    editProductVC.company = self.company;
-    editProductVC.product = product;
-    [self.navigationController pushViewController:editProductVC animated:YES];
-    [editProductVC release];
+    UserProductViewController * userProductVC = [[UserProductViewController alloc] init];
+    userProductVC.company = self.company;
+    userProductVC.product = product;
+    [self.navigationController pushViewController:userProductVC animated:YES];
+    [userProductVC release];
 }
 
 - (void)addItem:sender {
     
-    AddProductViewController * addProductViewController = [[AddProductViewController alloc] init];
-    addProductViewController.company = self.company;
-    [self.navigationController pushViewController:addProductViewController animated:YES];
-    [addProductViewController release];
+    UserProductViewController * userProductViewController = [[UserProductViewController alloc] init];
+    userProductViewController.company = self.company;
+    [self.navigationController pushViewController:userProductViewController animated:YES];
+    [userProductViewController release];
 }
 
 - (void)dealloc {

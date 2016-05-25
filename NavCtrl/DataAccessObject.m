@@ -195,6 +195,7 @@
     [self updateSqlWithString:insertProductStmt];
     [company.productArray addObject:newProduct];
      NSLog(@"New product created");
+    
     [newProduct release];
     return newProduct;
 }
@@ -212,30 +213,16 @@
     return company;
 }
 
-- (Product *)editProduct:(Product *)product withName:(NSString *)name {
+- (Product *)editProduct:(Product *)product withName:(NSString *)name imageName:(NSString *)imageName website:(NSString *)website {
     
     product.productName = name;
-    NSString * updateProductNameStmt = [NSString stringWithFormat:@"UPDATE products SET product_name = '%s' WHERE product_id = %d", [name UTF8String], product.productID];
-    [self updateSqlWithString:updateProductNameStmt];
-    NSLog(@"Product name updated");
-    return product;
-}
-
-- (Product *)editProduct:(Product *)product withUrl:(NSString *)url {
-    
-    product.productUrl = url;
-    NSString * updateProductUrlStmt = [NSString stringWithFormat:@"UPDATE products SET product_url = '%s' WHERE product_id = %d", [url UTF8String], product.productID];
-    [self updateSqlWithString:updateProductUrlStmt];
-    NSLog(@"Product url updated");
-    return product;
-}
-
-- (Product *)editProduct:(Product *)product withImageName:(NSString *)imageName {
-    
     product.productImageName = imageName;
-    NSString * updateProductImageStmt = [NSString stringWithFormat:@"UPDATE products SET product_image = '%s' WHERE product_id = %d", [imageName UTF8String], product.productID];
-    [self updateSqlWithString:updateProductImageStmt];
-    NSLog(@"Product image updated");
+    product.productUrl = website;
+    
+    NSString * updateProductStmt = [NSString stringWithFormat:@"UPDATE products SET product_name = '%s', product_image = '%s', product_url = '%s' WHERE product_id = %d", [name UTF8String], [imageName UTF8String], [website UTF8String], product.productID];
+    [self updateSqlWithString:updateProductStmt];
+    NSLog(@"Product updated");
+    
     return product;
 }
 

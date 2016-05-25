@@ -25,8 +25,6 @@
 		48A656EE1816468000746D36 /* Sunflower.gif in Resources */ = {isa = PBXBuildFile; fileRef = 48A656ED1816468000746D36 /* Sunflower.gif */; };
 		7B01DEA81CC0010F005A7AF9 /* DefaultCompanyImage in Resources */ = {isa = PBXBuildFile; fileRef = 7B01DEA71CC0010F005A7AF9 /* DefaultCompanyImage */; };
 		7B01DEAA1CC0011D005A7AF9 /* AppleMobileDevices in Resources */ = {isa = PBXBuildFile; fileRef = 7B01DEA91CC0011D005A7AF9 /* AppleMobileDevices */; };
-		7B01DEAE1CC032D0005A7AF9 /* AddProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B01DEAC1CC032D0005A7AF9 /* AddProductViewController.m */; };
-		7B01DEAF1CC032D0005A7AF9 /* AddProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B01DEAD1CC032D0005A7AF9 /* AddProductViewController.xib */; };
 		7B01DEB11CC03702005A7AF9 /* DefaultProductImage in Resources */ = {isa = PBXBuildFile; fileRef = 7B01DEB01CC03702005A7AF9 /* DefaultProductImage */; };
 		7B49C3E21CB5B58F00AE47E2 /* SamsungMobileDevices in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3DF1CB5B58F00AE47E2 /* SamsungMobileDevices */; };
 		7B49C3F21CB5CC1B00AE47E2 /* GoogleMobileDevices in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3F11CB5CC1B00AE47E2 /* GoogleMobileDevices */; };
@@ -43,6 +41,8 @@
 		7B49C41A1CB5D47D00AE47E2 /* HuaweiMate in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C4171CB5D47D00AE47E2 /* HuaweiMate */; };
 		7B49C41B1CB5D47D00AE47E2 /* HuaweiMatebook in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C4181CB5D47D00AE47E2 /* HuaweiMatebook */; };
 		7B49C41C1CB5D47D00AE47E2 /* HuaweiTalkband in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C4191CB5D47D00AE47E2 /* HuaweiTalkband */; };
+		7B52A5771CF6463800FE1AA1 /* UserProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B52A5751CF6463800FE1AA1 /* UserProductViewController.m */; };
+		7B52A5781CF6463800FE1AA1 /* UserProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B52A5761CF6463800FE1AA1 /* UserProductViewController.xib */; };
 		7B568E7F1CBBF8EA00E8BEED /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B568E7E1CBBF8EA00E8BEED /* Company.m */; };
 		7B568E821CBBF8F700E8BEED /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B568E811CBBF8F700E8BEED /* Product.m */; };
 		7B568E871CBC0B9000E8BEED /* DataAccessObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B568E861CBC0B9000E8BEED /* DataAccessObject.m */; };
@@ -59,8 +59,6 @@
 		7B5F64601CEFB6DD00495225 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7B5F64551CEFB6DC00495225 /* LICENSE.txt */; };
 		7B5F64611CEFB6DD00495225 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7B5F64561CEFB6DC00495225 /* README.txt */; };
 		7B5F64621CEFB6DD00495225 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 7B5F64571CEFB6DC00495225 /* Samples */; };
-		7B7457241CC17BF10041BEC4 /* EditProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7457221CC17BF10041BEC4 /* EditProductViewController.m */; };
-		7B7457251CC17BF10041BEC4 /* EditProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7457231CC17BF10041BEC4 /* EditProductViewController.xib */; };
 		7B747D1A1CE3D06100EAA943 /* Test in Resources */ = {isa = PBXBuildFile; fileRef = 7B747D191CE3D06100EAA943 /* Test */; };
 		7B7539741CB84B6A00935272 /* NewWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7539721CB84B6A00935272 /* NewWebViewController.m */; };
 		7B7539751CB84B6A00935272 /* NewWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7539731CB84B6A00935272 /* NewWebViewController.xib */; };
@@ -106,9 +104,6 @@
 		48A656ED1816468000746D36 /* Sunflower.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Sunflower.gif; sourceTree = "<group>"; };
 		7B01DEA71CC0010F005A7AF9 /* DefaultCompanyImage */ = {isa = PBXFileReference; lastKnownFileType = file; name = DefaultCompanyImage; path = logos/DefaultCompanyImage; sourceTree = "<group>"; };
 		7B01DEA91CC0011D005A7AF9 /* AppleMobileDevices */ = {isa = PBXFileReference; lastKnownFileType = file; name = AppleMobileDevices; path = logos/AppleMobileDevices; sourceTree = "<group>"; };
-		7B01DEAB1CC032D0005A7AF9 /* AddProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductViewController.h; sourceTree = "<group>"; };
-		7B01DEAC1CC032D0005A7AF9 /* AddProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewController.m; sourceTree = "<group>"; };
-		7B01DEAD1CC032D0005A7AF9 /* AddProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddProductViewController.xib; sourceTree = "<group>"; };
 		7B01DEB01CC03702005A7AF9 /* DefaultProductImage */ = {isa = PBXFileReference; lastKnownFileType = file; name = DefaultProductImage; path = products/DefaultProductImage; sourceTree = "<group>"; };
 		7B49C3DF1CB5B58F00AE47E2 /* SamsungMobileDevices */ = {isa = PBXFileReference; lastKnownFileType = file; name = SamsungMobileDevices; path = logos/SamsungMobileDevices; sourceTree = "<group>"; };
 		7B49C3F11CB5CC1B00AE47E2 /* GoogleMobileDevices */ = {isa = PBXFileReference; lastKnownFileType = file; name = GoogleMobileDevices; path = logos/GoogleMobileDevices; sourceTree = "<group>"; };
@@ -125,6 +120,9 @@
 		7B49C4171CB5D47D00AE47E2 /* HuaweiMate */ = {isa = PBXFileReference; lastKnownFileType = file; name = HuaweiMate; path = products/HuaweiMate; sourceTree = "<group>"; };
 		7B49C4181CB5D47D00AE47E2 /* HuaweiMatebook */ = {isa = PBXFileReference; lastKnownFileType = file; name = HuaweiMatebook; path = products/HuaweiMatebook; sourceTree = "<group>"; };
 		7B49C4191CB5D47D00AE47E2 /* HuaweiTalkband */ = {isa = PBXFileReference; lastKnownFileType = file; name = HuaweiTalkband; path = products/HuaweiTalkband; sourceTree = "<group>"; };
+		7B52A5741CF6463800FE1AA1 /* UserProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProductViewController.h; sourceTree = "<group>"; };
+		7B52A5751CF6463800FE1AA1 /* UserProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProductViewController.m; sourceTree = "<group>"; };
+		7B52A5761CF6463800FE1AA1 /* UserProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProductViewController.xib; sourceTree = "<group>"; };
 		7B568E7D1CBBF8EA00E8BEED /* Company.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Company.h; sourceTree = "<group>"; };
 		7B568E7E1CBBF8EA00E8BEED /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
 		7B568E801CBBF8F700E8BEED /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
@@ -145,9 +143,6 @@
 		7B5F64551CEFB6DC00495225 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		7B5F64561CEFB6DC00495225 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		7B5F64571CEFB6DC00495225 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
-		7B7457211CC17BF10041BEC4 /* EditProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProductViewController.h; sourceTree = "<group>"; };
-		7B7457221CC17BF10041BEC4 /* EditProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProductViewController.m; sourceTree = "<group>"; };
-		7B7457231CC17BF10041BEC4 /* EditProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProductViewController.xib; sourceTree = "<group>"; };
 		7B747D191CE3D06100EAA943 /* Test */ = {isa = PBXFileReference; lastKnownFileType = file; name = Test; path = logos/Test; sourceTree = "<group>"; };
 		7B7539711CB84B6A00935272 /* NewWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewWebViewController.h; sourceTree = "<group>"; };
 		7B7539721CB84B6A00935272 /* NewWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewWebViewController.m; sourceTree = "<group>"; };
@@ -209,10 +204,8 @@
 			children = (
 				7B5A09E21CF63B1500557232 /* UserCompanyViewController.h */,
 				7B5A09E31CF63B1500557232 /* UserCompanyViewController.m */,
-				7B7457211CC17BF10041BEC4 /* EditProductViewController.h */,
-				7B7457221CC17BF10041BEC4 /* EditProductViewController.m */,
-				7B01DEAB1CC032D0005A7AF9 /* AddProductViewController.h */,
-				7B01DEAC1CC032D0005A7AF9 /* AddProductViewController.m */,
+				7B52A5741CF6463800FE1AA1 /* UserProductViewController.h */,
+				7B52A5751CF6463800FE1AA1 /* UserProductViewController.m */,
 				48A656E318163C1B00746D36 /* CompanyViewController.h */,
 				48A656E418163C1B00746D36 /* CompanyViewController.m */,
 				48A656E818163F8700746D36 /* ProductViewController.h */,
@@ -227,8 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				7B5A09E41CF63B1500557232 /* UserCompanyViewController.xib */,
-				7B7457231CC17BF10041BEC4 /* EditProductViewController.xib */,
-				7B01DEAD1CC032D0005A7AF9 /* AddProductViewController.xib */,
+				7B52A5761CF6463800FE1AA1 /* UserProductViewController.xib */,
 				48A656E518163C1B00746D36 /* CompanyViewController.xib */,
 				7B7539731CB84B6A00935272 /* NewWebViewController.xib */,
 			);
@@ -478,8 +470,8 @@
 				7B5F645A1CEFB6DD00495225 /* FacebookSDKStrings.bundle in Resources */,
 				7B49C3E21CB5B58F00AE47E2 /* SamsungMobileDevices in Resources */,
 				7B747D1A1CE3D06100EAA943 /* Test in Resources */,
-				7B01DEAF1CC032D0005A7AF9 /* AddProductViewController.xib in Resources */,
 				7B49C3F21CB5CC1B00AE47E2 /* GoogleMobileDevices in Resources */,
+				7B52A5781CF6463800FE1AA1 /* UserProductViewController.xib in Resources */,
 				48A656BF18163BF200746D36 /* InfoPlist.strings in Resources */,
 				48A656C718163BF200746D36 /* Images.xcassets in Resources */,
 				7B49C41B1CB5D47D00AE47E2 /* HuaweiMatebook in Resources */,
@@ -490,7 +482,6 @@
 				7B5F64601CEFB6DD00495225 /* LICENSE.txt in Resources */,
 				7B49C4031CB5CE9B00AE47E2 /* AndroidWear in Resources */,
 				7B01DEB11CC03702005A7AF9 /* DefaultProductImage in Resources */,
-				7B7457251CC17BF10041BEC4 /* EditProductViewController.xib in Resources */,
 				7B5A09E61CF63B1500557232 /* UserCompanyViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,15 +501,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B01DEAE1CC032D0005A7AF9 /* AddProductViewController.m in Sources */,
 				7BA189A61CF503A1000D44A1 /* Stocks.m in Sources */,
 				7B568E871CBC0B9000E8BEED /* DataAccessObject.m in Sources */,
 				48A656E618163C1B00746D36 /* CompanyViewController.m in Sources */,
 				48A656C518163BF200746D36 /* NavControllerAppDelegate.m in Sources */,
 				7B568E821CBBF8F700E8BEED /* Product.m in Sources */,
+				7B52A5771CF6463800FE1AA1 /* UserProductViewController.m in Sources */,
 				48A656C118163BF200746D36 /* main.m in Sources */,
 				48A656EB18163F8700746D36 /* ProductViewController.m in Sources */,
-				7B7457241CC17BF10041BEC4 /* EditProductViewController.m in Sources */,
 				7B5A09E51CF63B1500557232 /* UserCompanyViewController.m in Sources */,
 				7B568E7F1CBBF8EA00E8BEED /* Company.m in Sources */,
 				7B7539741CB84B6A00935272 /* NewWebViewController.m in Sources */,

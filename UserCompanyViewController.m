@@ -36,6 +36,7 @@
     } else {
         
         self.instructionLabel.text = @"Complete the fields below for the new company";
+        self.companyImage.image = [UIImage imageNamed:@"DefaultCompanyImage"];
         self.companyNameLabel.hidden = YES;
         self.companyImageNameLabel.hidden = YES;
         self.companyStockSymbolLabel.hidden = YES;
@@ -51,11 +52,17 @@
     DataAccessObject * dao = [DataAccessObject sharedInstance];
     
     if (self.company == nil) {
+        
         if ([self.companyNameTextField.text isEqualToString: @""] || [self.companyStockSymbolTextField.text isEqualToString: @""]) {
+            
             [self showIncompleteErrorMessage];
+            
         } else {
+            
             if (![self.companyImageNameTextField.text isEqualToString:@""]) {
+                
                 [dao createNewCompanyWithName:self.companyNameTextField.text stockSymbol:self.companyStockSymbolTextField.text imageName:self.companyImageNameTextField.text];
+                
             } else {
                 [dao createNewCompanyWithName:self.companyNameTextField.text stockSymbol:self.companyStockSymbolTextField.text imageName:@"DefaultCompanyImage"];
             }
@@ -63,6 +70,7 @@
     } else {
         [dao editcompany:self.company withName:self.companyNameTextField.text imageName:self.companyImageNameTextField.text stockSymbol:self.companyStockSymbolTextField.text];
     }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

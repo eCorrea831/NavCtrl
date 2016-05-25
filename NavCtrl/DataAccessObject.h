@@ -25,10 +25,7 @@
 
 //edit company/product
 - (Company *)editcompany:(Company *)company withName:(NSString *)name imageName:(NSString *)imageName stockSymbol:(NSString *)stockSymbol;
-
-- (Product *)editProduct:(Product *)product withName:(NSString *)name;
-- (Product *)editProduct:(Product *)product withUrl:(NSString *)url;
-- (Product *)editProduct:(Product *)product withImageName:(NSString *)imageName;
+- (Product *)editProduct:(Product *)product withName:(NSString *)name imageName:(NSString *)imageName website:(NSString *)website;
 
 //other editing
 - (void)deleteCompanyAndItsProducts:(Company *)company;
