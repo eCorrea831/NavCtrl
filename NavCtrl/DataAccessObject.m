@@ -23,7 +23,8 @@
 - (instancetype)initWithData;
 - (void)createDatabase;
 - (void)copyDatabaseIntoDocumentsDirectory;
-- (void)displayData;
+- (void)displayCompanies;
+- (void)displayProductsForCompany:(Company *)company;
 
 @end
 
@@ -45,7 +46,7 @@
     if (self) {
         self.companyList = [[NSMutableArray alloc]init];
         [self createDatabase];
-        [self displayData];
+        [self displayCompanies];
     }
     return self;
 }
@@ -74,26 +75,34 @@
     }
 }
 
-- (void)displayData {
+- (void)displayCompanies {
     
     sqlite3_stmt * companyStatement;
+    
     if (sqlite3_open([dbPathString UTF8String], &dataDB) == SQLITE_OK) {
+        
         [self.companyList removeAllObjects];
         NSString * querySQLCompanies = [NSString stringWithFormat:@"SELECT * FROM companies ORDER BY company_order"];
         const char * query_sql_companies = [querySQLCompanies UTF8String];
+        
         if (sqlite3_prepare(dataDB, query_sql_companies, -1, &companyStatement, NULL) == SQLITE_OK) {
+            
             self.largestCompanyID = 0;
             self.largestCompanyOrderNum = 0;
-
+            
             while (sqlite3_step(companyStatement) == SQLITE_ROW) {
+                
                 int companyID = sqlite3_column_int(companyStatement, 0);
                 int companyOrderNum = sqlite3_column_int(companyStatement, 3);
+                
                 if (companyID > self.largestCompanyID) {
                     self.largestCompanyID = companyID;
                 }
+                
                 if (companyOrderNum > self.largestCompanyOrderNum) {
                     self.largestCompanyOrderNum = companyOrderNum;
                 }
+                
                 NSString * companyDBName = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(companyStatement, 1)];
                 NSString * companyDBImage = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(companyStatement, 2)];
                 NSString * companyDBStockSymbol = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(companyStatement, 4)];
@@ -101,40 +110,52 @@
                 Company * dbCompany = [[Company alloc]initWithCompanyName:companyDBName imageName:companyDBImage stockSymbol:companyDBStockSymbol];
                 [dbCompany setCompanyID:companyID];
                 [dbCompany setCompanyOrderNum:companyOrderNum];
-                
-                sqlite3_stmt * productStatement;
-                NSString * querySQLProducts = [NSString stringWithFormat:@"SELECT * FROM products WHERE company_id = %d ORDER BY product_order", dbCompany.companyID];
-                const char * query_sql_products = [querySQLProducts UTF8String];
-                if (sqlite3_prepare(dataDB, query_sql_products, -1, &productStatement, NULL) == SQLITE_OK) {
-                    self.largestProductID = 0;
-                    self.largestProductOrderNum = 0;
-
-                    while (sqlite3_step(productStatement) == SQLITE_ROW) {
-                        int productID = sqlite3_column_int(productStatement, 4);
-                        int productOrderNum = sqlite3_column_int(productStatement, 5);
-                        if (productID > self.largestProductID) {
-                            self.largestProductID = productID;
-                        }
-                        if (productOrderNum > self.largestProductOrderNum) {
-                            self.largestProductOrderNum = productOrderNum;
-                        }
-                        NSString * productDBName = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(productStatement, 1)];
-                        NSString * productDBImage = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(productStatement, 2)];
-                        NSString * productDBUrl = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(productStatement, 3)];
-                        Product * dbProduct = [[Product alloc]initWithProductName:productDBName imageName:productDBImage url:productDBUrl];
-                        
-                        [dbProduct setProductID:productID];
-                        [dbProduct setProductOrderNum:productOrderNum];
-                        [dbCompany.productArray addObject:dbProduct];
-                        [dbProduct release];
-                    }
-                }
                 [self.companyList addObject:dbCompany];
+                
+                [self displayProductsForCompany:dbCompany];
+                
                 [dbCompany release];
             }
         }
     }
+}
+
+- (void)displayProductsForCompany:(Company *)company {
     
+    sqlite3_stmt * productStatement;
+    
+    NSString * querySQLProducts = [NSString stringWithFormat:@"SELECT * FROM products WHERE company_id = %d ORDER BY product_order", company.companyID];
+    const char * query_sql_products = [querySQLProducts UTF8String];
+    
+    if (sqlite3_prepare(dataDB, query_sql_products, -1, &productStatement, NULL) == SQLITE_OK) {
+        
+        self.largestProductID = 0;
+        self.largestProductOrderNum = 0;
+        
+        while (sqlite3_step(productStatement) == SQLITE_ROW) {
+    
+            int productID = sqlite3_column_int(productStatement, 4);
+            int productOrderNum = sqlite3_column_int(productStatement, 5);
+            
+            if (productID > self.largestProductID) {
+                self.largestProductID = productID;
+            }
+            
+            if (productOrderNum > self.largestProductOrderNum) {
+                self.largestProductOrderNum = productOrderNum;
+            }
+            
+            NSString * productDBName = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(productStatement, 1)];
+            NSString * productDBImage = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(productStatement, 2)];
+            NSString * productDBUrl = [[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(productStatement, 3)];
+            Product * dbProduct = [[Product alloc]initWithProductName:productDBName imageName:productDBImage url:productDBUrl];
+            
+            [dbProduct setProductID:productID];
+            [dbProduct setProductOrderNum:productOrderNum];
+            [company.productArray addObject:dbProduct];
+            [dbProduct release];
+        }
+    }
 }
 
 - (void)updateSqlWithString:(NSString *)string {
@@ -172,35 +193,22 @@
     newProduct.productOrderNum = self.largestProductOrderNum + 1;
     NSString * insertProductStmt = [NSString stringWithFormat:@"INSERT INTO products (company_id, product_name, product_image, product_url, product_order) VALUES ('%d','%s','%s', '%s', %d)", company.companyID, [name UTF8String], [imageName UTF8String], [url UTF8String], self.largestProductOrderNum + 1];
     [self updateSqlWithString:insertProductStmt];
+    [company.productArray addObject:newProduct];
      NSLog(@"New product created");
     [newProduct release];
     return newProduct;
 }
 
-- (Company *)editCompany:(Company *)company withName:(NSString *)name {
+- (Company *)editcompany:(Company *)company withName:(NSString *)name imageName:(NSString *)imageName stockSymbol:(NSString *)stockSymbol {
     
     company.companyName = name;
-    NSString * updateCompanyNameStmt = [NSString stringWithFormat:@"UPDATE companies SET company_name = '%s' WHERE company_id = %d", [name UTF8String], company.companyID];
-    [self updateSqlWithString:updateCompanyNameStmt];
-    NSLog(@"Company name updated");
-    return company;
-}
-
-- (Company *)editCompany:(Company *)company withStockSymbol:(NSString *)stockSymbol {
-    
-    company.stockSymbol = stockSymbol;
-    NSString * updateCompanyStockSymbolStmt = [NSString stringWithFormat:@"UPDATE companies SET company_stock_symbol = '%s' WHERE company_id = %d", [stockSymbol UTF8String], company.companyID];
-    [self updateSqlWithString:updateCompanyStockSymbolStmt];
-    NSLog(@"Company stock symbol updated");
-    return company;
-}
-
-- (Company *)editCompany:(Company *)company withImageName:(NSString *)imageName {
-    
     company.companyImageName = imageName;
-    NSString * updateCompanyImageStmt = [NSString stringWithFormat:@"UPDATE companies SET company_image = '%s' WHERE company_id = %d", [imageName UTF8String], company.companyID];
-    [self updateSqlWithString:updateCompanyImageStmt];
-    NSLog(@"Company image updated");
+    company.stockSymbol = stockSymbol;
+    
+    NSString * updateCompanyStmt = [NSString stringWithFormat:@"UPDATE companies SET company_name = '%s', company_image = '%s', company_stock_symbol = '%s' WHERE company_id = %d", [name UTF8String], [imageName UTF8String], [stockSymbol UTF8String], company.companyID];
+    [self updateSqlWithString:updateCompanyStmt];
+    NSLog(@"Company updated");
+    
     return company;
 }
 

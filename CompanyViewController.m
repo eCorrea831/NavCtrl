@@ -9,8 +9,7 @@
 #import "CompanyViewController.h"
 #import "ProductViewController.h"
 #import "DataAccessObject.h"
-#import "EditCompanyViewController.h"
-#import "AddCompanyViewController.h"
+#import "UserCompanyViewController.h"
 #import "Stocks.h"
 
 @class ProductViewController;
@@ -56,16 +55,16 @@
     [super viewWillAppear:animated];
     
     Stocks * stockPrice = [[Stocks alloc] init];
-    [stockPrice getStockPrices:self];
+    [stockPrice makeRequest:self];
     
     [self.tableView reloadData];
 }
 
 - (void)showCompanyInfo {
-    EditCompanyViewController * editCompanyVC = [[EditCompanyViewController alloc] init];
-    editCompanyVC.company = self.selectedCompany;
-    [self.navigationController pushViewController:editCompanyVC animated:YES];
-    [editCompanyVC release];
+    UserCompanyViewController * userCompanyVC = [[UserCompanyViewController alloc] init];
+    userCompanyVC.company = self.selectedCompany;
+    [self.navigationController pushViewController:userCompanyVC animated:YES];
+    [userCompanyVC release];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -164,9 +163,9 @@
 }
 
 - (void)addItem:sender {
-    AddCompanyViewController * addCompanyVC = [[AddCompanyViewController alloc]init];
-    [self.navigationController pushViewController:addCompanyVC animated:YES];
-    [addCompanyVC release];
+    UserCompanyViewController * userCompanyVC = [[UserCompanyViewController alloc]init];
+    [self.navigationController pushViewController:userCompanyVC animated:YES];
+    [userCompanyVC release];
 }
 
 - (void)dealloc {

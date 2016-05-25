@@ -17,11 +17,10 @@
 
 @implementation Stocks
 
-- (void)getStockPrices:(CompanyViewController*)companyVC {
+- (NSMutableString *)createUrl {
     
     self.dao = [DataAccessObject sharedInstance];
     
-    NSURLSession * session = [NSURLSession sharedSession];
     NSMutableString * stockSymbolString = [[NSMutableString alloc]initWithString:@"http://finance.yahoo.com/d/quotes.csv?s="];
     for (Company * company in self.dao.companyList) {
         [stockSymbolString appendString:company.stockSymbol];
@@ -29,20 +28,35 @@
     }
     [stockSymbolString appendString:@"&f=a"];
     
+    return stockSymbolString;
+}
+
+- (void)makeRequest:(CompanyViewController *)companyVC {
+    
+    NSURLSession * session = [NSURLSession sharedSession];
+    NSMutableString * stockSymbolString = [self createUrl];
+    
     NSURLSessionDataTask * stockData = [session dataTaskWithURL:[NSURL URLWithString:stockSymbolString] completionHandler:^(NSData * data, NSURLResponse *response, NSError * error) {
-        NSString *csv = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSMutableArray * stockArray = (NSMutableArray *)[csv componentsSeparatedByString:@"\n"];
-        [stockArray removeLastObject];
-        for (int index = 0; index < [self.dao.companyList count]; index++) {
-            self.dao.companyList[index].companyStockPrice = stockArray[index];
-        }
+
+        [self parseData:data];
         dispatch_async(dispatch_get_main_queue(), ^{
             [companyVC.tableView reloadData];
         });
-        [csv release];
     }];
-    [stockData resume];
     [stockSymbolString release];
+
+    [stockData resume];
+}
+
+- (void)parseData:(NSData *)data {
+    
+    NSString *csv = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSMutableArray * stockArray = (NSMutableArray *)[csv componentsSeparatedByString:@"\n"];
+    [stockArray removeLastObject];
+    for (int index = 0; index < [self.dao.companyList count]; index++) {
+        self.dao.companyList[index].companyStockPrice = stockArray[index];
+    }
+        [csv release];
 }
 
 @end

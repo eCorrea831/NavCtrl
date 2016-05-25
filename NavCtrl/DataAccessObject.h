@@ -23,12 +23,9 @@
 - (Company *)createNewCompanyWithName:(NSString *)name stockSymbol:(NSString *)stockSymbol imageName:(NSString *)imageName;
 - (Product *)createNewProductWithName:(NSString*)name image:(NSString *)imageName url:(NSString*)url forCompany:(Company *)company;
 
-//edit company
-- (Company *)editCompany:(Company *)company withName:(NSString *)name;
-- (Company *)editCompany:(Company *)company withStockSymbol:(NSString *)stockSymbol;
-- (Company *)editCompany:(Company *)company withImageName:(NSString *)imageName;
+//edit company/product
+- (Company *)editcompany:(Company *)company withName:(NSString *)name imageName:(NSString *)imageName stockSymbol:(NSString *)stockSymbol;
 
-//edit product
 - (Product *)editProduct:(Product *)product withName:(NSString *)name;
 - (Product *)editProduct:(Product *)product withUrl:(NSString *)url;
 - (Product *)editProduct:(Product *)product withImageName:(NSString *)imageName;

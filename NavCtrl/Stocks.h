@@ -11,6 +11,8 @@
 
 @interface Stocks : NSObject
 
-- (void)getStockPrices:(CompanyViewController *)companyVC;
+- (NSMutableString *)createUrl;
+- (void)makeRequest:(CompanyViewController *)companyVC;
+- (void)parseData:(NSData *)data;
 
 @end
