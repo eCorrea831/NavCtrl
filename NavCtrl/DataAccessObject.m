@@ -30,6 +30,8 @@
 
 @implementation DataAccessObject
 
+// FIXME: [[[UIApplication sharedApplication] delegate] managedObjectContext]; goes somewhere
+
 + (DataAccessObject *)sharedInstance {
     
     static DataAccessObject *_sharedInstance = nil;
