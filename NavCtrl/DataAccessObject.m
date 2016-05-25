@@ -32,6 +32,8 @@
 
 // FIXME: [[[UIApplication sharedApplication] delegate] managedObjectContext]; goes somewhere
 
+// TODO: Create core data objects here then start updating the methods to include core data logic
+
 + (DataAccessObject *)sharedInstance {
     
     static DataAccessObject *_sharedInstance = nil;

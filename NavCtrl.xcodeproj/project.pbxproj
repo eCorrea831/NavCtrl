@@ -284,6 +284,7 @@
 		48A656BB18163BF200746D36 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7B52A57B1CF65A2300FE1AA1 /* CoreDataModel.xcdatamodeld */,
 				7B5F644D1CEFB6DC00495225 /* Bolts.framework */,
 				7B5F644E1CEFB6DC00495225 /* DocSets */,
 				7B5F644F1CEFB6DC00495225 /* FacebookSDKStrings.bundle */,
@@ -302,7 +303,6 @@
 				48A656BD18163BF200746D36 /* InfoPlist.strings */,
 				48A656C018163BF200746D36 /* main.m */,
 				48A656C218163BF200746D36 /* NavCtrl-Prefix.pch */,
-				7B52A57B1CF65A2300FE1AA1 /* CoreDataModel.xcdatamodeld */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
