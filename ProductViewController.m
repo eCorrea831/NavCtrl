@@ -94,7 +94,7 @@
         [self showProductInfoForProduct:selectedProduct];
     } else {
         webViewController.url = [NSURL URLWithString:[self.company.productArray[indexPath.row] productUrl]];
-        [self.navigationController pushViewController:webViewController animated:YES];
+        [self.navigationController pushViewController:webViewController animated:NO];
     }
     [webViewController release];
 }
@@ -102,7 +102,7 @@
 #pragma mark - Sets editing, moving, and deletion of a selected row 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
-    [self.tableView setEditing:editing animated:YES];
+    [self.tableView setEditing:editing animated:NO];
     self.tableView.allowsSelectionDuringEditing = YES;
 }
 
@@ -154,7 +154,7 @@
     UserProductViewController * userProductVC = [[UserProductViewController alloc] init];
     userProductVC.company = self.company;
     userProductVC.product = product;
-    [self.navigationController pushViewController:userProductVC animated:YES];
+    [self.navigationController pushViewController:userProductVC animated:NO];
     [userProductVC release];
 }
 

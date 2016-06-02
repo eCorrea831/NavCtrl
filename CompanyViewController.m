@@ -54,8 +54,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    Stocks * stockPrice = [[Stocks alloc] init];
-    [stockPrice makeRequest:self];
+//    Stocks * stockPrice = [[Stocks alloc] init];
+//    [stockPrice makeRequest:self];
     
     [self.tableView reloadData];
 }
@@ -87,30 +87,30 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    self.selectedCompany = [self.dao.companyList objectAtIndex:[indexPath row]];
-    cell.textLabel.text = [self.selectedCompany companyName];
-    cell.imageView.image = [UIImage imageNamed:self.selectedCompany.companyImageName];
+    Company * company = [[Company alloc] init];
+    company = [self.dao.companyList objectAtIndex:[indexPath row]];
+    cell.textLabel.text = [company companyName];
+    cell.imageView.image = [UIImage imageNamed:company.companyImageName];
 
-    UILabel *stockPrice = [[UILabel alloc]init];
-    stockPrice.adjustsFontSizeToFitWidth = YES;
-    stockPrice.text = [NSString stringWithFormat:@"%.2f", [self.selectedCompany.companyStockPrice floatValue]];
-    cell.accessoryView = stockPrice;
-    [cell.accessoryView setFrame:CGRectMake(0, 0, 50, 50)];
-    [stockPrice release];
+//    UILabel *stockPrice = [[UILabel alloc]init];
+//    stockPrice.adjustsFontSizeToFitWidth = YES;
+//    stockPrice.text = [NSString stringWithFormat:@"%.2f", [self.selectedCompany.companyStockPrice floatValue]];
+//    cell.accessoryView = stockPrice;
+//    [cell.accessoryView setFrame:CGRectMake(0, 0, 50, 50)];
+//    [stockPrice release];
     return cell;
 }
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     self.selectedCompany = [self.dao.companyList objectAtIndex:[indexPath row]];
     if (self.isEditing) {
         [self showCompanyInfo];
     } else {
         self.productViewController.title = [self.selectedCompany companyName];
-        self.productViewController.company.productArray = [self.selectedCompany productArray];
         self.productViewController.company = self.selectedCompany;
-        [self.navigationController pushViewController:self.productViewController animated:YES];
+        [self.navigationController pushViewController:self.productViewController animated:NO];
     }
 }
 

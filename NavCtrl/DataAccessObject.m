@@ -30,7 +30,8 @@
 - (NSString *) archivePath;
 - (void)saveChanges;
 - (void)createCompanyData;
-- (void)createProductDataForCompany:(Company *)company productSet:(NSMutableSet *)productSet;
+- (void)createProductDataForCompany:(Company *)company;
+- (void)createManagedData;
 - (void)displayCompaniesAndProducts;
 - (void)matchNSObjectCompany:(Company *)company toManagedObjectCompany:(CompanyManagedObject *)managedCompany;
 - (void)matchNSObjectProduct:(Product *)product toManagedObjectProduct:(ProductManagedObject *)managedProduct;
@@ -58,13 +59,13 @@
     
         self = [super init];
         if (self) {
-            self.companyList = [[NSMutableArray alloc]init];
             if (self.didAlreadyRun) {
                 [self initModelContext];
                 [self displayCompaniesAndProducts];
             } else {
                 [self initModelContext];
                 [self createCompanyData];
+                [self createManagedData];
             }
         }
         return self;
@@ -116,168 +117,137 @@
 
 - (void)createCompanyData {
     
-    //apple
-    CompanyManagedObject * managedApple = [NSEntityDescription insertNewObjectForEntityForName:@"Company" inManagedObjectContext:context];
-    [CompanyManagedObject create:managedApple withManagedCompanyName:@"Apple Mobile Devices" orderNum:@1 imageName:@"AppleMobileDevices" stockSymbol:@"AAPL"];
-    NSMutableSet * appleProducts = [managedApple mutableSetValueForKey:@"products"];
-    [self saveChanges];
+    Company * apple = [[Company alloc] initWithCompanyName:@"Apple Mobile Devices"
+                                                  orderNum:@1
+                                                 imageName:@"AppleMobileDevices"
+                                               stockSymbol:@"AAPL"];
+    [self createProductDataForCompany:apple];
     
-    Company * apple = [[Company alloc] initWithCompanyName:managedApple.companyName orderNum:managedApple.companyOrderNum imageName:managedApple.companyImageName stockSymbol:managedApple.companyStockSymbol];
-
-    [self.companyList addObject:apple];
-    [self createProductDataForCompany:apple productSet:appleProducts];
+    Company * samsung = [[Company alloc] initWithCompanyName:@"Samsung Mobile Devices"
+                                                    orderNum:@2
+                                                   imageName:@"SamsungMobileDevices"
+                                                 stockSymbol:@"SSNLF"];
+    [self createProductDataForCompany:samsung];
     
-    //samsung
-    CompanyManagedObject * managedSamsung = [NSEntityDescription insertNewObjectForEntityForName:@"Company" inManagedObjectContext:context];
-    [CompanyManagedObject create:managedSamsung withManagedCompanyName:@"Samsung Mobile Devices" orderNum:@2 imageName:@"SamsungMobileDevices" stockSymbol:@"SSNLF"];
-    NSMutableSet * samsungProducts = [managedSamsung mutableSetValueForKey:@"products"];
-    [self saveChanges];
+    Company * google = [[Company alloc] initWithCompanyName:@"Google Mobile Devices"
+                                                   orderNum:@3
+                                                  imageName:@"GoogleMobileDevices"
+                                                stockSymbol:@"GOOG"];
+    [self createProductDataForCompany:google];
     
-    Company * samsung = [[Company alloc] initWithCompanyName:managedSamsung.companyName orderNum:managedSamsung.companyOrderNum imageName:managedSamsung.companyImageName stockSymbol:managedSamsung.companyStockSymbol];
-    [self.companyList addObject:samsung];
-    [self createProductDataForCompany:samsung productSet:samsungProducts];
+    Company * huawei = [[Company alloc] initWithCompanyName:@"Huawei Mobile Devices"
+                                                   orderNum:@4
+                                                  imageName:@"HuaweiMobileDevices"
+                                                stockSymbol:@"TSLA"];
+    [self createProductDataForCompany:huawei];
     
-    //google
-    CompanyManagedObject * managedGoogle = [NSEntityDescription insertNewObjectForEntityForName:@"Company" inManagedObjectContext:context];
-    [CompanyManagedObject create:managedGoogle withManagedCompanyName:@"Google Mobile Devices" orderNum:@3 imageName:@"GoogleMobileDevices" stockSymbol:@"GOOG"];
-    NSMutableSet * googleProducts = [managedGoogle mutableSetValueForKey:@"products"];
-    [self saveChanges];
-    
-    Company * google = [[Company alloc] initWithCompanyName:managedGoogle.companyName orderNum:managedGoogle.companyOrderNum imageName:managedGoogle.companyImageName stockSymbol:managedGoogle.companyStockSymbol];
-    [self.companyList addObject:google];
-    [self createProductDataForCompany:google productSet:googleProducts];
-    
-    //huawei
-    CompanyManagedObject * managedHuawei = [NSEntityDescription insertNewObjectForEntityForName:@"Company" inManagedObjectContext:context];
-    [CompanyManagedObject create:managedHuawei withManagedCompanyName:@"Huawei Mobile Devices" orderNum:@4 imageName:@"HuaweiMobileDevices" stockSymbol:@"TSLA"];
-    NSMutableSet * huaweiProducts = [managedHuawei mutableSetValueForKey:@"products"];
-    [self saveChanges];
-    
-    Company * huawei = [[Company alloc] initWithCompanyName:managedHuawei.companyName orderNum:managedHuawei.companyOrderNum imageName:managedHuawei.companyImageName stockSymbol:managedHuawei.companyStockSymbol];
-    [self.companyList addObject:huawei];
-    [self createProductDataForCompany:huawei productSet:huaweiProducts];
+    self.companyList = [[NSMutableArray alloc]initWithObjects:apple, samsung, google, huawei, nil];
 }
 
-- (void)createProductDataForCompany:(Company *)company productSet:(NSMutableSet *)productSet {
-    
-    if ([company.companyName isEqualToString:@"Apple Mobile Devices"]) {
+- (void)createProductDataForCompany:(Company *)company {
 
-        //iPad
-        ProductManagedObject * managedIPad = [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
-        [ProductManagedObject create:managedIPad withManagedProductName:@"iPad" orderNum:@1 imageName:@"iPad" url:@"http://www.apple.com/ipad/"];
-        [productSet addObject:managedIPad];
-        [self saveChanges];
+    if ([company.companyName isEqualToString:@"Apple Mobile Devices"]) {
         
-        Product * iPad = [[Product alloc] initWithProductName:managedIPad.productName  orderNum:managedIPad.productOrderNum imageName:managedIPad.productImageName url:managedIPad.productUrl];
-        [company.productArray addObject:iPad];
+        Product * iPad = [[Product alloc] initWithProductName:@"iPad"
+                                                     orderNum:@1
+                                                    imageName:@"iPad"
+                                                          url:@"http://www.apple.com/ipad/"];
         
-        //iPod
-        ProductManagedObject * managedIPod = [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
-        [ProductManagedObject create:managedIPod withManagedProductName:@"iPod Touch" orderNum:@2 imageName:@"iPodTouch" url:@"http://www.apple.com/ipod/"];
-        [productSet addObject:managedIPod];
-        [self saveChanges];
+        Product * iPod = [[Product alloc] initWithProductName:@"iPod Touch"
+                                                     orderNum:@2
+                                                    imageName:@"iPodTouch"
+                                                          url:@"http://www.apple.com/ipod/"];
         
-        Product * iPod = [[Product alloc] initWithProductName:managedIPod.productName orderNum:managedIPod.productOrderNum imageName:managedIPod.productImageName url:managedIPod.productUrl];
-        [company.productArray addObject:iPod];
+        Product * iPhone = [[Product alloc] initWithProductName:@"iPhone"
+                                                       orderNum:@3
+                                                      imageName:@"iPhone"
+                                                            url:@"http://www.apple.com/iphone/"];
         
-        //iPhone
-        ProductManagedObject * managedIPhone = [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
-        [ProductManagedObject create:managedIPhone withManagedProductName:@"iPhone" orderNum:@3 imageName:@"iPhone" url:@"http://www.apple.com/iphone/"];
-        [productSet addObject:managedIPhone];
-        [self saveChanges];
-        
-        Product * iPhone = [[Product alloc] initWithProductName:managedIPhone.productName orderNum:managedIPhone.productOrderNum imageName:managedIPhone.productImageName url:managedIPhone.productUrl];
-        [company.productArray addObject:iPhone];
+        company.productArray = [[NSMutableArray alloc]initWithObjects:iPad, iPod, iPhone, nil];
     }
     
     if ([company.companyName isEqualToString:@"Samsung Mobile Devices"]) {
         
-        //galaxyS4
-        ProductManagedObject * managedGalaxyS4 = [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
-        [ProductManagedObject create:managedGalaxyS4 withManagedProductName:@"Galaxy S4" orderNum:@4 imageName:@"GalaxyS4" url:@"http://www.samsung.com/us/mobile/cell-phones/SCH-I545ZKPVZW"];
-        [productSet addObject:managedGalaxyS4];
-        [self saveChanges];
+        Product * galaxyS4 = [[Product alloc] initWithProductName:@"Galaxy S4"
+                                                         orderNum:@4
+                                                        imageName:@"GalaxyS4"
+                                                              url:@"http://www.samsung.com/us/mobile/cell-phones/SCH-I545ZKPVZW"];
         
-        Product * galaxyS4 = [[Product alloc] initWithProductName:managedGalaxyS4.productName  orderNum:managedGalaxyS4.productOrderNum imageName:managedGalaxyS4.productImageName url:managedGalaxyS4.productUrl];
-        [company.productArray addObject:galaxyS4];
+        Product * galaxyNote = [[Product alloc] initWithProductName:@"Galaxy Note"
+                                                           orderNum:@5
+                                                          imageName:@"GalaxyNote"
+                                                                url:@"http://www.samsung.com/us/explore/galaxy-note-5-features-and-specs/?cid=ppc-"];
         
-        //galaxyNote
-        ProductManagedObject * managedGalaxyNote = [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
-        [ProductManagedObject create:managedGalaxyNote withManagedProductName:@"Galaxy Note" orderNum:@5 imageName:@"GalaxyNote" url:@"http://www.samsung.com/us/explore/galaxy-note-5-features-and-specs/?cid=ppc-"];
-        [productSet addObject:managedGalaxyNote];
-        [self saveChanges];
+        Product * galaxyTab = [[Product alloc] initWithProductName:@"Galaxy Tab"
+                                                          orderNum:@6
+                                                         imageName:@"GalaxyTab"
+                                                               url:@"http://www.samsung.com/us/explore/tab-s2-features-and-specs/?cid=ppc-"];
         
-        Product * galaxyNote = [[Product alloc] initWithProductName:managedGalaxyNote.productName orderNum:managedGalaxyNote.productOrderNum imageName:managedGalaxyNote.productImageName url:managedGalaxyNote.productUrl];
-        [company.productArray addObject:galaxyNote];
-        
-        //galaxyTab
-        ProductManagedObject * managedGalaxyTab = [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
-        [ProductManagedObject create:managedGalaxyTab withManagedProductName:@"Galaxy Tab" orderNum:@6 imageName:@"GalaxyTab" url:@"http://www.samsung.com/us/explore/tab-s2-features-and-specs/?cid=ppc-"];
-        [productSet addObject:managedGalaxyTab];
-        [self saveChanges];
-        
-        Product * galaxyTab = [[Product alloc] initWithProductName:managedGalaxyTab.productName orderNum:managedGalaxyTab.productOrderNum imageName:managedGalaxyTab.productImageName url:managedGalaxyTab.productUrl];
-        [company.productArray addObject:galaxyTab];
+        company.productArray = [[NSMutableArray alloc]initWithObjects:galaxyS4, galaxyNote, galaxyTab, nil];
     }
     
     if ([company.companyName isEqualToString:@"Google Mobile Devices"]) {
         
-        //androidWear
-        ProductManagedObject * managedAndroidWear = [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
-        [ProductManagedObject create:managedAndroidWear withManagedProductName:@"Android Wear" orderNum:@7 imageName:@"AndroidWear" url:@"https://www.android.com/wear/"];
-        [productSet addObject:managedAndroidWear];
-        [self saveChanges];
+        Product * androidWear = [[Product alloc] initWithProductName:@"Android Wear"
+                                                            orderNum:@7
+                                                           imageName:@"AndroidWear"
+                                                                 url:@"https://www.android.com/wear/"];
         
-        Product * androidWear = [[Product alloc] initWithProductName:managedAndroidWear.productName orderNum:managedAndroidWear.productOrderNum imageName:managedAndroidWear.productImageName url:managedAndroidWear.productUrl];
-        [company.productArray addObject:androidWear];
         
-        //androidTablet
-        ProductManagedObject * managedAndroidTablet = [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
-        [ProductManagedObject create:managedAndroidTablet withManagedProductName:@"Android Tablet" orderNum:@8 imageName:@"AndroidTablet" url:@"https://www.android.com/tablets/"];
-        [productSet addObject:managedAndroidTablet];
-        [self saveChanges];
+        Product * androidTablet = [[Product alloc] initWithProductName:@"Android Tablet"
+                                                              orderNum:@8
+                                                             imageName:@"AndroidTablet"
+                                                                   url:@"https://www.android.com/tablets/"];
         
-        Product * androidTablet = [[Product alloc] initWithProductName:managedAndroidTablet.productName orderNum:managedAndroidTablet.productOrderNum imageName:managedAndroidTablet.productImageName url:managedAndroidTablet.productUrl];
-        [company.productArray addObject:androidTablet];
-        
-        //androidPhone
-        ProductManagedObject * managedAndroidPhone = [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
-        [ProductManagedObject create:managedAndroidPhone withManagedProductName:@"Android Phone" orderNum:@9 imageName:@"AndroidPhone" url:@"https://www.android.com/phones/"];
-        [productSet addObject:managedAndroidPhone];
-        [self saveChanges];
-        
-        Product * androidPhone = [[Product alloc] initWithProductName:managedAndroidPhone.productName orderNum:managedAndroidPhone.productOrderNum imageName:managedAndroidPhone.productImageName url:managedAndroidPhone.productUrl];
-        [company.productArray addObject:androidPhone];
+        Product * androidPhone = [[Product alloc] initWithProductName:@"Android Phone"
+                                                             orderNum:@9
+                                                            imageName:@"AndroidPhone"
+                                                                  url:@"https://www.android.com/phones/"];
+
+        company.productArray = [[NSMutableArray alloc]initWithObjects:androidWear, androidTablet, androidPhone, nil];
     }
     
     if ([company.companyName isEqualToString:@"Huawei Mobile Devices"]) {
         
-        //huaweiMate
-        ProductManagedObject * managedHuaweiMate = [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
-        [ProductManagedObject create:managedHuaweiMate withManagedProductName:@"Huawei Mate" orderNum:@10 imageName:@"HuaweiMate" url:@"http://consumer.huawei.com/minisite/worldwide/mate8/"];
-        [productSet addObject:managedHuaweiMate];
-         [self saveChanges];
+        Product * huaweiMate = [[Product alloc] initWithProductName:@"Huawei Mate"
+                                                           orderNum:@10
+                                                          imageName:@"HuaweiMate"
+                                                                url:@"http://consumer.huawei.com/minisite/worldwide/mate8/"];
         
-        Product * huaweiMate = [[Product alloc] initWithProductName:managedHuaweiMate.productName orderNum:managedHuaweiMate.productOrderNum imageName:managedHuaweiMate.productImageName url:managedHuaweiMate.productUrl];
-        [company.productArray addObject:huaweiMate];
+        Product * huaweiMateBook = [[Product alloc] initWithProductName:@"Huawei MateBook"
+                                                               orderNum:@11
+                                                              imageName:@"HuaweiMatebook"
+                                                                    url:@"http://consumer.huawei.com/minisite/worldwide/matebook/screen.htm"];
         
-        //huaweiMateBook
-        ProductManagedObject * managedHuaweiMateBook = [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
-        [ProductManagedObject create:managedHuaweiMateBook withManagedProductName:@"Huawei MateBook" orderNum:@11 imageName:@"HuaweiMatebook" url:@"http://consumer.huawei.com/minisite/worldwide/matebook/screen.htm"];
-        [productSet addObject:managedHuaweiMateBook];
-        [self saveChanges];
+        Product * huaweiTalkBand = [[Product alloc] initWithProductName:@"Huawei Talkband"
+                                                               orderNum:@12
+                                                               imageName:@"HuaweiTalkband"
+                                                                    url:@"http://consumer.huawei.com/en/wearables/talkband-b3/"];
         
-        Product * huaweiMateBook = [[Product alloc] initWithProductName:managedHuaweiMateBook.productName orderNum:managedHuaweiMateBook.productOrderNum imageName:managedHuaweiMateBook.productImageName url:managedHuaweiMateBook.productUrl];
-        [company.productArray addObject:huaweiMateBook];
+        company.productArray = [[NSMutableArray alloc]initWithObjects:huaweiMate, huaweiMateBook, huaweiTalkBand, nil];
+    }
+}
+
+- (void)createManagedData {
+    
+    for (Company * company in self.companyList) {
         
-        //huaweiTalkBand
-        ProductManagedObject * managedHuaweiTalkBand = [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
-        [ProductManagedObject create:managedHuaweiTalkBand withManagedProductName:@"Huawei Talkband" orderNum:@12 imageName:@"HuaweiTalkband" url:@"http://consumer.huawei.com/en/wearables/talkband-b3/"];
-        [productSet addObject:managedHuaweiTalkBand];
-        [self saveChanges];
+        CompanyManagedObject * managedCompany = [NSEntityDescription insertNewObjectForEntityForName:@"Company" inManagedObjectContext:context];
         
-        Product * huaweiTalkBand = [[Product alloc] initWithProductName:managedHuaweiTalkBand.productName orderNum:managedHuaweiTalkBand.productOrderNum imageName:managedHuaweiTalkBand.productImageName url:managedHuaweiTalkBand.productUrl];
-        [company.productArray addObject:huaweiTalkBand];
+        [CompanyManagedObject create:managedCompany withManagedCompanyName:company.companyName orderNum:company.companyOrderNum imageName:company.companyImageName stockSymbol:company.companyStockSymbol];
+        
+        NSMutableSet * productSet = [managedCompany mutableSetValueForKey:@"products"];
+        
+        for (Product * product in company.productArray) {
+            
+            ProductManagedObject * managedProduct = [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
+            
+            [ProductManagedObject create:managedProduct withManagedProductName:product.productName orderNum:product.productOrderNum imageName:product.productImageName url:product.productUrl];
+            
+            [productSet addObject:managedProduct];
+
+            [self saveChanges];
+        }
     }
 }
 
@@ -295,12 +265,20 @@
             [NSException raise:@"Fetch Failed" format:@"Reason: %@", [error localizedDescription]];
         } else {
         
+            //FIXME: Issue is either in saving the data or in fetching here
             for (NSManagedObject * managedCompany in result) {
-                Company * company = [[Company alloc]initWithCompanyName:[managedCompany valueForKey:@"companyName"] orderNum:[managedCompany valueForKey:@"companyOrderNum"] imageName:[managedCompany valueForKey:@"companyImageName"] stockSymbol:[managedCompany valueForKey:@"companyStockSymbol"]];
+                Company * company = [[Company alloc]initWithCompanyName:[managedCompany valueForKey:@"companyName"]
+                                                               orderNum:[managedCompany valueForKey:@"companyOrderNum"]
+                                                              imageName:[managedCompany valueForKey:@"companyImageName"]
+                                                            stockSymbol:[managedCompany valueForKey:@"companyStockSymbol"]];
+                [self.companyList addObject:company];
                 
                 for (NSManagedObject * managedProduct in [managedCompany valueForKey:@"products"]) {
                     
-                    Product * product = [[Product alloc]initWithProductName:[managedProduct valueForKey:@"productName"] orderNum:[managedProduct valueForKey:@"productOrderNum"] imageName:[managedProduct valueForKey:@"productImageName"] url:[managedProduct valueForKey:@"productUrl"]];
+                    Product * product = [[Product alloc]initWithProductName:[managedProduct valueForKey:@"productName"]
+                                                                   orderNum:[managedProduct valueForKey:@"productOrderNum"]
+                                                                  imageName:[managedProduct valueForKey:@"productImageName"]
+                                                                        url:[managedProduct valueForKey:@"productUrl"]];
                     [company.productArray addObject:product];
                 }
                 
@@ -362,7 +340,7 @@
     [company.productArray addObject:newProduct];
     
      NSLog(@"New product created");
-    //[newProduct release];
+    [newProduct release];
     return newProduct;
 }
 
