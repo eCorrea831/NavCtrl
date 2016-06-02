@@ -138,10 +138,10 @@
     [self.company.productArray insertObject:selectedProduct atIndex:toIndexPath.row];
     [self.tableView moveRowAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
     
-    int i = 0;
+    NSNumber * i = 0;
     for (Product * product in self.company.productArray) {
         [product setProductOrderNum:i];
-        i++;
+        i = @([i floatValue] + 1);
     }
     
     [self.dao moveProductsForCompany:self.company];

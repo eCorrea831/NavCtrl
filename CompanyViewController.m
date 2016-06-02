@@ -154,9 +154,12 @@
     [self.dao.companyList insertObject:companyToMove atIndex:toIndexPath.row];
     [self.tableView moveRowAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
     
-    for (int i = 0; i < self.dao.companyList.count; i++ ) {
-        [self.dao.companyList[i] setCompanyOrderNum:i];
+    NSNumber * i = 0;
+    for (Company * company in self.dao.companyList) {
+        [company setCompanyOrderNum:i];
+        i = @([i floatValue] + 1);
     }
+
     [self.dao moveCompanies];
     [self.tableView endUpdates];
     [self.tableView reloadData];

@@ -10,7 +10,7 @@
 
 @implementation Product
 
-- (Product *)initWithProductName:(NSString *)name orderNum:(int)orderNum imageName:(NSString *)imageName url:(NSString *)url {
+- (Product *)initWithProductName:(NSString *)name orderNum:(NSNumber *)orderNum imageName:(NSString *)imageName url:(NSString *)url {
     
     self = [super init];
     if (self) {

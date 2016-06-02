@@ -10,13 +10,13 @@
 
 @interface Company : NSObject
 
-@property (nonatomic) int companyOrderNum;
+@property (nonatomic, retain) NSNumber * companyOrderNum;
 @property (nonatomic, retain) NSString * companyName;
 @property (nonatomic, retain) NSString * companyImageName;
 @property (nonatomic, retain) NSString * companyStockSymbol;
 @property (nonatomic, retain) NSString * companyStockPrice;
 @property (nonatomic, retain) NSMutableArray * productArray;
 
-- (instancetype)initWithCompanyName:(NSString *)name orderNum:(int)orderNum imageName:(NSString *)imageName stockSymbol:(NSString *)stockSymbol;
+- (instancetype)initWithCompanyName:(NSString *)name orderNum:(NSNumber *)orderNum imageName:(NSString *)imageName stockSymbol:(NSString *)stockSymbol;
 
 @end

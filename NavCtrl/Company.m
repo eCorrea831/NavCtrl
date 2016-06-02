@@ -10,7 +10,7 @@
 
 @implementation Company
 
-- (instancetype)initWithCompanyName:(NSString *)name orderNum:(int)orderNum imageName:(NSString *)imageName stockSymbol:(NSString *)stockSymbol {
+- (instancetype)initWithCompanyName:(NSString *)name orderNum:(NSNumber *)orderNum imageName:(NSString *)imageName stockSymbol:(NSString *)stockSymbol {
     
     self = [super init];
     if (self) {

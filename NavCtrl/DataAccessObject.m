@@ -20,9 +20,9 @@
     NSManagedObjectModel *model;
 }
 
-@property (nonatomic) int largestCompanyOrderNum;
-@property (nonatomic) int largestProductOrderNum;
-@property (nonatomic) int didAlreadyRun;
+@property (nonatomic) NSNumber * largestCompanyOrderNum;
+@property (nonatomic) NSNumber * largestProductOrderNum;
+@property (nonatomic) NSInteger didAlreadyRun;
 
 - (instancetype)initWithData;
 - (void)initModelContext;
@@ -122,7 +122,7 @@
     NSMutableSet * appleProducts = [managedApple mutableSetValueForKey:@"products"];
     [self saveChanges];
     
-    Company * apple = [[Company alloc] initWithCompanyName:managedApple.companyName orderNum:[managedApple.companyOrderNum integerValue] imageName:managedApple.companyImageName stockSymbol:managedApple.companyStockSymbol];
+    Company * apple = [[Company alloc] initWithCompanyName:managedApple.companyName orderNum:managedApple.companyOrderNum imageName:managedApple.companyImageName stockSymbol:managedApple.companyStockSymbol];
 
     [self.companyList addObject:apple];
     [self createProductDataForCompany:apple productSet:appleProducts];
@@ -133,7 +133,7 @@
     NSMutableSet * samsungProducts = [managedSamsung mutableSetValueForKey:@"products"];
     [self saveChanges];
     
-    Company * samsung = [[Company alloc] initWithCompanyName:managedSamsung.companyName orderNum:[managedSamsung.companyOrderNum integerValue] imageName:managedSamsung.companyImageName stockSymbol:managedSamsung.companyStockSymbol];
+    Company * samsung = [[Company alloc] initWithCompanyName:managedSamsung.companyName orderNum:managedSamsung.companyOrderNum imageName:managedSamsung.companyImageName stockSymbol:managedSamsung.companyStockSymbol];
     [self.companyList addObject:samsung];
     [self createProductDataForCompany:samsung productSet:samsungProducts];
     
@@ -143,7 +143,7 @@
     NSMutableSet * googleProducts = [managedGoogle mutableSetValueForKey:@"products"];
     [self saveChanges];
     
-    Company * google = [[Company alloc] initWithCompanyName:managedGoogle.companyName orderNum:[managedGoogle.companyOrderNum integerValue] imageName:managedGoogle.companyImageName stockSymbol:managedGoogle.companyStockSymbol];
+    Company * google = [[Company alloc] initWithCompanyName:managedGoogle.companyName orderNum:managedGoogle.companyOrderNum imageName:managedGoogle.companyImageName stockSymbol:managedGoogle.companyStockSymbol];
     [self.companyList addObject:google];
     [self createProductDataForCompany:google productSet:googleProducts];
     
@@ -153,7 +153,7 @@
     NSMutableSet * huaweiProducts = [managedHuawei mutableSetValueForKey:@"products"];
     [self saveChanges];
     
-    Company * huawei = [[Company alloc] initWithCompanyName:managedHuawei.companyName orderNum:[managedHuawei.companyOrderNum integerValue] imageName:managedHuawei.companyImageName stockSymbol:managedHuawei.companyStockSymbol];
+    Company * huawei = [[Company alloc] initWithCompanyName:managedHuawei.companyName orderNum:managedHuawei.companyOrderNum imageName:managedHuawei.companyImageName stockSymbol:managedHuawei.companyStockSymbol];
     [self.companyList addObject:huawei];
     [self createProductDataForCompany:huawei productSet:huaweiProducts];
 }
@@ -168,7 +168,7 @@
         [productSet addObject:managedIPad];
         [self saveChanges];
         
-        Product * iPad = [[Product alloc] initWithProductName:managedIPad.productName  orderNum:[managedIPad.productOrderNum integerValue] imageName:managedIPad.productImageName url:managedIPad.productUrl];
+        Product * iPad = [[Product alloc] initWithProductName:managedIPad.productName  orderNum:managedIPad.productOrderNum imageName:managedIPad.productImageName url:managedIPad.productUrl];
         [company.productArray addObject:iPad];
         
         //iPod
@@ -177,7 +177,7 @@
         [productSet addObject:managedIPod];
         [self saveChanges];
         
-        Product * iPod = [[Product alloc] initWithProductName:managedIPod.productName orderNum:[managedIPod.productOrderNum integerValue] imageName:managedIPod.productImageName url:managedIPod.productUrl];
+        Product * iPod = [[Product alloc] initWithProductName:managedIPod.productName orderNum:managedIPod.productOrderNum imageName:managedIPod.productImageName url:managedIPod.productUrl];
         [company.productArray addObject:iPod];
         
         //iPhone
@@ -186,7 +186,7 @@
         [productSet addObject:managedIPhone];
         [self saveChanges];
         
-        Product * iPhone = [[Product alloc] initWithProductName:managedIPhone.productName orderNum:[managedIPhone.productOrderNum integerValue] imageName:managedIPhone.productImageName url:managedIPhone.productUrl];
+        Product * iPhone = [[Product alloc] initWithProductName:managedIPhone.productName orderNum:managedIPhone.productOrderNum imageName:managedIPhone.productImageName url:managedIPhone.productUrl];
         [company.productArray addObject:iPhone];
     }
     
@@ -198,7 +198,7 @@
         [productSet addObject:managedGalaxyS4];
         [self saveChanges];
         
-        Product * galaxyS4 = [[Product alloc] initWithProductName:managedGalaxyS4.productName  orderNum:[managedGalaxyS4.productOrderNum integerValue] imageName:managedGalaxyS4.productImageName url:managedGalaxyS4.productUrl];
+        Product * galaxyS4 = [[Product alloc] initWithProductName:managedGalaxyS4.productName  orderNum:managedGalaxyS4.productOrderNum imageName:managedGalaxyS4.productImageName url:managedGalaxyS4.productUrl];
         [company.productArray addObject:galaxyS4];
         
         //galaxyNote
@@ -207,7 +207,7 @@
         [productSet addObject:managedGalaxyNote];
         [self saveChanges];
         
-        Product * galaxyNote = [[Product alloc] initWithProductName:managedGalaxyNote.productName orderNum:[managedGalaxyNote.productOrderNum integerValue] imageName:managedGalaxyNote.productImageName url:managedGalaxyNote.productUrl];
+        Product * galaxyNote = [[Product alloc] initWithProductName:managedGalaxyNote.productName orderNum:managedGalaxyNote.productOrderNum imageName:managedGalaxyNote.productImageName url:managedGalaxyNote.productUrl];
         [company.productArray addObject:galaxyNote];
         
         //galaxyTab
@@ -216,7 +216,7 @@
         [productSet addObject:managedGalaxyTab];
         [self saveChanges];
         
-        Product * galaxyTab = [[Product alloc] initWithProductName:managedGalaxyTab.productName orderNum:[managedGalaxyTab.productOrderNum integerValue] imageName:managedGalaxyTab.productImageName url:managedGalaxyTab.productUrl];
+        Product * galaxyTab = [[Product alloc] initWithProductName:managedGalaxyTab.productName orderNum:managedGalaxyTab.productOrderNum imageName:managedGalaxyTab.productImageName url:managedGalaxyTab.productUrl];
         [company.productArray addObject:galaxyTab];
     }
     
@@ -228,7 +228,7 @@
         [productSet addObject:managedAndroidWear];
         [self saveChanges];
         
-        Product * androidWear = [[Product alloc] initWithProductName:managedAndroidWear.productName orderNum:[managedAndroidWear.productOrderNum integerValue] imageName:managedAndroidWear.productImageName url:managedAndroidWear.productUrl];
+        Product * androidWear = [[Product alloc] initWithProductName:managedAndroidWear.productName orderNum:managedAndroidWear.productOrderNum imageName:managedAndroidWear.productImageName url:managedAndroidWear.productUrl];
         [company.productArray addObject:androidWear];
         
         //androidTablet
@@ -237,7 +237,7 @@
         [productSet addObject:managedAndroidTablet];
         [self saveChanges];
         
-        Product * androidTablet = [[Product alloc] initWithProductName:managedAndroidTablet.productName orderNum:[managedAndroidTablet.productOrderNum integerValue] imageName:managedAndroidTablet.productImageName url:managedAndroidTablet.productUrl];
+        Product * androidTablet = [[Product alloc] initWithProductName:managedAndroidTablet.productName orderNum:managedAndroidTablet.productOrderNum imageName:managedAndroidTablet.productImageName url:managedAndroidTablet.productUrl];
         [company.productArray addObject:androidTablet];
         
         //androidPhone
@@ -246,7 +246,7 @@
         [productSet addObject:managedAndroidPhone];
         [self saveChanges];
         
-        Product * androidPhone = [[Product alloc] initWithProductName:managedAndroidPhone.productName orderNum:[managedAndroidPhone.productOrderNum integerValue] imageName:managedAndroidPhone.productImageName url:managedAndroidPhone.productUrl];
+        Product * androidPhone = [[Product alloc] initWithProductName:managedAndroidPhone.productName orderNum:managedAndroidPhone.productOrderNum imageName:managedAndroidPhone.productImageName url:managedAndroidPhone.productUrl];
         [company.productArray addObject:androidPhone];
     }
     
@@ -258,7 +258,7 @@
         [productSet addObject:managedHuaweiMate];
          [self saveChanges];
         
-        Product * huaweiMate = [[Product alloc] initWithProductName:managedHuaweiMate.productName orderNum:[managedHuaweiMate.productOrderNum integerValue] imageName:managedHuaweiMate.productImageName url:managedHuaweiMate.productUrl];
+        Product * huaweiMate = [[Product alloc] initWithProductName:managedHuaweiMate.productName orderNum:managedHuaweiMate.productOrderNum imageName:managedHuaweiMate.productImageName url:managedHuaweiMate.productUrl];
         [company.productArray addObject:huaweiMate];
         
         //huaweiMateBook
@@ -267,7 +267,7 @@
         [productSet addObject:managedHuaweiMateBook];
         [self saveChanges];
         
-        Product * huaweiMateBook = [[Product alloc] initWithProductName:managedHuaweiMateBook.productName orderNum:[managedHuaweiMateBook.productOrderNum integerValue] imageName:managedHuaweiMateBook.productImageName url:managedHuaweiMateBook.productUrl];
+        Product * huaweiMateBook = [[Product alloc] initWithProductName:managedHuaweiMateBook.productName orderNum:managedHuaweiMateBook.productOrderNum imageName:managedHuaweiMateBook.productImageName url:managedHuaweiMateBook.productUrl];
         [company.productArray addObject:huaweiMateBook];
         
         //huaweiTalkBand
@@ -276,7 +276,7 @@
         [productSet addObject:managedHuaweiTalkBand];
         [self saveChanges];
         
-        Product * huaweiTalkBand = [[Product alloc] initWithProductName:managedHuaweiTalkBand.productName orderNum:[managedHuaweiTalkBand.productOrderNum integerValue] imageName:managedHuaweiTalkBand.productImageName url:managedHuaweiTalkBand.productUrl];
+        Product * huaweiTalkBand = [[Product alloc] initWithProductName:managedHuaweiTalkBand.productName orderNum:managedHuaweiTalkBand.productOrderNum imageName:managedHuaweiTalkBand.productImageName url:managedHuaweiTalkBand.productUrl];
         [company.productArray addObject:huaweiTalkBand];
     }
 }
@@ -296,15 +296,15 @@
         } else {
         
             for (NSManagedObject * managedCompany in result) {
-                Company * company = [[Company alloc]initWithCompanyName:[managedCompany valueForKey:@"companyName"] orderNum:[[managedCompany valueForKey:@"companyOrderNum"] integerValue] imageName:[managedCompany valueForKey:@"companyImageName"] stockSymbol:[managedCompany valueForKey:@"companyStockSymbol"]];
+                Company * company = [[Company alloc]initWithCompanyName:[managedCompany valueForKey:@"companyName"] orderNum:[managedCompany valueForKey:@"companyOrderNum"] imageName:[managedCompany valueForKey:@"companyImageName"] stockSymbol:[managedCompany valueForKey:@"companyStockSymbol"]];
                 
                 for (NSManagedObject * managedProduct in [managedCompany valueForKey:@"products"]) {
                     
-                    Product * product = [[Product alloc]initWithProductName:[managedProduct valueForKey:@"productName"] orderNum:[[managedProduct valueForKey:@"productOrderNum"] integerValue] imageName:[managedProduct valueForKey:@"productImageName"] url:[managedProduct valueForKey:@"productUrl"]];
+                    Product * product = [[Product alloc]initWithProductName:[managedProduct valueForKey:@"productName"] orderNum:[managedProduct valueForKey:@"productOrderNum"] imageName:[managedProduct valueForKey:@"productImageName"] url:[managedProduct valueForKey:@"productUrl"]];
                     [company.productArray addObject:product];
                 }
                 
-                NSLog(@"Products count %u", [[managedCompany valueForKey:@"products"] count]);
+                NSLog(@"Products count %lu", [[managedCompany valueForKey:@"products"] count]);
                 [self.companyList addObject:company];
             }
             NSLog(@"Companies Count %lu", (unsigned long)[self.companyList count]);
@@ -314,25 +314,27 @@
 
 - (void)matchNSObjectCompany:(Company *)company toManagedObjectCompany:(CompanyManagedObject *)managedCompany {
     company.companyName = managedCompany.companyName;
-    company.companyOrderNum = [managedCompany.companyOrderNum integerValue];
+    company.companyOrderNum = managedCompany.companyOrderNum;
     company.companyImageName = managedCompany.companyImageName;
     company.companyStockSymbol = managedCompany.companyStockSymbol;
 }
 
 - (void)matchNSObjectProduct:(Product *)product toManagedObjectProduct:(ProductManagedObject *)managedProduct {
     product.productName = managedProduct.productName;
-    product.productOrderNum = [managedProduct.productOrderNum integerValue];
+    product.productOrderNum = managedProduct.productOrderNum;
     product.productImageName = managedProduct.productImageName;
     product.productUrl = managedProduct.productUrl;
 }
 
 - (Company *)createNewCompanyWithName:(NSString *)name stockSymbol:(NSString *)stockSymbol imageName:(NSString *)imageName {
     
+    NSNumber * newCompnayOrderNum = @([self.largestCompanyOrderNum floatValue] + 1);
+    
     CompanyManagedObject * newManagedCompany = [NSEntityDescription insertNewObjectForEntityForName:@"Company" inManagedObjectContext:context];
-    [CompanyManagedObject create:newManagedCompany withManagedCompanyName:name orderNum:[NSNumber numberWithInt:self.largestCompanyOrderNum + 1] imageName:imageName stockSymbol:stockSymbol];
+    [CompanyManagedObject create:newManagedCompany withManagedCompanyName:name orderNum:newCompnayOrderNum imageName:imageName stockSymbol:stockSymbol];
     [self saveChanges];
     
-    Company * newCompany = [[Company alloc] initWithCompanyName:name orderNum:self.largestCompanyOrderNum + 1 imageName:imageName stockSymbol:stockSymbol];
+    Company * newCompany = [[Company alloc] initWithCompanyName:name orderNum:newCompnayOrderNum imageName:imageName stockSymbol:stockSymbol];
     
     [self.companyList addObject:newCompany];
     
@@ -344,8 +346,10 @@
 
 - (Product *)createNewProductWithName:(NSString*)name image:(NSString *)imageName url:(NSString*)url forCompany:(Company *)company {
     
+    NSNumber * newProductOrderNum = @([self.largestProductOrderNum floatValue] + 1);
+    
     ProductManagedObject * newManagedProduct = [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
-    [ProductManagedObject create:newManagedProduct withManagedProductName:name orderNum:[NSNumber numberWithInt:self.largestProductOrderNum + 1] imageName:imageName url:url];
+    [ProductManagedObject create:newManagedProduct withManagedProductName:name orderNum: newProductOrderNum imageName:imageName url:url];
     
     
     //NSMutableSet * newCompanyProducts = [newManagedCompany mutableSetValueForKey:@"products"];
@@ -354,7 +358,7 @@
     
     [self saveChanges];
     
-    Product * newProduct = [[Product alloc]initWithProductName:name orderNum:self.largestProductOrderNum + 1 imageName:imageName url:url];
+    Product * newProduct = [[Product alloc]initWithProductName:name orderNum:newProductOrderNum imageName:imageName url:url];
     [company.productArray addObject:newProduct];
     
      NSLog(@"New product created");
