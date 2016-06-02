@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "Company.h"
+#import "CompanyManagedObject.h"
 #import "Product.h"
+#import "ProductManagedObject.h"
 #import "sqlite3.h"
 
 @interface DataAccessObject : NSObject
@@ -16,8 +18,6 @@
 + (DataAccessObject *)sharedInstance;
 
 @property (nonatomic, retain) NSMutableArray <Company*> * companyList;
-
-- (void)updateSqlWithString:(NSString *)string;
 
 //create new company/product
 - (Company *)createNewCompanyWithName:(NSString *)name stockSymbol:(NSString *)stockSymbol imageName:(NSString *)imageName;

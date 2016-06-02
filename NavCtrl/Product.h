@@ -10,12 +10,11 @@
 
 @interface Product : NSObject
 
-@property (nonatomic) int productID;
 @property (nonatomic) int productOrderNum;
 @property (nonatomic, retain) NSString * productName;
 @property (nonatomic, retain) NSString * productImageName;
 @property (nonatomic, retain) NSString * productUrl;
 
-- (Product *)initWithProductName:(NSString *)name imageName:(NSString *)imageName url:(NSString *)url;
+- (Product *)initWithProductName:(NSString *)name orderNum:(int)orderNum imageName:(NSString *)imageName url:(NSString *)url;
 
 @end

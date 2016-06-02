@@ -23,7 +23,7 @@
     
     NSMutableString * stockSymbolString = [[NSMutableString alloc]initWithString:@"http://finance.yahoo.com/d/quotes.csv?s="];
     for (Company * company in self.dao.companyList) {
-        [stockSymbolString appendString:company.stockSymbol];
+        [stockSymbolString appendString:company.companyStockSymbol];
         [stockSymbolString appendString:@"+"];
     }
     [stockSymbolString appendString:@"&f=a"];

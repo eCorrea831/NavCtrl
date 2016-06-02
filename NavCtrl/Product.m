@@ -10,11 +10,12 @@
 
 @implementation Product
 
-- (instancetype)initWithProductName:(NSString *)name imageName:(NSString *)imageName url:(NSString *)url {
+- (Product *)initWithProductName:(NSString *)name orderNum:(int)orderNum imageName:(NSString *)imageName url:(NSString *)url {
     
     self = [super init];
     if (self) {
         _productName = name;
+        _productOrderNum = orderNum;
         _productImageName = imageName;
         _productUrl = url;
         

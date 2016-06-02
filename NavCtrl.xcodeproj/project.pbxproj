@@ -26,6 +26,7 @@
 		7B01DEA81CC0010F005A7AF9 /* DefaultCompanyImage in Resources */ = {isa = PBXBuildFile; fileRef = 7B01DEA71CC0010F005A7AF9 /* DefaultCompanyImage */; };
 		7B01DEAA1CC0011D005A7AF9 /* AppleMobileDevices in Resources */ = {isa = PBXBuildFile; fileRef = 7B01DEA91CC0011D005A7AF9 /* AppleMobileDevices */; };
 		7B01DEB11CC03702005A7AF9 /* DefaultProductImage in Resources */ = {isa = PBXBuildFile; fileRef = 7B01DEB01CC03702005A7AF9 /* DefaultProductImage */; };
+		7B21FA251CF750D400F87ACB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B21FA241CF750D400F87ACB /* LaunchScreen.storyboard */; };
 		7B49C3E21CB5B58F00AE47E2 /* SamsungMobileDevices in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3DF1CB5B58F00AE47E2 /* SamsungMobileDevices */; };
 		7B49C3F21CB5CC1B00AE47E2 /* GoogleMobileDevices in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3F11CB5CC1B00AE47E2 /* GoogleMobileDevices */; };
 		7B49C3F41CB5CC2500AE47E2 /* HuaweiMobileDevices in Resources */ = {isa = PBXBuildFile; fileRef = 7B49C3F31CB5CC2500AE47E2 /* HuaweiMobileDevices */; };
@@ -69,6 +70,8 @@
 		7B80E3BA1CCD3FC300A04013 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B80E3B91CCD3FC200A04013 /* libsqlite3.dylib */; };
 		7B80E3C31CCE81BC00A04013 /* sqlData.db in Resources */ = {isa = PBXBuildFile; fileRef = 7B80E3C21CCE81BC00A04013 /* sqlData.db */; };
 		7BA189A61CF503A1000D44A1 /* Stocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA189A51CF503A1000D44A1 /* Stocks.m */; };
+		7BF0AB9C1CF8D7AC00E28AAE /* CompanyManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF0AB9B1CF8D7AC00E28AAE /* CompanyManagedObject.m */; };
+		7BF0AB9F1CF8D7BA00E28AAE /* ProductManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF0AB9E1CF8D7BA00E28AAE /* ProductManagedObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +110,7 @@
 		7B01DEA71CC0010F005A7AF9 /* DefaultCompanyImage */ = {isa = PBXFileReference; lastKnownFileType = file; name = DefaultCompanyImage; path = logos/DefaultCompanyImage; sourceTree = "<group>"; };
 		7B01DEA91CC0011D005A7AF9 /* AppleMobileDevices */ = {isa = PBXFileReference; lastKnownFileType = file; name = AppleMobileDevices; path = logos/AppleMobileDevices; sourceTree = "<group>"; };
 		7B01DEB01CC03702005A7AF9 /* DefaultProductImage */ = {isa = PBXFileReference; lastKnownFileType = file; name = DefaultProductImage; path = products/DefaultProductImage; sourceTree = "<group>"; };
+		7B21FA241CF750D400F87ACB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B49C3DF1CB5B58F00AE47E2 /* SamsungMobileDevices */ = {isa = PBXFileReference; lastKnownFileType = file; name = SamsungMobileDevices; path = logos/SamsungMobileDevices; sourceTree = "<group>"; };
 		7B49C3F11CB5CC1B00AE47E2 /* GoogleMobileDevices */ = {isa = PBXFileReference; lastKnownFileType = file; name = GoogleMobileDevices; path = logos/GoogleMobileDevices; sourceTree = "<group>"; };
 		7B49C3F31CB5CC2500AE47E2 /* HuaweiMobileDevices */ = {isa = PBXFileReference; lastKnownFileType = file; name = HuaweiMobileDevices; path = logos/HuaweiMobileDevices; sourceTree = "<group>"; };
@@ -159,6 +163,10 @@
 		7B80E3C21CCE81BC00A04013 /* sqlData.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = sqlData.db; sourceTree = "<group>"; };
 		7BA189A41CF503A1000D44A1 /* Stocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stocks.h; sourceTree = "<group>"; };
 		7BA189A51CF503A1000D44A1 /* Stocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stocks.m; sourceTree = "<group>"; };
+		7BF0AB9A1CF8D7AC00E28AAE /* CompanyManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyManagedObject.h; sourceTree = "<group>"; };
+		7BF0AB9B1CF8D7AC00E28AAE /* CompanyManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyManagedObject.m; sourceTree = "<group>"; };
+		7BF0AB9D1CF8D7BA00E28AAE /* ProductManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductManagedObject.h; sourceTree = "<group>"; };
+		7BF0AB9E1CF8D7BA00E28AAE /* ProductManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductManagedObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +236,7 @@
 				7B52A5761CF6463800FE1AA1 /* UserProductViewController.xib */,
 				48A656E518163C1B00746D36 /* CompanyViewController.xib */,
 				7B7539731CB84B6A00935272 /* NewWebViewController.xib */,
+				7B21FA241CF750D400F87ACB /* LaunchScreen.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -284,7 +293,6 @@
 		48A656BB18163BF200746D36 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7B52A57B1CF65A2300FE1AA1 /* CoreDataModel.xcdatamodeld */,
 				7B5F644D1CEFB6DC00495225 /* Bolts.framework */,
 				7B5F644E1CEFB6DC00495225 /* DocSets */,
 				7B5F644F1CEFB6DC00495225 /* FacebookSDKStrings.bundle */,
@@ -328,10 +336,16 @@
 		7B568E831CBBF8FF00E8BEED /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7B52A57B1CF65A2300FE1AA1 /* CoreDataModel.xcdatamodeld */,
+				7B80E3C21CCE81BC00A04013 /* sqlData.db */,
 				7B568E7D1CBBF8EA00E8BEED /* Company.h */,
 				7B568E7E1CBBF8EA00E8BEED /* Company.m */,
 				7B568E801CBBF8F700E8BEED /* Product.h */,
 				7B568E811CBBF8F700E8BEED /* Product.m */,
+				7BF0AB9A1CF8D7AC00E28AAE /* CompanyManagedObject.h */,
+				7BF0AB9B1CF8D7AC00E28AAE /* CompanyManagedObject.m */,
+				7BF0AB9D1CF8D7BA00E28AAE /* ProductManagedObject.h */,
+				7BF0AB9E1CF8D7BA00E28AAE /* ProductManagedObject.m */,
 				7BA189A41CF503A1000D44A1 /* Stocks.h */,
 				7BA189A51CF503A1000D44A1 /* Stocks.m */,
 			);
@@ -341,7 +355,6 @@
 		7B568E881CBC0B9700E8BEED /* API */ = {
 			isa = PBXGroup;
 			children = (
-				7B80E3C21CCE81BC00A04013 /* sqlData.db */,
 				7B568E851CBC0B9000E8BEED /* DataAccessObject.h */,
 				7B568E861CBC0B9000E8BEED /* DataAccessObject.m */,
 			);
@@ -464,6 +477,7 @@
 				7B49C3F41CB5CC2500AE47E2 /* HuaweiMobileDevices in Resources */,
 				7B5F64621CEFB6DD00495225 /* Samples in Resources */,
 				7B7539751CB84B6A00935272 /* NewWebViewController.xib in Resources */,
+				7B21FA251CF750D400F87ACB /* LaunchScreen.storyboard in Resources */,
 				7B49C41C1CB5D47D00AE47E2 /* HuaweiTalkband in Resources */,
 				48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */,
 				7B01DEA81CC0010F005A7AF9 /* DefaultCompanyImage in Resources */,
@@ -515,11 +529,13 @@
 				48A656C518163BF200746D36 /* NavControllerAppDelegate.m in Sources */,
 				7B568E821CBBF8F700E8BEED /* Product.m in Sources */,
 				7B52A5771CF6463800FE1AA1 /* UserProductViewController.m in Sources */,
+				7BF0AB9C1CF8D7AC00E28AAE /* CompanyManagedObject.m in Sources */,
 				48A656C118163BF200746D36 /* main.m in Sources */,
 				48A656EB18163F8700746D36 /* ProductViewController.m in Sources */,
 				7B5A09E51CF63B1500557232 /* UserCompanyViewController.m in Sources */,
 				7B568E7F1CBBF8EA00E8BEED /* Company.m in Sources */,
 				7B7539741CB84B6A00935272 /* NewWebViewController.m in Sources */,
+				7BF0AB9F1CF8D7BA00E28AAE /* ProductManagedObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,7 +663,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NavCtrl/NavCtrl-Prefix.pch";
 				INFOPLIST_FILE = "NavCtrl/NavCtrl-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "qcd.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -668,7 +684,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NavCtrl/NavCtrl-Prefix.pch";
 				INFOPLIST_FILE = "NavCtrl/NavCtrl-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "qcd.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
-    <entity name="Companies" syncable="YES">
+    <entity name="Company" syncable="YES">
         <attribute name="companyID" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="companyImageName" attributeType="String" defaultValueString="DefaultCompanyImage" syncable="YES"/>
         <attribute name="companyName" attributeType="String" syncable="YES"/>
         <attribute name="companyOrderNum" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="companyStockPrice" attributeType="String" syncable="YES"/>
         <attribute name="companyStockSymbol" attributeType="String" syncable="YES"/>
-        <relationship name="products" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Products" inverseName="companies" inverseEntity="Products" syncable="YES"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Product" inverseName="company" inverseEntity="Product" syncable="YES"/>
     </entity>
-    <entity name="Products" syncable="YES">
+    <entity name="Product" syncable="YES">
         <attribute name="companyID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="productID" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="productImageName" attributeType="String" defaultValueString="DefaultProductImage" syncable="YES"/>
         <attribute name="productName" attributeType="String" syncable="YES"/>
         <attribute name="productOrderNum" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="productUrl" attributeType="String" syncable="YES"/>
-        <relationship name="companies" maxCount="1" deletionRule="Nullify" destinationEntity="Companies" inverseName="products" inverseEntity="Companies" syncable="YES"/>
+        <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="products" inverseEntity="Company" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Companies" positionX="-63" positionY="-18" width="128" height="148"/>
-        <element name="Products" positionX="198" positionY="126" width="128" height="148"/>
+        <element name="Company" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="Product" positionX="198" positionY="126" width="128" height="150"/>
     </elements>
 </model>

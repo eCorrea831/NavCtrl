@@ -10,13 +10,14 @@
 
 @implementation Company
 
-- (instancetype)initWithCompanyName:(NSString *)name imageName:(NSString *)imageName stockSymbol:(NSString *)stockSymbol {
+- (instancetype)initWithCompanyName:(NSString *)name orderNum:(int)orderNum imageName:(NSString *)imageName stockSymbol:(NSString *)stockSymbol {
     
     self = [super init];
     if (self) {
         _companyName = name;
+        _companyOrderNum = orderNum;
         _companyImageName = imageName;
-        _stockSymbol = stockSymbol;
+        _companyStockSymbol = stockSymbol;
         _productArray = [[NSMutableArray alloc] init];
         
         return self;
@@ -25,9 +26,7 @@
 }
 
 - (void)dealloc {
-    
-    
-    
+
     [super dealloc];
 }
 

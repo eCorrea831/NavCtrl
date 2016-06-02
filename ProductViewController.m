@@ -72,6 +72,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     Product * selectedProduct = [self.company.productArray objectAtIndex:[indexPath row]];
+    
+    NSLog(@"%@",selectedProduct.productName);
+    
     cell.textLabel.text = selectedProduct.productName;
     cell.imageView.image = [UIImage imageNamed:selectedProduct.productImageName];
     
@@ -135,8 +138,10 @@
     [self.company.productArray insertObject:selectedProduct atIndex:toIndexPath.row];
     [self.tableView moveRowAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
     
-    for (int i = 0; i < self.company.productArray.count; i++ ) {
-        [self.company.productArray[i] setProductOrderNum:i];
+    int i = 0;
+    for (Product * product in self.company.productArray) {
+        [product setProductOrderNum:i];
+        i++;
     }
     
     [self.dao moveProductsForCompany:self.company];
