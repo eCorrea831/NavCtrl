@@ -12,9 +12,6 @@
 
 @interface ProductViewController ()
 
-- (void)showProductInfoForProduct:(Product *)product;
-- (void)addItem:sender;
-
 @end
 
 @implementation ProductViewController
@@ -70,8 +67,6 @@
     }
     Product * selectedProduct = [self.company.productArray objectAtIndex:[indexPath row]];
     
-    NSLog(@"%@", selectedProduct.productName);
-    
     cell.textLabel.text = selectedProduct.productName;
     cell.imageView.image = [UIImage imageNamed:selectedProduct.productImageName];
     
@@ -99,7 +94,7 @@
 #pragma mark - Sets editing, moving, and deletion of a selected row 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
-    [self.tableView setEditing:editing animated:NO];
+    [self.tableView setEditing:editing animated:YES];
     self.tableView.allowsSelectionDuringEditing = YES;
 }
 
@@ -135,7 +130,7 @@
     [self.company.productArray insertObject:selectedProduct atIndex:toIndexPath.row];
     [self.tableView moveRowAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
     
-    NSNumber * i = 0;
+    NSNumber * i = @0;
     for (Product * product in self.company.productArray) {
         [product setProductOrderNum:i];
         i = @([i floatValue] + 1);
@@ -151,7 +146,7 @@
     UserProductViewController * userProductVC = [[UserProductViewController alloc] init];
     userProductVC.company = self.company;
     userProductVC.product = product;
-    [self.navigationController pushViewController:userProductVC animated:NO];
+    [self.navigationController pushViewController:userProductVC animated:YES];
     [userProductVC release];
 }
 

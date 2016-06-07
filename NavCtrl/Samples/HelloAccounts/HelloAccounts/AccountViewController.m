@@ -47,7 +47,7 @@
 - (void)logOut:(id)sender
 {
   [_accounts logOut];
-  [self.navigationController popToRootViewControllerAnimated:NO];
+  [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

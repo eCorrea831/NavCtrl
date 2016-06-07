@@ -54,7 +54,7 @@
   UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"OK"
                                                           style:UIAlertActionStyleDefault
                                                         handler:^(UIAlertAction *action) {
-                                                          [self dismissViewControllerAnimated:NO completion:NULL];
+                                                          [self dismissViewControllerAnimated:YES completion:NULL];
                                                         }];
   [alertController addAction:dismissAction];
   [self presentViewController:alertController animated:YES completion:NULL];

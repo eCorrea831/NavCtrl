@@ -24,18 +24,6 @@
 @property (nonatomic) NSNumber * largestProductOrderNum;
 @property (nonatomic) NSInteger didAlreadyRun;
 
-- (instancetype)initWithData;
-- (void)initModelContext;
-- (void)updateDidAlreadyRun;
-- (NSString *) archivePath;
-- (void)saveChanges;
-- (void)createCompanyData;
-- (void)createProductDataForCompany:(Company *)company;
-- (void)createManagedData;
-- (void)fetchCompaniesAndProducts;
-- (void)matchNSObjectCompany:(Company *)company toManagedObjectCompany:(CompanyManagedObject *)managedCompany;
-- (void)matchNSObjectProduct:(Product *)product toManagedObjectProduct:(ProductManagedObject *)managedProduct;
-
 @end
 
 @implementation DataAccessObject
@@ -90,8 +78,8 @@
         [NSException raise:@"Open failed" format:@"Reason: %@", [error localizedDescription]];
     }
     context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    context.undoManager = [[NSUndoManager alloc] init];
     [context setPersistentStoreCoordinator:psc];
-    [context setUndoManager:nil];
     
     [self updateDidAlreadyRun];
 }
@@ -264,13 +252,21 @@
         NSEntityDescription * company = [[model entitiesByName] objectForKey:@"Company"];
         [request setEntity:company];
         
+        //sort by companyOrderNum
+        NSSortDescriptor * companySortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"companyOrderNum" ascending:YES];
+//        NSSortDescriptor * productSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"products.@productOrderNum" ascending:YES];
+
+        NSArray * sortDescriptors = [[NSArray alloc] initWithObjects:companySortDescriptor, nil];
+        
+        [request setSortDescriptors:sortDescriptors];
+
+        //error handling
         NSError * error = nil;
         NSArray * result = [context executeFetchRequest:request error:&error];
         if(!result){
             [NSException raise:@"Fetch Failed" format:@"Reason: %@", [error localizedDescription]];
         } else {
         
-            //FIXME: Issue is in fetching here
             for (NSManagedObject * managedCompany in result) {
                 Company * company = [[Company alloc]initWithCompanyName:[managedCompany valueForKey:@"companyName"]
                                                                orderNum:[managedCompany valueForKey:@"companyOrderNum"]
@@ -294,7 +290,7 @@
                         self.largestProductOrderNum = product.productOrderNum;
                     }
                     
-                    [product release];
+                    [company.productArray sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"productOrderNum" ascending:YES]]];
                 }
                 
                 NSLog(@"Products count %lu", [[managedCompany valueForKey:@"products"] count]);
@@ -303,20 +299,6 @@
             NSLog(@"Companies Count %lu", (unsigned long)[self.companyList count]);
         }
     }
-}
-
-- (void)matchNSObjectCompany:(Company *)company toManagedObjectCompany:(CompanyManagedObject *)managedCompany {
-    company.companyName = managedCompany.companyName;
-    company.companyOrderNum = managedCompany.companyOrderNum;
-    company.companyImageName = managedCompany.companyImageName;
-    company.companyStockSymbol = managedCompany.companyStockSymbol;
-}
-
-- (void)matchNSObjectProduct:(Product *)product toManagedObjectProduct:(ProductManagedObject *)managedProduct {
-    product.productName = managedProduct.productName;
-    product.productOrderNum = managedProduct.productOrderNum;
-    product.productImageName = managedProduct.productImageName;
-    product.productUrl = managedProduct.productUrl;
 }
 
 - (Company *)createNewCompanyWithName:(NSString *)name stockSymbol:(NSString *)stockSymbol imageName:(NSString *)imageName {
@@ -344,7 +326,7 @@
     ProductManagedObject * newManagedProduct = [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
     [ProductManagedObject create:newManagedProduct withManagedProductName:name orderNum: newProductOrderNum imageName:imageName url:url];
 
-    //fet matching nsmanagedCompany and put in array
+    //fetch matching nsmanagedCompany and put in array
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription * entity = [NSEntityDescription entityForName:@"Company"
                                               inManagedObjectContext:context];
@@ -375,7 +357,7 @@
     company.companyImageName = imageName;
     company.companyStockSymbol = stockSymbol;
     
-    //fet matching nsmanagedCompany and put in array
+    //fetch matching nsmanagedCompany and put in array
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription * entity = [NSEntityDescription entityForName:@"Company"
                                                inManagedObjectContext:context];
@@ -404,7 +386,7 @@
     product.productImageName = imageName;
     product.productUrl = website;
 
-    //fet matching nsmanagedProduct and put in array
+    //fetch matching nsmanagedProduct and put in array
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription * entity = [NSEntityDescription entityForName:@"Product"
                                                inManagedObjectContext:context];
@@ -428,36 +410,125 @@
 }
 
 - (void)deleteCompanyAndItsProducts:(Company *)company {
-   
-    //should be cascade deletion
+    
+    //fetch matching nsmanagedCompany and put in array
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription * entity = [NSEntityDescription entityForName:@"Company"
+                                               inManagedObjectContext:context];
+    [request setEntity:entity];
+    
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"companyOrderNum = %@", company.companyOrderNum];
+    [request setPredicate:predicate];
+    NSError * error;
+    NSArray * array = [context executeFetchRequest:request error:&error];
+
+    [context deleteObject:array[0]];
+    [self saveChanges];
+    
+    company = nil;
 
     NSLog(@"Company Deleted");
 }
 
 - (void)deleteProduct:(Product *)product {
     
+    //fetch matching nsmanagedProduct and put in array
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription * entity = [NSEntityDescription entityForName:@"Product"
+                                               inManagedObjectContext:context];
+    [request setEntity:entity];
+    
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"productOrderNum = %@", product.productOrderNum];
+    [request setPredicate:predicate];
+    NSError * error;
+    NSArray * array = [context executeFetchRequest:request error:&error];
+    
+    [context deleteObject:array[0]];
+    [self saveChanges];
+    
+    product = nil;
     
     NSLog(@"Product Deleted");
 }
 
 - (void)moveCompanies {
    
-//    for (int index = 0; index < [self.companyList count]; index++) {
-//        Company * company = self.companyList[index];
-
-//    }
+    //fetch all nsmanagedCompanies and put in array
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription * entity = [NSEntityDescription entityForName:@"Company"
+                                               inManagedObjectContext:context];
+    [request setEntity:entity];
     
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"companyOrderNum > -1"];
+    [request setPredicate:predicate];
+    NSError * error;
+    NSArray * array = [context executeFetchRequest:request error:&error];
+    
+    //update nsmanagedCompanies
+    for (CompanyManagedObject * managedCompany in array) {
+        for (Company * company in self.companyList) {
+            if ([managedCompany.companyName isEqualToString:company.companyName]) {
+                managedCompany.companyOrderNum = company.companyOrderNum;
+            }
+        }
+    }
+    [self saveChanges];
+
     NSLog(@"Company Moved");
 }
 
 - (void)moveProductsForCompany:(Company *)company {
     
-//    for (int index = 0; index < [self.companyList count]; index++) {
-//        Product * product = company.productArray[index];
-//    }
+    //fetch all nsmanagedProducts and put in array
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription * entity = [NSEntityDescription entityForName:@"Product"
+                                               inManagedObjectContext:context];
+    [request setEntity:entity];
     
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"productOrderNum > -1"];
+    [request setPredicate:predicate];
+    NSError * error;
+    NSArray * array = [context executeFetchRequest:request error:&error];
+    
+    //update nsmanagedProduccts
+    for (ProductManagedObject * managedProduct in array) {
+        for (Product * product in company.productArray) {
+            if ([managedProduct.productName isEqualToString:product.productName]) {
+                managedProduct.productOrderNum = product.productOrderNum;
+            }
+        }
+    }
+    [self saveChanges];
+
     NSLog(@"Product Moved");
 }
+
+//- (IBAction)saveToDisk:(id)sender {
+//    
+//    [self saveChanges];
+//}
+//
+//- (IBAction)undoLastAction:(id)sender {
+//    
+//    [self.context undo];
+//    [self reloadDataFromContext];
+//}
+//
+//- (IBAction)redoLastUndo:(id)sender {
+//    
+//    [self.context redo];
+//    [self reloadDataFromContext];
+//}
+//
+//- (IBAction)rollbackAllChanges:(id)sender {
+//    
+//    [self.context rollback];
+//    [self reloadDataFromContext];
+//}
+
+
+//where ever you see [self saveChanges];
+//No save now. There is a separate 'Save to Disk' now to try undo functionality
 
 - (void)dealloc {
     [super dealloc];
