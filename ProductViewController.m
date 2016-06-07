@@ -30,9 +30,30 @@
     self.clearsSelectionOnViewWillAppear = NO;
     
     NSMutableArray * buttons = [[NSMutableArray alloc] initWithCapacity:2];
+    
+    //save to disk button
+    UIBarButtonItem * saveToDiskButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveToDisk:)];
+    [buttons addObject:saveToDiskButton];
+    
+    //rollback button
+    UIBarButtonItem * rollbackButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(rollbackAllChanges:)];
+    [buttons addObject:rollbackButton];
+    
+    //redo button
+    UIBarButtonItem * redoButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRedo target:self action:@selector(redoLastUndo:)];
+    [buttons addObject:redoButton];
+    
+    //undo button
+    UIBarButtonItem * undoButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemUndo target:self action:@selector(undoLastAction:)];
+    [buttons addObject:undoButton];
+    
+    //edit button
     [buttons addObject:self.editButtonItem];
+    
+    //add button
     UIBarButtonItem * addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
     [buttons addObject:addButton];
+    
     self.navigationItem.rightBarButtonItems = buttons;
  
     [buttons release];
@@ -156,6 +177,29 @@
     userProductViewController.company = self.company;
     [self.navigationController pushViewController:userProductViewController animated:YES];
     [userProductViewController release];
+}
+
+- (void)saveToDisk:sender {
+    
+    //[self saveChanges];
+}
+
+- (void)undoLastAction:sender {
+    
+    //    [self.context undo];
+    //    [self reloadDataFromContext];
+}
+
+- (void)redoLastUndo:sender {
+    
+    //    [self.context redo];
+    //    [self reloadDataFromContext];
+}
+
+- (void)rollbackAllChanges:sender {
+    
+    //    [self.context rollback];
+    //    [self reloadDataFromContext];
 }
 
 - (void)dealloc {
