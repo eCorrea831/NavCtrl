@@ -18,10 +18,12 @@
 + (DataAccessObject *)sharedInstance;
 
 @property (nonatomic, retain) NSMutableArray <Company*> * companyList;
+@property (nonatomic, retain) NSManagedObjectContext * context;
+@property (nonatomic, retain) NSManagedObjectModel * model;
 
 //create new company/product
 - (Company *)createNewCompanyWithName:(NSString *)name stockSymbol:(NSString *)stockSymbol imageName:(NSString *)imageName;
-- (Product *)createNewProductWithName:(NSString*)name image:(NSString *)imageName url:(NSString*)url forCompany:(Company *)company;
+- (Product *)createNewProductWithName:(NSString *)name image:(NSString *)imageName url:(NSString *)url forCompany:(Company *)company;
 
 //edit company/product
 - (Company *)editcompany:(Company *)company withName:(NSString *)name imageName:(NSString *)imageName stockSymbol:(NSString *)stockSymbol;
@@ -32,5 +34,9 @@
 - (void)deleteProduct:(Product *)product;
 - (void)moveCompanies;
 - (void)moveProductsForCompany:(Company *)company;
+
+//core data methods
+- (void)saveChanges;
+- (void)reloadDataFromContext;
 
 @end

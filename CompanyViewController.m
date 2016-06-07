@@ -39,30 +39,17 @@
     
     self.dao = [DataAccessObject sharedInstance];
     
-    NSMutableArray * buttons = [[NSMutableArray alloc] initWithCapacity:2];
-    
-    //save to disk button
-    UIBarButtonItem * saveToDiskButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveToDisk:)];
-    [buttons addObject:saveToDiskButton];
+    UIBarButtonItem * saveToDiskButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveChanges:)];
 
-    //rollback button
     UIBarButtonItem * rollbackButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(rollbackAllChanges:)];
-    [buttons addObject:rollbackButton];
-    
-    //redo button
+
     UIBarButtonItem * redoButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRedo target:self action:@selector(redoLastUndo:)];
-    [buttons addObject:redoButton];
-    
-    //undo button
+
     UIBarButtonItem * undoButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemUndo target:self action:@selector(undoLastAction:)];
-    [buttons addObject:undoButton];
-    
-    //edit button
-    [buttons addObject:self.editButtonItem];
-    
-    //add button
+
     UIBarButtonItem * addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
-    [buttons addObject:addButton];
+    
+    NSMutableArray * buttons = [[NSMutableArray alloc] initWithObjects:saveToDiskButton, rollbackButton, redoButton, undoButton, self.editButtonItem, addButton, nil];
     
     self.navigationItem.rightBarButtonItems = buttons;
     
@@ -73,8 +60,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    Stocks * stockPrice = [[Stocks alloc] init];
-    [stockPrice makeRequest:self];
+//    Stocks * stockPrice = [[Stocks alloc] init];
+//    [stockPrice makeRequest:self];
     
     [self.tableView reloadData];
 }
@@ -110,12 +97,13 @@
     cell.textLabel.text = [company companyName];
     cell.imageView.image = [UIImage imageNamed:company.companyImageName];
 
-    UILabel *stockPrice = [[UILabel alloc]init];
-    stockPrice.adjustsFontSizeToFitWidth = YES;
-    stockPrice.text = [NSString stringWithFormat:@"%.2f", [company.companyStockPrice floatValue]];
-    cell.accessoryView = stockPrice;
-    [cell.accessoryView setFrame:CGRectMake(0, 0, 50, 50)];
-    [stockPrice release];
+//    UILabel * stockPrice = [[UILabel alloc]init];
+//    stockPrice.adjustsFontSizeToFitWidth = YES;
+//    stockPrice.text = [NSString stringWithFormat:@"%.2f", [company.companyStockPrice floatValue]];
+//    cell.accessoryView = stockPrice;
+//    [cell.accessoryView setFrame:CGRectMake(0, 0, 50, 50)];
+//    [stockPrice release];
+    
     return cell;
 }
 
@@ -188,27 +176,32 @@
     [userCompanyVC release];
 }
 
-- (void)saveToDisk:sender {
-
-    //[self saveChanges];
+- (void)saveChanges:sender {
+    [self.dao saveChanges];
 }
 
 - (void)undoLastAction:sender {
-
-//    [self.context undo];
-//    [self reloadDataFromContext];
+    
+    [[self.dao context] undo];
+    [self.dao reloadDataFromContext];
+    [self.tableView reloadData];
+    NSLog(@"Last action undone.");
 }
 
 - (void)redoLastUndo:sender {
-
-//    [self.context redo];
-//    [self reloadDataFromContext];
+    
+    [[self.dao context] redo];
+    [self.dao reloadDataFromContext];
+    [self.tableView reloadData];
+    NSLog(@"Last action redone.");
 }
 
 - (void)rollbackAllChanges:sender {
-
-//    [self.context rollback];
-//    [self reloadDataFromContext];
+    
+    [[self.dao context] rollback];
+    [self.dao reloadDataFromContext];
+    [self.tableView reloadData];
+    NSLog(@"All changes rolled back.");
 }
 
 - (void)dealloc {

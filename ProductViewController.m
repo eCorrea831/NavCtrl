@@ -29,30 +29,17 @@
     [super viewDidLoad];
     self.clearsSelectionOnViewWillAppear = NO;
     
-    NSMutableArray * buttons = [[NSMutableArray alloc] initWithCapacity:2];
+    UIBarButtonItem * saveToDiskButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveChanges:)];
     
-    //save to disk button
-    UIBarButtonItem * saveToDiskButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveToDisk:)];
-    [buttons addObject:saveToDiskButton];
-    
-    //rollback button
     UIBarButtonItem * rollbackButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(rollbackAllChanges:)];
-    [buttons addObject:rollbackButton];
     
-    //redo button
     UIBarButtonItem * redoButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRedo target:self action:@selector(redoLastUndo:)];
-    [buttons addObject:redoButton];
     
-    //undo button
     UIBarButtonItem * undoButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemUndo target:self action:@selector(undoLastAction:)];
-    [buttons addObject:undoButton];
     
-    //edit button
-    [buttons addObject:self.editButtonItem];
-    
-    //add button
     UIBarButtonItem * addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
-    [buttons addObject:addButton];
+    
+    NSMutableArray * buttons = [[NSMutableArray alloc] initWithObjects:saveToDiskButton, rollbackButton, redoButton, undoButton, self.editButtonItem, addButton, nil];
     
     self.navigationItem.rightBarButtonItems = buttons;
  
@@ -179,27 +166,32 @@
     [userProductViewController release];
 }
 
-- (void)saveToDisk:sender {
-    
-    //[self saveChanges];
+- (void)saveChanges:sender {
+    [[DataAccessObject sharedInstance] saveChanges];
 }
 
 - (void)undoLastAction:sender {
     
-    //    [self.context undo];
-    //    [self reloadDataFromContext];
+    [[[DataAccessObject sharedInstance] context] undo];
+    [[DataAccessObject sharedInstance] reloadDataFromContext];
+    [self.tableView reloadData];
+    NSLog(@"Last action undone.");
 }
 
 - (void)redoLastUndo:sender {
     
-    //    [self.context redo];
-    //    [self reloadDataFromContext];
+    [[[DataAccessObject sharedInstance] context] redo];
+    [[DataAccessObject sharedInstance] reloadDataFromContext];
+    [self.tableView reloadData];
+    NSLog(@"Last action redone.");
 }
 
 - (void)rollbackAllChanges:sender {
     
-    //    [self.context rollback];
-    //    [self reloadDataFromContext];
+    [[[DataAccessObject sharedInstance] context] rollback];
+    [[DataAccessObject sharedInstance] reloadDataFromContext];
+    [self.tableView reloadData];
+    NSLog(@"All changes rolled back.");
 }
 
 - (void)dealloc {
