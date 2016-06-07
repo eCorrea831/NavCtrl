@@ -503,30 +503,6 @@
     NSLog(@"Product Moved");
 }
 
-//- (IBAction)saveToDisk:(id)sender {
-//    
-//    [self saveChanges];
-//}
-//
-//- (IBAction)undoLastAction:(id)sender {
-//    
-//    [self.context undo];
-//    [self reloadDataFromContext];
-//}
-//
-//- (IBAction)redoLastUndo:(id)sender {
-//    
-//    [self.context redo];
-//    [self reloadDataFromContext];
-//}
-//
-//- (IBAction)rollbackAllChanges:(id)sender {
-//    
-//    [self.context rollback];
-//    [self reloadDataFromContext];
-//}
-
-
 //where ever you see [self saveChanges];
 //No save now. There is a separate 'Save to Disk' now to try undo functionality
 

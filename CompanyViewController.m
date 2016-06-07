@@ -37,12 +37,35 @@
     [super viewDidLoad];
     self.clearsSelectionOnViewWillAppear = NO;
     
+    self.dao = [DataAccessObject sharedInstance];
+    
     NSMutableArray * buttons = [[NSMutableArray alloc] initWithCapacity:2];
+    
+    //save to disk button
+    UIBarButtonItem * saveToDiskButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveToDisk:)];
+    [buttons addObject:saveToDiskButton];
+
+    //rollback button
+    UIBarButtonItem * rollbackButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(rollbackAllChanges:)];
+    [buttons addObject:rollbackButton];
+    
+    //redo button
+    UIBarButtonItem * redoButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRedo target:self action:@selector(redoLastUndo:)];
+    [buttons addObject:redoButton];
+    
+    //undo button
+    UIBarButtonItem * undoButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemUndo target:self action:@selector(undoLastAction:)];
+    [buttons addObject:undoButton];
+    
+    //edit button
     [buttons addObject:self.editButtonItem];
+    
+    //add button
     UIBarButtonItem * addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
     [buttons addObject:addButton];
+    
     self.navigationItem.rightBarButtonItems = buttons;
-    self.dao = [DataAccessObject sharedInstance];
+    
     [buttons release];
     [addButton release];
 }
@@ -50,8 +73,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-//    Stocks * stockPrice = [[Stocks alloc] init];
-//    [stockPrice makeRequest:self];
+    Stocks * stockPrice = [[Stocks alloc] init];
+    [stockPrice makeRequest:self];
     
     [self.tableView reloadData];
 }
@@ -87,12 +110,12 @@
     cell.textLabel.text = [company companyName];
     cell.imageView.image = [UIImage imageNamed:company.companyImageName];
 
-//    UILabel *stockPrice = [[UILabel alloc]init];
-//    stockPrice.adjustsFontSizeToFitWidth = YES;
-//    stockPrice.text = [NSString stringWithFormat:@"%.2f", [company.companyStockPrice floatValue]];
-//    cell.accessoryView = stockPrice;
-//    [cell.accessoryView setFrame:CGRectMake(0, 0, 50, 50)];
-//    [stockPrice release];
+    UILabel *stockPrice = [[UILabel alloc]init];
+    stockPrice.adjustsFontSizeToFitWidth = YES;
+    stockPrice.text = [NSString stringWithFormat:@"%.2f", [company.companyStockPrice floatValue]];
+    cell.accessoryView = stockPrice;
+    [cell.accessoryView setFrame:CGRectMake(0, 0, 50, 50)];
+    [stockPrice release];
     return cell;
 }
 
@@ -163,6 +186,29 @@
     UserCompanyViewController * userCompanyVC = [[UserCompanyViewController alloc]init];
     [self.navigationController pushViewController:userCompanyVC animated:YES];
     [userCompanyVC release];
+}
+
+- (void)saveToDisk:sender {
+
+    //[self saveChanges];
+}
+
+- (void)undoLastAction:sender {
+
+//    [self.context undo];
+//    [self reloadDataFromContext];
+}
+
+- (void)redoLastUndo:sender {
+
+//    [self.context redo];
+//    [self reloadDataFromContext];
+}
+
+- (void)rollbackAllChanges:sender {
+
+//    [self.context rollback];
+//    [self reloadDataFromContext];
 }
 
 - (void)dealloc {
