@@ -26,13 +26,13 @@
 
 - (instancetype)initWithData;
 - (void)initModelContext;
-- (void)updateNSUserDefaults;
+- (void)updateDidAlreadyRun;
 - (NSString *) archivePath;
 - (void)saveChanges;
 - (void)createCompanyData;
 - (void)createProductDataForCompany:(Company *)company;
 - (void)createManagedData;
-- (void)displayCompaniesAndProducts;
+- (void)fetchCompaniesAndProducts;
 - (void)matchNSObjectCompany:(Company *)company toManagedObjectCompany:(CompanyManagedObject *)managedCompany;
 - (void)matchNSObjectProduct:(Product *)product toManagedObjectProduct:(ProductManagedObject *)managedProduct;
 
@@ -40,15 +40,15 @@
 
 @implementation DataAccessObject
 
-
-+ (DataAccessObject *)sharedInstance {
++ (instancetype)sharedInstance {
+    static id sharedInstance = nil;
     
-    static DataAccessObject *_sharedInstance = nil;
-    static dispatch_once_t oncePredicate;
-    dispatch_once(&oncePredicate, ^{
-        _sharedInstance = [[DataAccessObject alloc] initWithData];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] initWithData];
     });
-    return _sharedInstance;
+    
+    return sharedInstance;
 }
 
 - (instancetype)initWithData {
@@ -61,7 +61,7 @@
         if (self) {
             if (self.didAlreadyRun) {
                 [self initModelContext];
-                [self displayCompaniesAndProducts];
+                [self fetchCompaniesAndProducts];
             } else {
                 [self initModelContext];
                 [self createCompanyData];
@@ -71,7 +71,7 @@
         return self;
 }
 
-- (void)updateNSUserDefaults {
+- (void)updateDidAlreadyRun {
     
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:1 forKey:@"defaultRunCheck"];
@@ -81,11 +81,11 @@
 - (void)initModelContext {
     
     model = [NSManagedObjectModel mergedModelFromBundles:nil];
-    NSPersistentStoreCoordinator *psc =
+    NSPersistentStoreCoordinator * psc =
     [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
-    NSString *path = [self archivePath];
-    NSURL *storeURL = [NSURL fileURLWithPath:path];
-    NSError *error = nil;
+    NSString * path = [self archivePath];
+    NSURL * storeURL = [NSURL fileURLWithPath:path];
+    NSError * error = nil;
     if(![psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]){
         [NSException raise:@"Open failed" format:@"Reason: %@", [error localizedDescription]];
     }
@@ -93,7 +93,7 @@
     [context setPersistentStoreCoordinator:psc];
     [context setUndoManager:nil];
     
-    [self updateNSUserDefaults];
+    [self updateDidAlreadyRun];
 }
 
 - (NSString *) archivePath {
@@ -142,6 +142,8 @@
     [self createProductDataForCompany:huawei];
     
     self.companyList = [[NSMutableArray alloc]initWithObjects:apple, samsung, google, huawei, nil];
+    
+    self.largestCompanyOrderNum = @4;
 }
 
 - (void)createProductDataForCompany:(Company *)company {
@@ -163,7 +165,7 @@
                                                       imageName:@"iPhone"
                                                             url:@"http://www.apple.com/iphone/"];
         
-        company.productArray = [[NSMutableArray alloc]initWithObjects:iPad, iPod, iPhone, nil];
+        company.productArray = (NSMutableArray *) @[iPad, iPod, iPhone];
     }
     
     if ([company.companyName isEqualToString:@"Samsung Mobile Devices"]) {
@@ -183,7 +185,7 @@
                                                          imageName:@"GalaxyTab"
                                                                url:@"http://www.samsung.com/us/explore/tab-s2-features-and-specs/?cid=ppc-"];
         
-        company.productArray = [[NSMutableArray alloc]initWithObjects:galaxyS4, galaxyNote, galaxyTab, nil];
+        company.productArray = (NSMutableArray *) @[galaxyS4, galaxyNote, galaxyTab];
     }
     
     if ([company.companyName isEqualToString:@"Google Mobile Devices"]) {
@@ -204,7 +206,7 @@
                                                             imageName:@"AndroidPhone"
                                                                   url:@"https://www.android.com/phones/"];
 
-        company.productArray = [[NSMutableArray alloc]initWithObjects:androidWear, androidTablet, androidPhone, nil];
+        company.productArray = (NSMutableArray *) @[androidWear, androidTablet, androidPhone];
     }
     
     if ([company.companyName isEqualToString:@"Huawei Mobile Devices"]) {
@@ -224,8 +226,9 @@
                                                                imageName:@"HuaweiTalkband"
                                                                     url:@"http://consumer.huawei.com/en/wearables/talkband-b3/"];
         
-        company.productArray = [[NSMutableArray alloc]initWithObjects:huaweiMate, huaweiMateBook, huaweiTalkBand, nil];
+        company.productArray = (NSMutableArray *) @[huaweiMate, huaweiMateBook, huaweiTalkBand];
     }
+    self.largestProductOrderNum = @12;
 }
 
 - (void)createManagedData {
@@ -245,15 +248,17 @@
             [ProductManagedObject create:managedProduct withManagedProductName:product.productName orderNum:product.productOrderNum imageName:product.productImageName url:product.productUrl];
             
             [productSet addObject:managedProduct];
-
+            
             [self saveChanges];
         }
     }
 }
 
-- (void)displayCompaniesAndProducts {
+- (void)fetchCompaniesAndProducts {
     
-    if ([self.companyList count] == 0){
+    if (!self.companyList) {
+        self.companyList = [[NSMutableArray alloc]init];
+
         NSFetchRequest * request = [[NSFetchRequest alloc]init];
 
         NSEntityDescription * company = [[model entitiesByName] objectForKey:@"Company"];
@@ -265,13 +270,16 @@
             [NSException raise:@"Fetch Failed" format:@"Reason: %@", [error localizedDescription]];
         } else {
         
-            //FIXME: Issue is either in saving the data or in fetching here
+            //FIXME: Issue is in fetching here
             for (NSManagedObject * managedCompany in result) {
                 Company * company = [[Company alloc]initWithCompanyName:[managedCompany valueForKey:@"companyName"]
                                                                orderNum:[managedCompany valueForKey:@"companyOrderNum"]
                                                               imageName:[managedCompany valueForKey:@"companyImageName"]
                                                             stockSymbol:[managedCompany valueForKey:@"companyStockSymbol"]];
-                [self.companyList addObject:company];
+                
+                if (self.largestCompanyOrderNum < company.companyOrderNum) {
+                    self.largestCompanyOrderNum = company.companyOrderNum;
+                }
                 
                 for (NSManagedObject * managedProduct in [managedCompany valueForKey:@"products"]) {
                     
@@ -279,7 +287,14 @@
                                                                    orderNum:[managedProduct valueForKey:@"productOrderNum"]
                                                                   imageName:[managedProduct valueForKey:@"productImageName"]
                                                                         url:[managedProduct valueForKey:@"productUrl"]];
+                    
                     [company.productArray addObject:product];
+                    
+                    if (self.largestProductOrderNum < product.productOrderNum) {
+                        self.largestProductOrderNum = product.productOrderNum;
+                    }
+                    
+                    [product release];
                 }
                 
                 NSLog(@"Products count %lu", [[managedCompany valueForKey:@"products"] count]);
@@ -328,11 +343,21 @@
     
     ProductManagedObject * newManagedProduct = [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
     [ProductManagedObject create:newManagedProduct withManagedProductName:name orderNum: newProductOrderNum imageName:imageName url:url];
+
+    //fet matching nsmanagedCompany and put in array
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription * entity = [NSEntityDescription entityForName:@"Company"
+                                              inManagedObjectContext:context];
+    [request setEntity:entity];
     
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"companyOrderNum = %@", company.companyOrderNum];
+    [request setPredicate:predicate];
+    NSError * error;
+    NSArray * array = [context executeFetchRequest:request error:&error];
     
-    //NSMutableSet * newCompanyProducts = [newManagedCompany mutableSetValueForKey:@"products"];
-    //[productSet addObject:newManagedProduct];
-    
+    //add newManagedProduct to matching nsmanagedCompany
+    NSMutableSet * newCompanyProducts = [array[0] mutableSetValueForKey:@"products"];
+    [newCompanyProducts addObject:newManagedProduct];
     
     [self saveChanges];
     
@@ -346,12 +371,28 @@
 
 - (Company *)editcompany:(Company *)company withName:(NSString *)name imageName:(NSString *)imageName stockSymbol:(NSString *)stockSymbol {
     
-//    company.companyName = name;
-//    company.companyImageName = imageName;
-//    company.stockSymbol = stockSymbol;
-//    
-//    NSString * updateCompanyStmt = [NSString stringWithFormat:@"UPDATE companies SET company_name = '%s', company_image = '%s', company_stock_symbol = '%s' WHERE company_id = %d", [name UTF8String], [imageName UTF8String], [stockSymbol UTF8String], company.companyID];
-//    [self updateSqlWithString:updateCompanyStmt];
+    company.companyName = name;
+    company.companyImageName = imageName;
+    company.companyStockSymbol = stockSymbol;
+    
+    //fet matching nsmanagedCompany and put in array
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription * entity = [NSEntityDescription entityForName:@"Company"
+                                               inManagedObjectContext:context];
+    [request setEntity:entity];
+    
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"companyOrderNum = %@", company.companyOrderNum];
+    [request setPredicate:predicate];
+    NSError * error;
+    NSArray * array = [context executeFetchRequest:request error:&error];
+    
+    //update nsmanagedCompany
+    CompanyManagedObject * managedCompany = array[0];
+    managedCompany.companyName = name;
+    managedCompany.companyImageName = imageName;
+    managedCompany.companyStockSymbol = stockSymbol;
+    [self saveChanges];
+
     NSLog(@"Company updated");
     
     return company;
@@ -359,40 +400,53 @@
 
 - (Product *)editProduct:(Product *)product withName:(NSString *)name imageName:(NSString *)imageName website:(NSString *)website {
     
-//    product.productName = name;
-//    product.productImageName = imageName;
-//    product.productUrl = website;
-//    
-//    NSString * updateProductStmt = [NSString stringWithFormat:@"UPDATE products SET product_name = '%s', product_image = '%s', product_url = '%s' WHERE product_id = %d", [name UTF8String], [imageName UTF8String], [website UTF8String], product.productID];
-//    [self updateSqlWithString:updateProductStmt];
-//    NSLog(@"Product updated");
+    product.productName = name;
+    product.productImageName = imageName;
+    product.productUrl = website;
+
+    //fet matching nsmanagedProduct and put in array
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription * entity = [NSEntityDescription entityForName:@"Product"
+                                               inManagedObjectContext:context];
+    [request setEntity:entity];
+    
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"productOrderNum = %@", product.productOrderNum];
+    [request setPredicate:predicate];
+    NSError * error;
+    NSArray * array = [context executeFetchRequest:request error:&error];
+    
+    //update nsmanagedProduct
+    ProductManagedObject * managedProduct = array[0];
+    managedProduct.productName = name;
+    managedProduct.productImageName = imageName;
+    managedProduct.productUrl = website;
+    [self saveChanges];
+    
+    NSLog(@"Product updated");
     
     return product;
 }
 
 - (void)deleteCompanyAndItsProducts:(Company *)company {
    
-//    NSString * deleteProdStmt = [NSString stringWithFormat:@"Delete FROM products WHERE company_id = %d", company.companyID];
-//    [self updateSqlWithString:deleteProdStmt];
-//    NSString * deleteCoStmt = [NSString stringWithFormat:@"DELETE FROM companies WHERE company_id = %d", company.companyID];
-//    [self updateSqlWithString:deleteCoStmt];
+    //should be cascade deletion
+
     NSLog(@"Company Deleted");
 }
 
 - (void)deleteProduct:(Product *)product {
     
-//    NSString * deleteProductStmt = [NSString stringWithFormat:@"DELETE FROM products WHERE product_id = %d", product.productID];
-//    [self updateSqlWithString:deleteProductStmt];
+    
     NSLog(@"Product Deleted");
 }
 
 - (void)moveCompanies {
-//    
+   
 //    for (int index = 0; index < [self.companyList count]; index++) {
 //        Company * company = self.companyList[index];
-//        NSString * moveCompanyStmt = [NSString stringWithFormat:@"UPDATE companies SET company_order = %d WHERE company_id = %d", company.companyOrderNum, company.companyID];
-//        [self updateSqlWithString:moveCompanyStmt];
+
 //    }
+    
     NSLog(@"Company Moved");
 }
 
@@ -400,9 +454,8 @@
     
 //    for (int index = 0; index < [self.companyList count]; index++) {
 //        Product * product = company.productArray[index];
-//        NSString * moveProductStmt = [NSString stringWithFormat:@"UPDATE products SET product_order = %d WHERE product_id = %d", product.productOrderNum, product.productID];
-//        [self updateSqlWithString:moveProductStmt];
 //    }
+    
     NSLog(@"Product Moved");
 }
 

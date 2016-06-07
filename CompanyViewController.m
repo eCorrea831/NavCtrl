@@ -19,10 +19,6 @@
 
 @property (nonatomic, retain) IBOutlet ProductViewController * productViewController;
 @property (nonatomic, retain) DataAccessObject * dao;
-@property (nonatomic, retain) Company * selectedCompany;
-
-- (void)showCompanyInfo;
-- (void)addItem:sender;
 
 @end
 
@@ -54,15 +50,15 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-//    Stocks * stockPrice = [[Stocks alloc] init];
-//    [stockPrice makeRequest:self];
+    Stocks * stockPrice = [[Stocks alloc] init];
+    [stockPrice makeRequest:self];
     
     [self.tableView reloadData];
 }
 
-- (void)showCompanyInfo {
+- (void)showCompanyInfoForCompany:(Company*)company {
     UserCompanyViewController * userCompanyVC = [[UserCompanyViewController alloc] init];
-    userCompanyVC.company = self.selectedCompany;
+    userCompanyVC.company = company;
     [self.navigationController pushViewController:userCompanyVC animated:YES];
     [userCompanyVC release];
 }
@@ -87,29 +83,29 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    Company * company = [[Company alloc] init];
-    company = [self.dao.companyList objectAtIndex:[indexPath row]];
+    Company * company = [self.dao.companyList objectAtIndex:[indexPath row]];
     cell.textLabel.text = [company companyName];
     cell.imageView.image = [UIImage imageNamed:company.companyImageName];
 
-//    UILabel *stockPrice = [[UILabel alloc]init];
-//    stockPrice.adjustsFontSizeToFitWidth = YES;
-//    stockPrice.text = [NSString stringWithFormat:@"%.2f", [self.selectedCompany.companyStockPrice floatValue]];
-//    cell.accessoryView = stockPrice;
-//    [cell.accessoryView setFrame:CGRectMake(0, 0, 50, 50)];
-//    [stockPrice release];
+    UILabel *stockPrice = [[UILabel alloc]init];
+    stockPrice.adjustsFontSizeToFitWidth = YES;
+    stockPrice.text = [NSString stringWithFormat:@"%.2f", [company.companyStockPrice floatValue]];
+    cell.accessoryView = stockPrice;
+    [cell.accessoryView setFrame:CGRectMake(0, 0, 50, 50)];
+    [stockPrice release];
     return cell;
 }
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    self.selectedCompany = [self.dao.companyList objectAtIndex:[indexPath row]];
+    
+    Company * company = [[self.dao.companyList objectAtIndex:indexPath.row] retain];
+    
     if (self.isEditing) {
-        [self showCompanyInfo];
+        [self showCompanyInfoForCompany:company];
     } else {
-        self.productViewController.title = [self.selectedCompany companyName];
-        self.productViewController.company = self.selectedCompany;
+        self.productViewController.title = company.companyName;
+        self.productViewController.company = company;
         [self.navigationController pushViewController:self.productViewController animated:NO];
     }
 }
@@ -131,13 +127,11 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    Company * company = [self.dao.companyList objectAtIndex:indexPath.row];
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.dao deleteCompanyAndItsProducts:self.selectedCompany];
-        for (Product *product in self.selectedCompany.productArray) {
-            product = nil;
-        }
+        [self.dao deleteCompanyAndItsProducts:company];
         [self.dao.companyList removeObjectAtIndex:indexPath.row];
-        self.selectedCompany = nil;
         [tableView reloadData];
     }
 }

@@ -14,10 +14,10 @@
     
     self = [super init];
     if (self) {
-        _productName = name;
-        _productOrderNum = orderNum;
-        _productImageName = imageName;
-        _productUrl = url;
+        _productName = [name retain];
+        _productOrderNum = [orderNum retain];
+        _productImageName = [imageName retain];
+        _productUrl = [url retain];
         
         return self;
     }

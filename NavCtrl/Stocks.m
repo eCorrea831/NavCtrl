@@ -52,7 +52,7 @@
     
     NSString *csv = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSMutableArray * stockArray = (NSMutableArray *)[csv componentsSeparatedByString:@"\n"];
-    [stockArray removeLastObject];
+    //[stockArray removeLastObject];
     for (int index = 0; index < [self.dao.companyList count]; index++) {
         self.dao.companyList[index].companyStockPrice = stockArray[index];
     }

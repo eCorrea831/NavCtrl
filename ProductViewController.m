@@ -12,8 +12,6 @@
 
 @interface ProductViewController ()
 
-@property (nonatomic, retain) DataAccessObject * dao;
-
 - (void)showProductInfoForProduct:(Product *)product;
 - (void)addItem:sender;
 
@@ -39,8 +37,7 @@
     UIBarButtonItem * addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
     [buttons addObject:addButton];
     self.navigationItem.rightBarButtonItems = buttons;
-    
-    self.dao = [DataAccessObject sharedInstance];
+ 
     [buttons release];
     [addButton release];
 }
@@ -73,7 +70,7 @@
     }
     Product * selectedProduct = [self.company.productArray objectAtIndex:[indexPath row]];
     
-    NSLog(@"%@",selectedProduct.productName);
+    NSLog(@"%@", selectedProduct.productName);
     
     cell.textLabel.text = selectedProduct.productName;
     cell.imageView.image = [UIImage imageNamed:selectedProduct.productImageName];
@@ -119,7 +116,7 @@
     
     Product * selectedProduct = [self.company.productArray objectAtIndex:[indexPath row]];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.dao deleteProduct:selectedProduct];
+        [[DataAccessObject sharedInstance] deleteProduct:selectedProduct];
         [self.company.productArray removeObjectAtIndex:indexPath.row];
         selectedProduct = NULL;
         [tableView reloadData];
@@ -144,7 +141,7 @@
         i = @([i floatValue] + 1);
     }
     
-    [self.dao moveProductsForCompany:self.company];
+    [[DataAccessObject sharedInstance] moveProductsForCompany:self.company];
     [self.tableView endUpdates];
     [self.tableView reloadData];
 }

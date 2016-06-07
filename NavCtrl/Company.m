@@ -14,11 +14,11 @@
     
     self = [super init];
     if (self) {
-        _companyName = name;
-        _companyOrderNum = orderNum;
-        _companyImageName = imageName;
-        _companyStockSymbol = stockSymbol;
-        _productArray = [[NSMutableArray alloc] init];
+        _companyName = [name retain];
+        _companyOrderNum = [orderNum retain];
+        _companyImageName = [imageName retain];
+        _companyStockSymbol = [stockSymbol retain];
+        _productArray = [[[NSMutableArray alloc] init] retain];
         
         return self;
     }
