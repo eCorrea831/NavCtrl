@@ -489,7 +489,7 @@
     NSLog(@"Product Moved");
 }
 
-- (void)reloadDataFromContext {
+- (void)reloadCompanyDataFromContext {
     
     NSFetchRequest * request = [[NSFetchRequest alloc]init];
     
@@ -515,26 +515,33 @@
     [self setCompanyList:[[NSMutableArray alloc]initWithArray:result]];
 }
 
-- (void)undoLastAction:sender {
+- (void)reloadProductDataFromContextForCompany:(Company *)company {
     
-    [self.context undo];
-    [self reloadDataFromContext];
- 
-    NSLog(@"Last action undone.");
-}
-
-- (void)redoLastUndo:sender {
+    NSFetchRequest * request = [[NSFetchRequest alloc]init];
     
-    [self.context redo];
-    [self reloadDataFromContext];
-    NSLog(@"Last action redone.");
-}
-
-- (void)rollbackAllChanges:sender {
+    //sort by productOrderNum
+    NSSortDescriptor * productSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"productOrderNum" ascending:YES];
     
-    [self.context rollback];
-    [self reloadDataFromContext];
-    NSLog(@"All changes rolled back.");
+    NSArray * sortDescriptors = [[NSArray alloc] initWithObjects:productSortDescriptor, nil];
+    
+    [request setSortDescriptors:sortDescriptors];
+    
+    NSEntityDescription * product = [[self.model entitiesByName] objectForKey:@"Product"];
+    [request setEntity:product];
+    
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"company.companyName = %@", company.companyName];
+    [request setPredicate:predicate];
+    
+    NSError * error = nil;
+    
+    //This gets data only from context, not from store
+    NSArray * result = [self.context executeFetchRequest:request error:&error];
+    
+    if (!result) {
+        [NSException raise:@"Fetch Failed" format:@"Reason: %@", [error localizedDescription]];
+    }
+    
+    company.productArray = [[NSMutableArray alloc]initWithArray:result];
 }
 
 - (void)dealloc {

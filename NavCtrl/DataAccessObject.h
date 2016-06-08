@@ -37,6 +37,7 @@
 
 //core data methods
 - (void)saveChanges;
-- (void)reloadDataFromContext;
+- (void)reloadCompanyDataFromContext;
+- (void)reloadProductDataFromContextForCompany:(Company *)company;
 
 @end

@@ -183,25 +183,22 @@
 - (void)undoLastAction:sender {
     
     [[self.dao context] undo];
-    [self.dao reloadDataFromContext];
+    [self.dao reloadCompanyDataFromContext];
     [self.tableView reloadData];
-    NSLog(@"Last action undone.");
 }
 
 - (void)redoLastUndo:sender {
     
     [[self.dao context] redo];
-    [self.dao reloadDataFromContext];
+    [self.dao reloadCompanyDataFromContext];
     [self.tableView reloadData];
-    NSLog(@"Last action redone.");
 }
 
 - (void)rollbackAllChanges:sender {
     
     [[self.dao context] rollback];
-    [self.dao reloadDataFromContext];
+    [self.dao reloadCompanyDataFromContext];
     [self.tableView reloadData];
-    NSLog(@"All changes rolled back.");
 }
 
 - (void)dealloc {

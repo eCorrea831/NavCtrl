@@ -173,7 +173,7 @@
 - (void)undoLastAction:sender {
     
     [[[DataAccessObject sharedInstance] context] undo];
-    [[DataAccessObject sharedInstance] reloadDataFromContext];
+    [[DataAccessObject sharedInstance] reloadProductDataFromContextForCompany:self.company];
     [self.tableView reloadData];
     NSLog(@"Last action undone.");
 }
@@ -181,7 +181,7 @@
 - (void)redoLastUndo:sender {
     
     [[[DataAccessObject sharedInstance] context] redo];
-    [[DataAccessObject sharedInstance] reloadDataFromContext];
+    [[DataAccessObject sharedInstance] reloadProductDataFromContextForCompany:self.company];
     [self.tableView reloadData];
     NSLog(@"Last action redone.");
 }
@@ -189,7 +189,7 @@
 - (void)rollbackAllChanges:sender {
     
     [[[DataAccessObject sharedInstance] context] rollback];
-    [[DataAccessObject sharedInstance] reloadDataFromContext];
+    [[DataAccessObject sharedInstance] reloadProductDataFromContextForCompany:self.company];
     [self.tableView reloadData];
     NSLog(@"All changes rolled back.");
 }
