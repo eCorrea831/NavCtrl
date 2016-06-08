@@ -20,7 +20,6 @@
 		48A656D818163BF200746D36 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 48A656D618163BF200746D36 /* InfoPlist.strings */; };
 		48A656DA18163BF200746D36 /* NavCtrlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A656D918163BF200746D36 /* NavCtrlTests.m */; };
 		48A656E618163C1B00746D36 /* CompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A656E418163C1B00746D36 /* CompanyViewController.m */; };
-		48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A656E518163C1B00746D36 /* CompanyViewController.xib */; };
 		48A656EB18163F8700746D36 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A656E918163F8700746D36 /* ProductViewController.m */; };
 		48A656EE1816468000746D36 /* Sunflower.gif in Resources */ = {isa = PBXBuildFile; fileRef = 48A656ED1816468000746D36 /* Sunflower.gif */; };
 		7B01DEA81CC0010F005A7AF9 /* DefaultCompanyImage in Resources */ = {isa = PBXBuildFile; fileRef = 7B01DEA71CC0010F005A7AF9 /* DefaultCompanyImage */; };
@@ -76,6 +75,9 @@
 		AA4D87081D088CCD00FF0FFF /* CompanyCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA4D87061D088CCD00FF0FFF /* CompanyCollectionViewController.xib */; };
 		AA4D870C1D088CF900FF0FFF /* ProductCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4D870A1D088CF900FF0FFF /* ProductCollectionViewController.m */; };
 		AA4D870D1D088CF900FF0FFF /* ProductCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA4D870B1D088CF900FF0FFF /* ProductCollectionViewController.xib */; };
+		AADC724D1D089EDD00E87E3B /* CompanyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AADC724B1D089EDD00E87E3B /* CompanyCollectionViewCell.m */; };
+		AADC724E1D089EDD00E87E3B /* CompanyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AADC724C1D089EDD00E87E3B /* CompanyCollectionViewCell.xib */; };
+		AADC72501D08A3DC00E87E3B /* CompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AADC724F1D08A3DC00E87E3B /* CompanyViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,7 +109,6 @@
 		48A656D918163BF200746D36 /* NavCtrlTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavCtrlTests.m; sourceTree = "<group>"; };
 		48A656E318163C1B00746D36 /* CompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompanyViewController.h; path = ../CompanyViewController.h; sourceTree = "<group>"; };
 		48A656E418163C1B00746D36 /* CompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CompanyViewController.m; path = ../CompanyViewController.m; sourceTree = "<group>"; };
-		48A656E518163C1B00746D36 /* CompanyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CompanyViewController.xib; path = ../CompanyViewController.xib; sourceTree = "<group>"; };
 		48A656E818163F8700746D36 /* ProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductViewController.h; path = ../ProductViewController.h; sourceTree = "<group>"; };
 		48A656E918163F8700746D36 /* ProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductViewController.m; path = ../ProductViewController.m; sourceTree = "<group>"; };
 		48A656ED1816468000746D36 /* Sunflower.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Sunflower.gif; sourceTree = "<group>"; };
@@ -177,6 +178,10 @@
 		AA4D87091D088CF900FF0FFF /* ProductCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCollectionViewController.h; sourceTree = "<group>"; };
 		AA4D870A1D088CF900FF0FFF /* ProductCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCollectionViewController.m; sourceTree = "<group>"; };
 		AA4D870B1D088CF900FF0FFF /* ProductCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCollectionViewController.xib; sourceTree = "<group>"; };
+		AADC724A1D089EDD00E87E3B /* CompanyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompanyCollectionViewCell.h; path = ../CompanyCollectionViewCell.h; sourceTree = "<group>"; };
+		AADC724B1D089EDD00E87E3B /* CompanyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CompanyCollectionViewCell.m; path = ../CompanyCollectionViewCell.m; sourceTree = "<group>"; };
+		AADC724C1D089EDD00E87E3B /* CompanyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CompanyCollectionViewCell.xib; path = ../CompanyCollectionViewCell.xib; sourceTree = "<group>"; };
+		AADC724F1D08A3DC00E87E3B /* CompanyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanyViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -411,6 +416,8 @@
 				AA4D87051D088CCD00FF0FFF /* CompanyCollectionViewController.m */,
 				AA4D87091D088CF900FF0FFF /* ProductCollectionViewController.h */,
 				AA4D870A1D088CF900FF0FFF /* ProductCollectionViewController.m */,
+				AADC724A1D089EDD00E87E3B /* CompanyCollectionViewCell.h */,
+				AADC724B1D089EDD00E87E3B /* CompanyCollectionViewCell.m */,
 			);
 			name = CollectionView;
 			sourceTree = "<group>";
@@ -429,7 +436,7 @@
 		AA4D87101D088D5C00FF0FFF /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				48A656E518163C1B00746D36 /* CompanyViewController.xib */,
+				AADC724F1D08A3DC00E87E3B /* CompanyViewController.xib */,
 			);
 			name = TableView;
 			sourceTree = "<group>";
@@ -439,6 +446,7 @@
 			children = (
 				AA4D87061D088CCD00FF0FFF /* CompanyCollectionViewController.xib */,
 				AA4D870B1D088CF900FF0FFF /* ProductCollectionViewController.xib */,
+				AADC724C1D089EDD00E87E3B /* CompanyCollectionViewCell.xib */,
 			);
 			name = CollectionView;
 			sourceTree = "<group>";
@@ -530,11 +538,11 @@
 				7B7539751CB84B6A00935272 /* NewWebViewController.xib in Resources */,
 				7B21FA251CF750D400F87ACB /* LaunchScreen.storyboard in Resources */,
 				7B49C41C1CB5D47D00AE47E2 /* HuaweiTalkband in Resources */,
-				48A656E718163C1B00746D36 /* CompanyViewController.xib in Resources */,
 				7B01DEA81CC0010F005A7AF9 /* DefaultCompanyImage in Resources */,
 				7B49C40B1CB5CE9B00AE47E2 /* iPhone in Resources */,
 				7B49C41A1CB5D47D00AE47E2 /* HuaweiMate in Resources */,
 				7B49C4051CB5CE9B00AE47E2 /* GalaxyS4 in Resources */,
+				AADC72501D08A3DC00E87E3B /* CompanyViewController.xib in Resources */,
 				7B49C40C1CB5CE9B00AE47E2 /* iPodTouch in Resources */,
 				7B5F64591CEFB6DD00495225 /* DocSets in Resources */,
 				7B5F64611CEFB6DD00495225 /* README.txt in Resources */,
@@ -546,6 +554,7 @@
 				7B52A5781CF6463800FE1AA1 /* UserProductViewController.xib in Resources */,
 				AA4D87081D088CCD00FF0FFF /* CompanyCollectionViewController.xib in Resources */,
 				48A656BF18163BF200746D36 /* InfoPlist.strings in Resources */,
+				AADC724E1D089EDD00E87E3B /* CompanyCollectionViewCell.xib in Resources */,
 				48A656C718163BF200746D36 /* Images.xcassets in Resources */,
 				7B49C41B1CB5D47D00AE47E2 /* HuaweiMatebook in Resources */,
 				AA4D870D1D088CF900FF0FFF /* ProductCollectionViewController.xib in Resources */,
@@ -585,6 +594,7 @@
 				7BF0AB9C1CF8D7AC00E28AAE /* CompanyManagedObject.m in Sources */,
 				AA4D870C1D088CF900FF0FFF /* ProductCollectionViewController.m in Sources */,
 				48A656C118163BF200746D36 /* main.m in Sources */,
+				AADC724D1D089EDD00E87E3B /* CompanyCollectionViewCell.m in Sources */,
 				48A656EB18163F8700746D36 /* ProductViewController.m in Sources */,
 				AA4D87071D088CCD00FF0FFF /* CompanyCollectionViewController.m in Sources */,
 				7B5A09E51CF63B1500557232 /* UserCompanyViewController.m in Sources */,

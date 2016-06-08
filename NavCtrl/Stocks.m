@@ -31,7 +31,7 @@
     return stockSymbolString;
 }
 
-- (void)makeRequest:(CompanyViewController *)companyVC {
+- (void)makeRequest:(CompanyCollectionViewController *)companyVC {
     
     NSURLSession * session = [NSURLSession sharedSession];
     NSMutableString * stockSymbolString = [self createUrl];
@@ -40,7 +40,7 @@
 
         [self parseData:data];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [companyVC.tableView reloadData];
+            [companyVC.collectionView reloadData];
         });
     }];
     [stockSymbolString release];

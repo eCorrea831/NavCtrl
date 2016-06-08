@@ -10,4 +10,6 @@
 
 @interface CompanyCollectionViewController : UICollectionViewController
 
+
+
 @end

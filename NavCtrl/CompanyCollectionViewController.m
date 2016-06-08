@@ -7,71 +7,75 @@
 //
 
 #import "CompanyCollectionViewController.h"
+#import "CompanyCollectionViewCell.h"
+#import "ProductCollectionViewController.h"
+#import "DataAccessObject.h"
+#import "UserCompanyViewController.h"
+#import "Stocks.h"
+
+@class DataAccessObject;
+@class ProductCollectionViewController;
 
 @interface CompanyCollectionViewController ()
+
+//TODO:do this with storyboard segue instead? or other method - pop view controller?
+//@property (nonatomic, retain) IBOutlet ProductCollectionViewController * productCollectionViewController;
+@property (nonatomic, retain) DataAccessObject * dao;
 
 @end
 
 @implementation CompanyCollectionViewController
 
-static NSString * const reuseIdentifier = @"Cell";
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.dao = [DataAccessObject sharedInstance];
+
+    UINib * cellNib = [UINib nibWithNibName:@"CompanyCollectionViewCell" bundle:nil];
+    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"Cell"];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     
-    // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [super viewWillAppear:animated];
     
-    // Do any additional setup after loading the view.
+    Stocks * stockPrice = [[Stocks alloc] init];
+    [stockPrice makeRequest:self];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+
+    return 1;
 }
 
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of items
-    return 0;
+
+    return [self.dao.companyList count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    // Configure the cell
-    
+    static NSString * CellIdentifier = @"Cell";
+    CompanyCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:(NSIndexPath *)indexPath];
+
+
+    Company * company = [self.dao.companyList objectAtIndex:[indexPath row]];
+
+    cell.companyNameLabel.text = [company companyName];
+    cell.companyImage.image = [UIImage imageNamed:company.companyImageName];
+    cell.companyStockPriceLabel.text = [NSString stringWithFormat:@"%.2f", [company.companyStockPrice floatValue]];
+
     return cell;
 }
 
 #pragma mark <UICollectionViewDelegate>
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
 
 /*
 // Uncomment this method to specify if the specified item should be selected

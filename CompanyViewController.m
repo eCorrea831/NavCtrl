@@ -60,8 +60,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-//    Stocks * stockPrice = [[Stocks alloc] init];
-//    [stockPrice makeRequest:self];
+    Stocks * stockPrice = [[Stocks alloc] init];
+    [stockPrice makeRequest:self];
     
     [self.tableView reloadData];
 }
@@ -97,12 +97,12 @@
     cell.textLabel.text = [company companyName];
     cell.imageView.image = [UIImage imageNamed:company.companyImageName];
 
-//    UILabel * stockPrice = [[UILabel alloc]init];
-//    stockPrice.adjustsFontSizeToFitWidth = YES;
-//    stockPrice.text = [NSString stringWithFormat:@"%.2f", [company.companyStockPrice floatValue]];
-//    cell.accessoryView = stockPrice;
-//    [cell.accessoryView setFrame:CGRectMake(0, 0, 50, 50)];
-//    [stockPrice release];
+    UILabel * stockPrice = [[UILabel alloc]init];
+    stockPrice.adjustsFontSizeToFitWidth = YES;
+    stockPrice.text = [NSString stringWithFormat:@"%.2f", [company.companyStockPrice floatValue]];
+    cell.accessoryView = stockPrice;
+    [cell.accessoryView setFrame:CGRectMake(0, 0, 50, 50)];
+    [stockPrice release];
     
     return cell;
 }

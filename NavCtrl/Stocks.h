@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CompanyViewController.h"
+#import "CompanyCollectionViewController.h"
 
 @interface Stocks : NSObject
 
 - (NSMutableString *)createUrl;
-- (void)makeRequest:(CompanyViewController *)companyVC;
+- (void)makeRequest:(CompanyCollectionViewController *)companyVC;
 - (void)parseData:(NSData *)data;
 
 @end

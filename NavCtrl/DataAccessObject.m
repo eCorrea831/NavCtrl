@@ -128,6 +128,7 @@
     self.companyList = [[NSMutableArray alloc]initWithObjects:apple, samsung, google, huawei, nil];
     
     self.largestCompanyOrderNum = @4;
+    [self saveChanges];
 }
 
 - (void)createProductDataForCompany:(Company *)company {
