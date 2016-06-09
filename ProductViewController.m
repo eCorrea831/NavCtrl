@@ -119,7 +119,7 @@
     
     Product * selectedProduct = [self.company.productArray objectAtIndex:[indexPath row]];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [[DataAccessObject sharedInstance] deleteProduct:selectedProduct];
+        [[DataAccessObject sharedInstance] deleteProduct:selectedProduct forCompany:self.company];
         [self.company.productArray removeObjectAtIndex:indexPath.row];
         selectedProduct = NULL;
         [tableView reloadData];

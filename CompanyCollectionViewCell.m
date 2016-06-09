@@ -7,18 +7,29 @@
 //
 
 #import "CompanyCollectionViewCell.h"
+#import "DataAccessObject.h"
+#import "CompanyCollectionViewController.h"
 
 @implementation CompanyCollectionViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+}
+
+- (IBAction)deleteCompany:(UIButton *)sender {
+
+    //TODO:have remove from view right away
+    NSInteger index = sender.tag;
+    Company * company = [DataAccessObject sharedInstance].companyList[index];
+    [[DataAccessObject sharedInstance] deleteCompanyAndItsProducts:company];
 }
 
 - (void)dealloc {
     [_companyNameLabel release];
     [_companyImage release];
     [_companyStockPriceLabel release];
+    [_deleteCompanyButton release];
     [super dealloc];
 }
+
 @end

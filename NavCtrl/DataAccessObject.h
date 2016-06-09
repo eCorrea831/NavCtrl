@@ -31,7 +31,7 @@
 
 //other editing
 - (void)deleteCompanyAndItsProducts:(Company *)company;
-- (void)deleteProduct:(Product *)product;
+- (void)deleteProduct:(Product *)product forCompany:(Company *)company;
 - (void)moveCompanies;
 - (void)moveProductsForCompany:(Company *)company;
 

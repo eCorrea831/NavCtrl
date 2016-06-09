@@ -41,6 +41,8 @@
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     self.didAlreadyRun = [defaults integerForKey:@"defaultRunCheck"];
     
+    self.companyList = [[NSMutableArray alloc] init];
+    
         self = [super init];
         if (self) {
             if (self.didAlreadyRun) {
@@ -125,7 +127,7 @@
                                                 stockSymbol:@"TSLA"];
     [self createProductDataForCompany:huawei];
     
-    self.companyList = [[NSMutableArray alloc]initWithObjects:apple, samsung, google, huawei, nil];
+    self.companyList = [NSMutableArray arrayWithObjects:apple, samsung, google, huawei, nil];
     
     self.largestCompanyOrderNum = @4;
     [self saveChanges];
@@ -150,7 +152,7 @@
                                                       imageName:@"iPhone"
                                                             url:@"http://www.apple.com/iphone/"];
         
-        company.productArray = (NSMutableArray *) @[iPad, iPod, iPhone];
+        company.productArray = [NSMutableArray arrayWithObjects:iPad, iPod, iPhone, nil];
     }
     
     if ([company.companyName isEqualToString:@"Samsung Mobile Devices"]) {
@@ -170,7 +172,7 @@
                                                          imageName:@"GalaxyTab"
                                                                url:@"http://www.samsung.com/us/explore/tab-s2-features-and-specs/?cid=ppc-"];
         
-        company.productArray = (NSMutableArray *) @[galaxyS4, galaxyNote, galaxyTab];
+        company.productArray = [NSMutableArray arrayWithObjects:galaxyS4, galaxyNote, galaxyTab, nil];
     }
     
     if ([company.companyName isEqualToString:@"Google Mobile Devices"]) {
@@ -191,7 +193,7 @@
                                                             imageName:@"AndroidPhone"
                                                                   url:@"https://www.android.com/phones/"];
 
-        company.productArray = (NSMutableArray *) @[androidWear, androidTablet, androidPhone];
+        company.productArray = [NSMutableArray arrayWithObjects:androidWear, androidTablet, androidPhone, nil];
     }
     
     if ([company.companyName isEqualToString:@"Huawei Mobile Devices"]) {
@@ -211,7 +213,7 @@
                                                                imageName:@"HuaweiTalkband"
                                                                     url:@"http://consumer.huawei.com/en/wearables/talkband-b3/"];
         
-        company.productArray = (NSMutableArray *) @[huaweiMate, huaweiMateBook, huaweiTalkBand];
+        company.productArray = [NSMutableArray arrayWithObjects:huaweiMate, huaweiMateBook, huaweiTalkBand, nil];
     }
     self.largestProductOrderNum = @12;
 }
@@ -403,7 +405,7 @@
 - (void)deleteCompanyAndItsProducts:(Company *)company {
     
     //fetch matching nsmanagedCompany and put in array
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
     NSEntityDescription * entity = [NSEntityDescription entityForName:@"Company"
                                                inManagedObjectContext:self.context];
     [request setEntity:entity];
@@ -415,15 +417,16 @@
 
     [self.context deleteObject:array[0]];
     
+    [self.companyList removeObject:company];
     company = nil;
 
     NSLog(@"Company Deleted");
 }
 
-- (void)deleteProduct:(Product *)product {
+- (void)deleteProduct:(Product *)product forCompany:(Company *)company {
     
     //fetch matching nsmanagedProduct and put in array
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
     NSEntityDescription * entity = [NSEntityDescription entityForName:@"Product"
                                                inManagedObjectContext:self.context];
     [request setEntity:entity];
@@ -434,6 +437,8 @@
     NSArray * array = [self.context executeFetchRequest:request error:&error];
     
     [self.context deleteObject:array[0]];
+    
+    [company.productArray removeObject:product];
     
     product = nil;
     
@@ -468,7 +473,7 @@
 - (void)moveProductsForCompany:(Company *)company {
     
     //fetch all nsmanagedProducts and put in array
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
     NSEntityDescription * entity = [NSEntityDescription entityForName:@"Product"
                                                inManagedObjectContext:self.context];
     [request setEntity:entity];

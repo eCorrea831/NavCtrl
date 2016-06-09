@@ -12,14 +12,14 @@
 
 @interface UserProductViewController : UIViewController
 
-@property (retain, nonatomic) IBOutlet UILabel *instructionLabel;
-@property (retain, nonatomic) IBOutlet UIImageView *productImage;
-@property (retain, nonatomic) IBOutlet UITextField *productNameTextField;
-@property (retain, nonatomic) IBOutlet UITextField *productImageNameTextField;
-@property (retain, nonatomic) IBOutlet UITextField *productWebsiteTextField;
-@property (retain, nonatomic) IBOutlet UILabel *productNameLabel;
-@property (retain, nonatomic) IBOutlet UILabel *productImageNameLabel;
-@property (retain, nonatomic) IBOutlet UILabel *productWebsiteLabel;
+@property (retain, nonatomic) IBOutlet UILabel * instructionLabel;
+@property (retain, nonatomic) IBOutlet UIImageView * productImage;
+@property (retain, nonatomic) IBOutlet UITextField * productNameTextField;
+@property (retain, nonatomic) IBOutlet UITextField * productImageNameTextField;
+@property (retain, nonatomic) IBOutlet UITextField * productWebsiteTextField;
+@property (retain, nonatomic) IBOutlet UILabel * productNameLabel;
+@property (retain, nonatomic) IBOutlet UILabel * productImageNameLabel;
+@property (retain, nonatomic) IBOutlet UILabel * productWebsiteLabel;
 
 @property (retain, nonatomic) Company * company;
 @property (retain, nonatomic) Product * product;

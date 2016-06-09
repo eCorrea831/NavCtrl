@@ -11,14 +11,14 @@
 
 @interface UserCompanyViewController : UIViewController
 
-@property (retain, nonatomic) IBOutlet UILabel *instructionLabel;
-@property (retain, nonatomic) IBOutlet UIImageView *companyImage;
-@property (retain, nonatomic) IBOutlet UITextField *companyNameTextField;
-@property (retain, nonatomic) IBOutlet UITextField *companyImageNameTextField;
-@property (retain, nonatomic) IBOutlet UITextField *companyStockSymbolTextField;
-@property (retain, nonatomic) IBOutlet UILabel *companyNameLabel;
-@property (retain, nonatomic) IBOutlet UILabel *companyImageNameLabel;
-@property (retain, nonatomic) IBOutlet UILabel *companyStockSymbolLabel;
+@property (retain, nonatomic) IBOutlet UILabel * instructionLabel;
+@property (retain, nonatomic) IBOutlet UIImageView * companyImage;
+@property (retain, nonatomic) IBOutlet UITextField * companyNameTextField;
+@property (retain, nonatomic) IBOutlet UITextField * companyImageNameTextField;
+@property (retain, nonatomic) IBOutlet UITextField * companyStockSymbolTextField;
+@property (retain, nonatomic) IBOutlet UILabel * companyNameLabel;
+@property (retain, nonatomic) IBOutlet UILabel * companyImageNameLabel;
+@property (retain, nonatomic) IBOutlet UILabel * companyStockSymbolLabel;
 
 @property (retain, nonatomic) Company * company;
 

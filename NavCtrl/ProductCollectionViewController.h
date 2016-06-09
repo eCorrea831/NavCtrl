@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataAccessObject.h"
 
 @interface ProductCollectionViewController : UICollectionViewController
+
+@property (nonatomic, retain) Company * company;
 
 @end

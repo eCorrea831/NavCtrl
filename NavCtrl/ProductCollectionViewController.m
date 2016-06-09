@@ -7,41 +7,62 @@
 //
 
 #import "ProductCollectionViewController.h"
+#import "ProductCollectionViewCell.h"
+#import "NewWebViewController.h"
+#import "UserProductViewController.h"
 
 @interface ProductCollectionViewController ()
+
+@property (nonatomic) BOOL inEditMode;
 
 @end
 
 @implementation ProductCollectionViewController
 
-static NSString * const reuseIdentifier = @"Cell";
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadNavBar];
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.title = @"Navigation Controller";
     
-    // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    UINib * cellNib = [UINib nibWithNibName:@"ProductCollectionViewCell" bundle:nil];
+    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"Cell"];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.collectionView reloadData];
+}
+
+- (void)loadNavBar {
     
-    // Do any additional setup after loading the view.
+    UIBarButtonItem * saveToDiskButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveChanges:)];
+    
+    UIBarButtonItem * rollbackButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(rollbackAllChanges:)];
+    
+    UIBarButtonItem * redoButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRedo target:self action:@selector(redoLastUndo:)];
+    
+    UIBarButtonItem * undoButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemUndo target:self action:@selector(undoLastAction:)];
+    
+    UIBarButtonItem * addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
+    
+    UIBarButtonItem * editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enterEditMode:)];
+    
+    UIBarButtonItem * doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(exitEditMode:)];
+    
+    NSMutableArray * buttons = [[NSMutableArray alloc]init];
+    
+    if (self.inEditMode) {
+        buttons = [NSMutableArray arrayWithObjects:saveToDiskButton, rollbackButton, redoButton, undoButton, doneButton, addButton, nil];
+    } else {
+        buttons = [NSMutableArray arrayWithObjects:saveToDiskButton, rollbackButton, redoButton, undoButton, editButton, addButton, nil];
+    }
+    self.navigationItem.rightBarButtonItems = buttons;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -50,49 +71,99 @@ static NSString * const reuseIdentifier = @"Cell";
     return 1;
 }
 
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-//set here
-    return 0;
+
+    return [self.company.productArray count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    // Configure the cell
+    static NSString * CellIdentifier = @"Cell";
+    ProductCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:(NSIndexPath *)indexPath];
+    
+    Product * selectedProduct = [self.company.productArray objectAtIndex:[indexPath row]];
+    
+    cell.productNameLabel.text = selectedProduct.productName;
+    cell.productImage.image = [UIImage imageNamed:selectedProduct.productImageName];
+    cell.company = self.company;
+    
+    if (self.inEditMode) {
+        cell.deleteProductButton.hidden = NO;
+    } else {
+        cell.deleteProductButton.hidden = YES;
+    }
     
     return cell;
 }
 
-#pragma mark <UICollectionViewDelegate>
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+   
+    if (self.inEditMode) {
+        Product * selectedProduct = [self.company.productArray objectAtIndex:[indexPath row]];
+        [self editInfoForProduct:selectedProduct];
+    } else {
+        NewWebViewController * webViewController = [[NewWebViewController alloc]init];
+        webViewController.url = [NSURL URLWithString:[self.company.productArray[indexPath.row] productUrl]];
+        [self.navigationController pushViewController:webViewController animated:YES];
+        [webViewController release];
+    }
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
+- (void)enterEditMode:sender {
+    self.inEditMode = YES;
+    [self loadNavBar];
+    [self.collectionView reloadData];
 }
 
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
+- (void)exitEditMode:sender {
+    self.inEditMode = NO;
+    [self loadNavBar];
+    [self.collectionView reloadData];
 }
-*/
+
+- (void)editInfoForProduct:(Product *)product {
+    
+    UserProductViewController * userProductVC = [[UserProductViewController alloc] init];
+    userProductVC.company = self.company;
+    userProductVC.product = product;
+    [self.navigationController pushViewController:userProductVC animated:YES];
+    [userProductVC release];
+}
+
+- (void)addItem:sender {
+    
+    UserProductViewController * userProductViewController = [[UserProductViewController alloc] init];
+    userProductViewController.company = self.company;
+    [self.navigationController pushViewController:userProductViewController animated:YES];
+    [userProductViewController release];
+}
+
+- (void)saveChanges:sender {
+    [[DataAccessObject sharedInstance] saveChanges];
+}
+
+- (void)undoLastAction:sender {
+    
+    [[[DataAccessObject sharedInstance] context] undo];
+    [[DataAccessObject sharedInstance] reloadProductDataFromContextForCompany:self.company];
+    [self.collectionView reloadData];
+    NSLog(@"Last action undone.");
+}
+
+- (void)redoLastUndo:sender {
+    
+    [[[DataAccessObject sharedInstance] context] redo];
+    [[DataAccessObject sharedInstance] reloadProductDataFromContextForCompany:self.company];
+    [self.collectionView reloadData];
+    NSLog(@"Last action redone.");
+}
+
+- (void)rollbackAllChanges:sender {
+    
+    [[[DataAccessObject sharedInstance] context] rollback];
+    [[DataAccessObject sharedInstance] reloadProductDataFromContextForCompany:self.company];
+    [self.collectionView reloadData];
+    NSLog(@"All changes rolled back.");
+}
 
 @end
