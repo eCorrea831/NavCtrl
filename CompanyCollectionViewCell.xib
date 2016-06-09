@@ -64,7 +64,7 @@
                 <outlet property="companyStockPriceLabel" destination="rh3-A5-tJ0" id="7ee-4h-vyH"/>
                 <outlet property="deleteCompanyButton" destination="EVD-vI-6jP" id="e93-WS-pWJ"/>
             </connections>
-            <point key="canvasLocation" x="398.5" y="428"/>
+            <point key="canvasLocation" x="-307" y="-185"/>
         </collectionViewCell>
     </objects>
     <resources>

@@ -42,7 +42,7 @@
     self.didAlreadyRun = [defaults integerForKey:@"defaultRunCheck"];
     
     self.companyList = [[NSMutableArray alloc] init];
-    
+
         self = [super init];
         if (self) {
             if (self.didAlreadyRun) {
@@ -127,7 +127,7 @@
                                                 stockSymbol:@"TSLA"];
     [self createProductDataForCompany:huawei];
     
-    self.companyList = [NSMutableArray arrayWithObjects:apple, samsung, google, huawei, nil];
+    self.companyList = [[NSMutableArray alloc] initWithObjects:apple, samsung, google, huawei, nil];
     
     self.largestCompanyOrderNum = @4;
     [self saveChanges];
@@ -152,7 +152,7 @@
                                                       imageName:@"iPhone"
                                                             url:@"http://www.apple.com/iphone/"];
         
-        company.productArray = [NSMutableArray arrayWithObjects:iPad, iPod, iPhone, nil];
+        company.productArray = [[NSMutableArray alloc] initWithObjects:iPad, iPod, iPhone, nil];
     }
     
     if ([company.companyName isEqualToString:@"Samsung Mobile Devices"]) {
@@ -172,7 +172,7 @@
                                                          imageName:@"GalaxyTab"
                                                                url:@"http://www.samsung.com/us/explore/tab-s2-features-and-specs/?cid=ppc-"];
         
-        company.productArray = [NSMutableArray arrayWithObjects:galaxyS4, galaxyNote, galaxyTab, nil];
+        company.productArray = [[NSMutableArray alloc] initWithObjects:galaxyS4, galaxyNote, galaxyTab, nil];
     }
     
     if ([company.companyName isEqualToString:@"Google Mobile Devices"]) {
@@ -193,7 +193,7 @@
                                                             imageName:@"AndroidPhone"
                                                                   url:@"https://www.android.com/phones/"];
 
-        company.productArray = [NSMutableArray arrayWithObjects:androidWear, androidTablet, androidPhone, nil];
+        company.productArray = [[NSMutableArray alloc] initWithObjects:androidWear, androidTablet, androidPhone, nil];
     }
     
     if ([company.companyName isEqualToString:@"Huawei Mobile Devices"]) {
@@ -213,7 +213,7 @@
                                                                imageName:@"HuaweiTalkband"
                                                                     url:@"http://consumer.huawei.com/en/wearables/talkband-b3/"];
         
-        company.productArray = [NSMutableArray arrayWithObjects:huaweiMate, huaweiMateBook, huaweiTalkBand, nil];
+        company.productArray = [[NSMutableArray alloc] initWithObjects:huaweiMate, huaweiMateBook, huaweiTalkBand, nil];
     }
     self.largestProductOrderNum = @12;
 }
@@ -517,8 +517,18 @@
     if (!result) {
         [NSException raise:@"Fetch Failed" format:@"Reason: %@", [error localizedDescription]];
     }
+    //need to convert managed objects to nsobjects then fill array
     
-    [self setCompanyList:[[NSMutableArray alloc]initWithArray:result]];
+    [self.companyList removeAllObjects];
+    
+    for (CompanyManagedObject * managedCompany in result) {
+        Company * newCompany = [[Company alloc]init];
+        newCompany.companyName = managedCompany.companyName;
+        newCompany.companyImageName = managedCompany.companyImageName;
+        newCompany.companyOrderNum = managedCompany.companyOrderNum;
+        newCompany.companyStockSymbol = managedCompany.companyStockSymbol;
+        [self.companyList addObject:newCompany];
+    }
 }
 
 - (void)reloadProductDataFromContextForCompany:(Company *)company {

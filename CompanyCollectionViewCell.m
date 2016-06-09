@@ -22,6 +22,7 @@
     NSInteger index = sender.tag;
     Company * company = [DataAccessObject sharedInstance].companyList[index];
     [[DataAccessObject sharedInstance] deleteCompanyAndItsProducts:company];
+    self.backgroundColor = [UIColor grayColor];
 }
 
 - (void)dealloc {

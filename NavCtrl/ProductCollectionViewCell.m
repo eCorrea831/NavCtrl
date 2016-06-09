@@ -14,7 +14,6 @@
     [super awakeFromNib];
 }
 
-
 - (IBAction)deleteProduct:(UIButton *)sender {
     
     //TODO:have remove from view right away
@@ -23,6 +22,7 @@
     
     Product * product = [self.company.productArray objectAtIndex:index];
     [[DataAccessObject sharedInstance] deleteProduct:product forCompany:self.company];
+    self.backgroundColor = [UIColor grayColor];
 }
 
 - (void)dealloc {

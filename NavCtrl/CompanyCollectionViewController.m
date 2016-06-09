@@ -48,6 +48,7 @@
 //    Stocks * stockPrice = [[Stocks alloc] init];
 //    [stockPrice makeRequest:self];
     
+    [self.dao reloadCompanyDataFromContext];
     [self.collectionView reloadData];
 }
 
@@ -101,6 +102,7 @@
 
     Company * company = [self.dao.companyList objectAtIndex:[indexPath row]];
 
+    cell.backgroundColor = [UIColor colorWithRed:0.30 green:0.68 blue:0.50 alpha:1.0];
     cell.companyNameLabel.text = [company companyName];
     cell.companyImage.image = [UIImage imageNamed:company.companyImageName];
     
@@ -111,7 +113,7 @@
         cell.deleteCompanyButton.hidden = YES;
     }
     
-//    cell.companyStockPriceLabel.text = [NSString stringWithFormat:@"%.2f", [company.companyStockPrice floatValue]];
+    //cell.companyStockPriceLabel.text = [NSString stringWithFormat:@"%.2f", [company.companyStockPrice floatValue]];
 
     return cell;
 }

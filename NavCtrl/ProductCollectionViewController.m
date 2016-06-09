@@ -31,6 +31,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [[DataAccessObject sharedInstance] reloadProductDataFromContextForCompany:self.company];
     [self.collectionView reloadData];
 }
 
@@ -83,6 +84,7 @@
     
     Product * selectedProduct = [self.company.productArray objectAtIndex:[indexPath row]];
     
+    cell.backgroundColor = [UIColor colorWithRed:0.30 green:0.60 blue:0.68 alpha:1.0];
     cell.productNameLabel.text = selectedProduct.productName;
     cell.productImage.image = [UIImage imageNamed:selectedProduct.productImageName];
     cell.company = self.company;
