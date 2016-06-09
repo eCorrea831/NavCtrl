@@ -27,10 +27,10 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heM-tW-fIW">
-                        <rect key="frame" x="467" y="47" width="25" height="25"/>
+                        <rect key="frame" x="467" y="27" width="25" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="25" id="a13-xV-llP"/>
-                            <constraint firstAttribute="height" constant="25" id="pjm-HX-EwC"/>
+                            <constraint firstAttribute="width" constant="25" id="8hy-ER-YbX"/>
+                            <constraint firstAttribute="height" constant="25" id="lku-1k-J5h"/>
                         </constraints>
                         <state key="normal" title="Button" image="minus_filled"/>
                         <connections>
@@ -43,10 +43,10 @@
             <color key="backgroundColor" red="0.52138102054595947" green="0.73436719179153442" blue="0.91338175535202026" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="gaQ-rc-kV9" firstAttribute="leading" secondItem="Rfi-ku-2ST" secondAttribute="trailing" constant="22" id="Wfz-wA-FDW"/>
-                <constraint firstAttribute="bottom" secondItem="heM-tW-fIW" secondAttribute="bottom" constant="8" id="eUx-rA-VOD"/>
-                <constraint firstAttribute="trailing" secondItem="heM-tW-fIW" secondAttribute="trailing" constant="8" id="ee1-4x-WjA"/>
+                <constraint firstItem="heM-tW-fIW" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="bIQ-wM-Fjs"/>
                 <constraint firstItem="Rfi-ku-2ST" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="13" id="j2I-Sa-hAh"/>
                 <constraint firstItem="Rfi-ku-2ST" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="jL1-BY-0yh"/>
+                <constraint firstAttribute="trailing" secondItem="heM-tW-fIW" secondAttribute="trailing" constant="8" id="puq-fj-Dnb"/>
                 <constraint firstItem="gaQ-rc-kV9" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="zlP-ue-Xzf"/>
             </constraints>
             <connections>

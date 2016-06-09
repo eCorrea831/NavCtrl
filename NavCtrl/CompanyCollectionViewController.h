@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CompanyCollectionViewController : UICollectionViewController
+@interface CompanyCollectionViewController : UICollectionViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 
 
 

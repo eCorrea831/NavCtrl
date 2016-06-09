@@ -31,9 +31,12 @@
     
     [self loadNavBar];
     
+    self.installsStandardGestureForInteractiveMovement = true;
+    
     self.inEditMode = NO;
     self.title = @"Navigation Controller";
-    
+    self.collectionView.delegate=self;
+    self.collectionView.dataSource=self;
     self.dao = [DataAccessObject sharedInstance];
     self.productCollectionViewController = [[ProductCollectionViewController alloc]initWithNibName:@"ProductCollectionViewController" bundle:nil];
 
@@ -44,11 +47,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    
-//    Stocks * stockPrice = [[Stocks alloc] init];
-//    [stockPrice makeRequest:self];
-    
     [self.dao reloadCompanyDataFromContext];
+    Stocks * stockPrice = [[Stocks alloc] init];
+    [stockPrice makeRequest:self];
+
     [self.collectionView reloadData];
 }
 
@@ -113,7 +115,7 @@
         cell.deleteCompanyButton.hidden = YES;
     }
     
-    //cell.companyStockPriceLabel.text = [NSString stringWithFormat:@"%.2f", [company.companyStockPrice floatValue]];
+    cell.companyStockPriceLabel.text = [NSString stringWithFormat:@"%.2f", [company.companyStockPrice floatValue]];
 
     return cell;
 }
@@ -129,6 +131,27 @@
         self.productCollectionViewController.company = company;
         [self.navigationController pushViewController:self.productCollectionViewController animated:YES];
     }
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return YES;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    
+    Company * companyToMove = [self.dao.companyList objectAtIndex:sourceIndexPath.row];
+    [self.dao.companyList removeObjectAtIndex:sourceIndexPath.row];
+    [self.dao.companyList insertObject:companyToMove atIndex:destinationIndexPath.row];
+    
+    NSNumber * i = @0;
+    for (Company * company in self.dao.companyList) {
+        [company setCompanyOrderNum:i];
+        i = @([i floatValue] + 1);
+    }
+    
+    [self.dao moveCompanies];
+    [self.collectionView reloadData];
 }
 
 - (void)enterEditMode:sender {

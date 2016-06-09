@@ -33,10 +33,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVD-vI-6jP">
-                        <rect key="frame" x="467" y="47" width="25" height="25"/>
+                        <rect key="frame" x="467" y="27" width="25" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="3K3-dI-rSx"/>
-                            <constraint firstAttribute="width" constant="25" id="a48-FF-lwr"/>
+                            <constraint firstAttribute="width" constant="25" id="LuP-Zz-RoD"/>
+                            <constraint firstAttribute="height" constant="25" id="Yxw-Gz-BqA"/>
                         </constraints>
                         <state key="normal" title="Button" image="minus_filled"/>
                         <connections>
@@ -49,13 +49,13 @@
             <color key="backgroundColor" red="0.088402785360813141" green="0.74739795923233032" blue="0.69189202785491943" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="rh3-A5-tJ0" secondAttribute="trailing" constant="62" id="4Ya-zC-PNq"/>
-                <constraint firstAttribute="bottom" secondItem="EVD-vI-6jP" secondAttribute="bottom" constant="8" id="4wf-zP-4cO"/>
                 <constraint firstItem="Sdt-pl-nCP" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="F3F-8E-G7p"/>
-                <constraint firstAttribute="trailing" secondItem="EVD-vI-6jP" secondAttribute="trailing" constant="8" id="Ff7-Kk-UqH"/>
                 <constraint firstItem="d4o-Ag-P35" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Fwo-Um-br3"/>
                 <constraint firstItem="d4o-Ag-P35" firstAttribute="leading" secondItem="Sdt-pl-nCP" secondAttribute="trailing" constant="15" id="IUd-R6-Fik"/>
+                <constraint firstItem="EVD-vI-6jP" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="K7d-ox-RL4"/>
                 <constraint firstItem="Sdt-pl-nCP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="18" id="Of3-KP-9Zw"/>
                 <constraint firstItem="rh3-A5-tJ0" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="ooo-bP-oj3"/>
+                <constraint firstAttribute="trailing" secondItem="EVD-vI-6jP" secondAttribute="trailing" constant="8" id="tEz-mP-7sE"/>
             </constraints>
             <size key="customSize" width="311" height="72"/>
             <connections>
@@ -64,7 +64,7 @@
                 <outlet property="companyStockPriceLabel" destination="rh3-A5-tJ0" id="7ee-4h-vyH"/>
                 <outlet property="deleteCompanyButton" destination="EVD-vI-6jP" id="e93-WS-pWJ"/>
             </connections>
-            <point key="canvasLocation" x="-307" y="-185"/>
+            <point key="canvasLocation" x="-374" y="-413"/>
         </collectionViewCell>
     </objects>
     <resources>

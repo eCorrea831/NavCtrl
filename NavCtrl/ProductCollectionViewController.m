@@ -23,6 +23,8 @@
     [super viewDidLoad];
     [self loadNavBar];
     
+    self.installsStandardGestureForInteractiveMovement = true;
+    
     self.title = @"Navigation Controller";
     
     UINib * cellNib = [UINib nibWithNibName:@"ProductCollectionViewCell" bundle:nil];
@@ -109,6 +111,27 @@
         [self.navigationController pushViewController:webViewController animated:YES];
         [webViewController release];
     }
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return YES;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    
+    Product * productToMove = [self.company.productArray objectAtIndex:sourceIndexPath.row];
+    [self.company.productArray removeObjectAtIndex:sourceIndexPath.row];
+    [self.company.productArray insertObject:productToMove atIndex:destinationIndexPath.row];
+
+    NSNumber * i = @0;
+    for (Product * product in self.company.productArray) {
+        [product setProductOrderNum:i];
+        i = @([i floatValue] + 1);
+    }
+    
+    [[DataAccessObject sharedInstance] moveProductsForCompany:self.company];
+    [self.collectionView reloadData];
 }
 
 - (void)enterEditMode:sender {

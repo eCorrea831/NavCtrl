@@ -18,7 +18,6 @@
 
 - (IBAction)deleteCompany:(UIButton *)sender {
 
-    //TODO:have remove from view right away
     NSInteger index = sender.tag;
     Company * company = [DataAccessObject sharedInstance].companyList[index];
     [[DataAccessObject sharedInstance] deleteCompanyAndItsProducts:company];

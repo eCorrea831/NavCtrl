@@ -14,7 +14,6 @@
 @property (retain, nonatomic) IBOutlet UILabel * productNameLabel;
 @property (retain, nonatomic) IBOutlet UIImageView * productImage;
 @property (retain, nonatomic) IBOutlet UIButton * deleteProductButton;
-
 @property (nonatomic, retain) Company * company;
 
 - (IBAction)deleteProduct:(id)sender;

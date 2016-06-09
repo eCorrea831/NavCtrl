@@ -16,8 +16,6 @@
 
 - (IBAction)deleteProduct:(UIButton *)sender {
     
-    //TODO:have remove from view right away
-    
     NSInteger index = sender.tag;
     
     Product * product = [self.company.productArray objectAtIndex:index];
