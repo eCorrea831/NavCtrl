@@ -10,4 +10,6 @@
 
 @interface StocksAFNetworking : NSObject
 
+- (void)makeRequest;
+
 @end

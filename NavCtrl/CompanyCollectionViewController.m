@@ -11,7 +11,7 @@
 #import "ProductCollectionViewController.h"
 #import "DataAccessObject.h"
 #import "UserCompanyViewController.h"
-#import "Stocks.h"
+#import "StocksAFNetworking.h"
 
 @class DataAccessObject;
 @class ProductCollectionViewController;
@@ -33,10 +33,12 @@
     
     self.installsStandardGestureForInteractiveMovement = true;
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(stockDataLoad) name:@"Reload" object:nil];
+    
     self.inEditMode = NO;
     self.title = @"Navigation Controller";
-    self.collectionView.delegate=self;
-    self.collectionView.dataSource=self;
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
     self.dao = [DataAccessObject sharedInstance];
     self.productCollectionViewController = [[ProductCollectionViewController alloc]initWithNibName:@"ProductCollectionViewController" bundle:nil];
 
@@ -44,13 +46,19 @@
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"Cell"];
 }
 
+- (void)stockDataLoad {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadData];
+    });
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     [self.dao reloadCompanyDataFromContext];
     
-//    Stocks * stockPrice = [[Stocks alloc] init];
-//    [stockPrice makeRequest:self];
+    StocksAFNetworking * stockPrice = [[StocksAFNetworking alloc] init];
+    [stockPrice makeRequest];
 
     [self.collectionView reloadData];
 }
@@ -116,7 +124,7 @@
         cell.deleteCompanyButton.hidden = YES;
     }
     
-    //cell.companyStockPriceLabel.text = [NSString stringWithFormat:@"%.2f", [company.companyStockPrice floatValue]];
+    cell.companyStockPriceLabel.text = [NSString stringWithFormat:@"%.2f", [company.companyStockPrice floatValue]];
 
     return cell;
 }

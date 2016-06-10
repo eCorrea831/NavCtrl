@@ -46,7 +46,7 @@
 
 - (void)parseData:(NSData *)data {
     
-    NSString *csv = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString * csv = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSMutableArray * stockArray = (NSMutableArray *)[csv componentsSeparatedByString:@"\n"];
     //[stockArray removeLastObject];
     for (int index = 0; index < [[DataAccessObject sharedInstance].companyList count]; index++) {

@@ -51,14 +51,7 @@
 		7B568E871CBC0B9000E8BEED /* DataAccessObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B568E861CBC0B9000E8BEED /* DataAccessObject.m */; };
 		7B5A09E51CF63B1500557232 /* UserCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A09E31CF63B1500557232 /* UserCompanyViewController.m */; };
 		7B5A09E61CF63B1500557232 /* UserCompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B5A09E41CF63B1500557232 /* UserCompanyViewController.xib */; };
-		7B5F64581CEFB6DC00495225 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5F644D1CEFB6DC00495225 /* Bolts.framework */; };
 		7B5F64591CEFB6DD00495225 /* DocSets in Resources */ = {isa = PBXBuildFile; fileRef = 7B5F644E1CEFB6DC00495225 /* DocSets */; };
-		7B5F645A1CEFB6DD00495225 /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7B5F644F1CEFB6DC00495225 /* FacebookSDKStrings.bundle */; };
-		7B5F645B1CEFB6DD00495225 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5F64501CEFB6DC00495225 /* FBAudienceNetwork.framework */; };
-		7B5F645C1CEFB6DD00495225 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5F64511CEFB6DC00495225 /* FBSDKCoreKit.framework */; };
-		7B5F645D1CEFB6DD00495225 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5F64521CEFB6DC00495225 /* FBSDKLoginKit.framework */; };
-		7B5F645E1CEFB6DD00495225 /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5F64531CEFB6DC00495225 /* FBSDKMessengerShareKit.framework */; };
-		7B5F645F1CEFB6DD00495225 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5F64541CEFB6DC00495225 /* FBSDKShareKit.framework */; };
 		7B5F64601CEFB6DD00495225 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7B5F64551CEFB6DC00495225 /* LICENSE.txt */; };
 		7B5F64611CEFB6DD00495225 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7B5F64561CEFB6DC00495225 /* README.txt */; };
 		7B5F64621CEFB6DD00495225 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 7B5F64571CEFB6DC00495225 /* Samples */; };
@@ -150,14 +143,7 @@
 		7B5A09E21CF63B1500557232 /* UserCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserCompanyViewController.h; path = ../UserCompanyViewController.h; sourceTree = "<group>"; };
 		7B5A09E31CF63B1500557232 /* UserCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserCompanyViewController.m; path = ../UserCompanyViewController.m; sourceTree = "<group>"; };
 		7B5A09E41CF63B1500557232 /* UserCompanyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserCompanyViewController.xib; path = ../UserCompanyViewController.xib; sourceTree = "<group>"; };
-		7B5F644D1CEFB6DC00495225 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		7B5F644E1CEFB6DC00495225 /* DocSets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DocSets; sourceTree = "<group>"; };
-		7B5F644F1CEFB6DC00495225 /* FacebookSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKStrings.bundle; sourceTree = "<group>"; };
-		7B5F64501CEFB6DC00495225 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
-		7B5F64511CEFB6DC00495225 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		7B5F64521CEFB6DC00495225 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		7B5F64531CEFB6DC00495225 /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
-		7B5F64541CEFB6DC00495225 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		7B5F64551CEFB6DC00495225 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		7B5F64561CEFB6DC00495225 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		7B5F64571CEFB6DC00495225 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
@@ -204,16 +190,10 @@
 				7B52A57A1CF659C500FE1AA1 /* CoreData.framework in Frameworks */,
 				7B80E3BA1CCD3FC300A04013 /* libsqlite3.dylib in Frameworks */,
 				7B80E3B81CCD3F7900A04013 /* libz.1.dylib in Frameworks */,
-				7B5F645D1CEFB6DD00495225 /* FBSDKLoginKit.framework in Frameworks */,
 				7B7539771CB84C1600935272 /* WebKit.framework in Frameworks */,
 				48A656B718163BF200746D36 /* CoreGraphics.framework in Frameworks */,
 				48A656B918163BF200746D36 /* UIKit.framework in Frameworks */,
 				48A656B518163BF200746D36 /* Foundation.framework in Frameworks */,
-				7B5F64581CEFB6DC00495225 /* Bolts.framework in Frameworks */,
-				7B5F645F1CEFB6DD00495225 /* FBSDKShareKit.framework in Frameworks */,
-				7B5F645C1CEFB6DD00495225 /* FBSDKCoreKit.framework in Frameworks */,
-				7B5F645B1CEFB6DD00495225 /* FBAudienceNetwork.framework in Frameworks */,
-				7B5F645E1CEFB6DD00495225 /* FBSDKMessengerShareKit.framework in Frameworks */,
 				47E79CA5FE27871F2ED08E95 /* libPods-NavCtrl.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,14 +302,7 @@
 		48A656BB18163BF200746D36 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7B5F644D1CEFB6DC00495225 /* Bolts.framework */,
 				7B5F644E1CEFB6DC00495225 /* DocSets */,
-				7B5F644F1CEFB6DC00495225 /* FacebookSDKStrings.bundle */,
-				7B5F64501CEFB6DC00495225 /* FBAudienceNetwork.framework */,
-				7B5F64511CEFB6DC00495225 /* FBSDKCoreKit.framework */,
-				7B5F64521CEFB6DC00495225 /* FBSDKLoginKit.framework */,
-				7B5F64531CEFB6DC00495225 /* FBSDKMessengerShareKit.framework */,
-				7B5F64541CEFB6DC00495225 /* FBSDKShareKit.framework */,
 				7B5F64551CEFB6DC00495225 /* LICENSE.txt */,
 				7B5F64561CEFB6DC00495225 /* README.txt */,
 				7B5F64571CEFB6DC00495225 /* Samples */,
@@ -579,7 +552,6 @@
 				7B5F64591CEFB6DD00495225 /* DocSets in Resources */,
 				7B5F64611CEFB6DD00495225 /* README.txt in Resources */,
 				7B49C40E1CB5CF3C00AE47E2 /* GalaxyTab in Resources */,
-				7B5F645A1CEFB6DD00495225 /* FacebookSDKStrings.bundle in Resources */,
 				7B49C3E21CB5B58F00AE47E2 /* SamsungMobileDevices in Resources */,
 				7B747D1A1CE3D06100EAA943 /* Test in Resources */,
 				7B49C3F21CB5CC1B00AE47E2 /* GoogleMobileDevices in Resources */,
