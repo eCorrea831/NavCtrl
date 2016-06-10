@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47E79CA5FE27871F2ED08E95 /* libPods-NavCtrl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE5B2A7C6712E96AF800C050 /* libPods-NavCtrl.a */; };
 		48A656B518163BF200746D36 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A656B418163BF200746D36 /* Foundation.framework */; };
 		48A656B718163BF200746D36 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A656B618163BF200746D36 /* CoreGraphics.framework */; };
 		48A656B918163BF200746D36 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A656B818163BF200746D36 /* UIKit.framework */; };
@@ -77,6 +78,7 @@
 		AA4D87081D088CCD00FF0FFF /* CompanyCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA4D87061D088CCD00FF0FFF /* CompanyCollectionViewController.xib */; };
 		AA4D870C1D088CF900FF0FFF /* ProductCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4D870A1D088CF900FF0FFF /* ProductCollectionViewController.m */; };
 		AA4D870D1D088CF900FF0FFF /* ProductCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA4D870B1D088CF900FF0FFF /* ProductCollectionViewController.xib */; };
+		AA5DEEC31D0B365400764167 /* StocksAFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5DEEC21D0B365400764167 /* StocksAFNetworking.m */; };
 		AADC724D1D089EDD00E87E3B /* CompanyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AADC724B1D089EDD00E87E3B /* CompanyCollectionViewCell.m */; };
 		AADC724E1D089EDD00E87E3B /* CompanyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AADC724C1D089EDD00E87E3B /* CompanyCollectionViewCell.xib */; };
 		AADC72501D08A3DC00E87E3B /* CompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AADC724F1D08A3DC00E87E3B /* CompanyViewController.xib */; };
@@ -93,6 +95,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4880D74224ECD92761F2FA30 /* Pods-NavCtrl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NavCtrl.release.xcconfig"; path = "Pods/Target Support Files/Pods-NavCtrl/Pods-NavCtrl.release.xcconfig"; sourceTree = "<group>"; };
 		48A656B118163BF200746D36 /* NavCtrl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavCtrl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48A656B418163BF200746D36 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		48A656B618163BF200746D36 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -174,6 +177,7 @@
 		7BF0AB9B1CF8D7AC00E28AAE /* CompanyManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyManagedObject.m; sourceTree = "<group>"; };
 		7BF0AB9D1CF8D7BA00E28AAE /* ProductManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductManagedObject.h; sourceTree = "<group>"; };
 		7BF0AB9E1CF8D7BA00E28AAE /* ProductManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductManagedObject.m; sourceTree = "<group>"; };
+		9744D750FB742C104EDBB5B8 /* Pods-NavCtrl.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NavCtrl.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NavCtrl/Pods-NavCtrl.debug.xcconfig"; sourceTree = "<group>"; };
 		AA25A4CF1D08B5D500212084 /* ProductCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCollectionViewCell.h; sourceTree = "<group>"; };
 		AA25A4D01D08B5D500212084 /* ProductCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCollectionViewCell.m; sourceTree = "<group>"; };
 		AA25A4D11D08B5D500212084 /* ProductCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -183,10 +187,13 @@
 		AA4D87091D088CF900FF0FFF /* ProductCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCollectionViewController.h; sourceTree = "<group>"; };
 		AA4D870A1D088CF900FF0FFF /* ProductCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCollectionViewController.m; sourceTree = "<group>"; };
 		AA4D870B1D088CF900FF0FFF /* ProductCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCollectionViewController.xib; sourceTree = "<group>"; };
+		AA5DEEC11D0B365400764167 /* StocksAFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StocksAFNetworking.h; sourceTree = "<group>"; };
+		AA5DEEC21D0B365400764167 /* StocksAFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StocksAFNetworking.m; sourceTree = "<group>"; };
 		AADC724A1D089EDD00E87E3B /* CompanyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompanyCollectionViewCell.h; path = ../CompanyCollectionViewCell.h; sourceTree = "<group>"; };
 		AADC724B1D089EDD00E87E3B /* CompanyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CompanyCollectionViewCell.m; path = ../CompanyCollectionViewCell.m; sourceTree = "<group>"; };
 		AADC724C1D089EDD00E87E3B /* CompanyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CompanyCollectionViewCell.xib; path = ../CompanyCollectionViewCell.xib; sourceTree = "<group>"; };
 		AADC724F1D08A3DC00E87E3B /* CompanyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanyViewController.xib; sourceTree = "<group>"; };
+		BE5B2A7C6712E96AF800C050 /* libPods-NavCtrl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NavCtrl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +214,7 @@
 				7B5F645C1CEFB6DD00495225 /* FBSDKCoreKit.framework in Frameworks */,
 				7B5F645B1CEFB6DD00495225 /* FBAudienceNetwork.framework in Frameworks */,
 				7B5F645E1CEFB6DD00495225 /* FBSDKMessengerShareKit.framework in Frameworks */,
+				47E79CA5FE27871F2ED08E95 /* libPods-NavCtrl.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +275,7 @@
 				48A656D318163BF200746D36 /* NavCtrlTests */,
 				48A656B318163BF200746D36 /* Frameworks */,
 				48A656B218163BF200746D36 /* Products */,
+				48EB06605A0AA262436E7F85 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -291,6 +300,7 @@
 				48A656B618163BF200746D36 /* CoreGraphics.framework */,
 				48A656B818163BF200746D36 /* UIKit.framework */,
 				48A656CD18163BF200746D36 /* XCTest.framework */,
+				BE5B2A7C6712E96AF800C050 /* libPods-NavCtrl.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -352,6 +362,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		48EB06605A0AA262436E7F85 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9744D750FB742C104EDBB5B8 /* Pods-NavCtrl.debug.xcconfig */,
+				4880D74224ECD92761F2FA30 /* Pods-NavCtrl.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		7B568E831CBBF8FF00E8BEED /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,6 +386,8 @@
 				7BF0AB9E1CF8D7BA00E28AAE /* ProductManagedObject.m */,
 				7BA189A41CF503A1000D44A1 /* Stocks.h */,
 				7BA189A51CF503A1000D44A1 /* Stocks.m */,
+				AA5DEEC11D0B365400764167 /* StocksAFNetworking.h */,
+				AA5DEEC21D0B365400764167 /* StocksAFNetworking.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -466,9 +487,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48A656DD18163BF200746D36 /* Build configuration list for PBXNativeTarget "NavCtrl" */;
 			buildPhases = (
+				9C34D2ED7EAC0B2C7E900994 /* [CP] Check Pods Manifest.lock */,
 				48A656AD18163BF200746D36 /* Sources */,
 				48A656AE18163BF200746D36 /* Frameworks */,
 				48A656AF18163BF200746D36 /* Resources */,
+				762AC736C488DEC729822154 /* [CP] Embed Pods Frameworks */,
+				EFA98DC681F7AC7A8C33183D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -588,12 +612,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		762AC736C488DEC729822154 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NavCtrl/Pods-NavCtrl-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C34D2ED7EAC0B2C7E900994 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EFA98DC681F7AC7A8C33183D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NavCtrl/Pods-NavCtrl-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		48A656AD18163BF200746D36 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				7BA189A61CF503A1000D44A1 /* Stocks.m in Sources */,
+				AA5DEEC31D0B365400764167 /* StocksAFNetworking.m in Sources */,
 				7B568E871CBC0B9000E8BEED /* DataAccessObject.m in Sources */,
 				7B52A57D1CF65A2300FE1AA1 /* CoreDataModel.xcdatamodeld in Sources */,
 				48A656E618163C1B00746D36 /* CompanyViewController.m in Sources */,
@@ -727,6 +800,7 @@
 		};
 		48A656DE18163BF200746D36 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9744D750FB742C104EDBB5B8 /* Pods-NavCtrl.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -750,6 +824,7 @@
 		};
 		48A656DF18163BF200746D36 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4880D74224ECD92761F2FA30 /* Pods-NavCtrl.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
