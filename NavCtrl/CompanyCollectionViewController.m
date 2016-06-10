@@ -48,8 +48,9 @@
     
     [super viewWillAppear:animated];
     [self.dao reloadCompanyDataFromContext];
-    Stocks * stockPrice = [[Stocks alloc] init];
-    [stockPrice makeRequest:self];
+    
+//    Stocks * stockPrice = [[Stocks alloc] init];
+//    [stockPrice makeRequest:self];
 
     [self.collectionView reloadData];
 }
@@ -115,7 +116,7 @@
         cell.deleteCompanyButton.hidden = YES;
     }
     
-    cell.companyStockPriceLabel.text = [NSString stringWithFormat:@"%.2f", [company.companyStockPrice floatValue]];
+    //cell.companyStockPriceLabel.text = [NSString stringWithFormat:@"%.2f", [company.companyStockPrice floatValue]];
 
     return cell;
 }
